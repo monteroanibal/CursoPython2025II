@@ -1,0 +1,1008 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Entornos de desarrollo &#8212; Análisis y procesamiento de datos con Open Source</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modulo_1/modulo_1';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Sobre el curso" href="../modulo_0/modulo_0.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Logo_DANE_2024.png" class="logo__image only-light" alt="Análisis y procesamiento de datos con Open Source - Home"/>
+    <script>document.write(`<img src="../_static/Logo_DANE_2024.png" class="logo__image only-dark" alt="Análisis y procesamiento de datos con Open Source - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Taller de Análisis y procesamiento de datos con Open Source
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sobre el curso</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_0/modulo_0.html">Sobre el curso</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Entornos de desarrollo</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/modulo_1/modulo_1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Entornos de desarrollo</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-problema">Análisis del Problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-lenguaje-de-programacion">Como lenguaje de programación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-software">Como software</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda">Anaconda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook">Notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-alternativas">Otras alternativas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code">VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder">Spyder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">Pycharm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-cloud9-y-azure-notebooks">AWS Cloud9 y Azure Notebooks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice">Apéndice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion">Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="entornos-de-desarrollo">
+<h1>Entornos de desarrollo<a class="headerlink" href="#entornos-de-desarrollo" title="Link to this heading">#</a></h1>
+<p><strong>Introducción a las interfaces de desarrollo en Python más comunes en 2025</strong></p>
+<a class="reference internal image-reference" href="../_images/training-program.png"><img alt="numpy" class="align-center" src="../_images/training-program.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/demo" title="demo icons">Demo icons created by Ning Nong - Flaticon</a>
+</p><section id="analisis-del-problema">
+<h2>Análisis del Problema<a class="headerlink" href="#analisis-del-problema" title="Link to this heading">#</a></h2>
+<p>Estimados estudianes, a continuación les mencionamos algunas condiciones puntuales que hacen parte de nuestro contexto como profesionales del DANE, que en nuestro quehacer trabajamos permenentemente con diferentes volúmenes de datos, frente a nuestro primer acercamiento al software Python:</p>
+<ul class="simple">
+<li><p>Tarde o temprano nos llega el momento que necesitamos aprender a programar en Python, debido a las funcionalidades únicas que nos puede ofrecer este software por encima de los usos típicos de sus alternativas como lo son R y SAS.</p></li>
+<li><p>Hay una cantidad abrumadora de información en internet sobre Python, y para quienes se quieren introducir, falta una estructura que les indique sobre lo que deben aprender y en qué orden basado en sus necesidades profesionales.</p></li>
+<li><p>Antes de iniciar en la programación con el lenguaje de programación de Python, es necesario conocer las alternativas de software de entornos de dearrollo para ciencia de datos en Python, lo cual se explica a continuación.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/dev.png"><img alt="numpy" class="align-center" src="../_images/dev.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/it-department" title="it department icons">It department icons created by Freepik - Flaticon</a>
+</p><div class="tip admonition">
+<p class="admonition-title">Objetivos de la sesión</p>
+<ul class="simple">
+<li><p>Delimitar la problemática por la que se aborda Python como lenguaje de programación para el análisis y procesamiento de datos</p></li>
+<li><p>Entender el funcionamiento de Anaconda como manejador de ambientes de programación y librerías</p></li>
+<li><p>Introducir a  como software de entorno de programación en notebooks</p></li>
+<li><p>Entender los notebooks como herramienta para el desarrollo de programación y código</p></li>
+<li><p>Presentar alternativas de software de entorno de programación y ejecución para Python</p></li>
+</ul>
+</div>
+</section>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
+<p>La siguiente es una explicación de Python, tanto en su dimensión como lenguaje de programación como en su forma de software (intérprete):</p>
+<section id="como-lenguaje-de-programacion">
+<h3>Como lenguaje de programación<a class="headerlink" href="#como-lenguaje-de-programacion" title="Link to this heading">#</a></h3>
+<p>Python es un lenguaje de programación de alto nivel, interpretado, dinámico y multipropósito, diseñado para ser fácil de leer y escribir, incluso para quienes se están iniciando en la programación.</p>
+<a class="reference internal image-reference" href="../_images/Python-Logo.jpg"><img alt="numpy" class="align-center" src="../_images/Python-Logo.jpg" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://1000logos.net/python-logo/" title="demo icons">Imagotipo de Python</a>
+</p><ul>
+<li><p><strong>Características principales:</strong></p>
+<ul class="simple">
+<li><p><em>Sintaxis clara y legible</em>:</p></li>
+</ul>
+<p>Python fue diseñado para parecerse al lenguaje humano, evitando símbolos innecesarios. Esto lo hace especialmente apto para educación, ciencia y desarrollo ágil.</p>
+<ul class="simple">
+<li><p><em>Interpretado</em>:</p></li>
+</ul>
+<p>El código Python no se compila previamente en archivos ejecutables, sino que se ejecuta línea por línea mediante un intérprete. Esto favorece la experimentación, pero puede hacer que sea algo más lento que lenguajes compilados como C o Java.</p>
+<ul class="simple">
+<li><p><em>Tipado dinámico</em>:</p></li>
+</ul>
+<p>No es necesario declarar el tipo de las variables (como <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, etc.); Python lo determina automáticamente en tiempo de ejecución.</p>
+<ul class="simple">
+<li><p><em>Multiparadigma</em>:</p></li>
+</ul>
+<p>Soporta varios estilos de programación:
+* Imperativa/procedimental
+* Orientada a objetos
+* Funcional</p>
+<ul class="simple">
+<li><p><em>Extensibilidad</em>:</p></li>
+</ul>
+<p>Se puede extender con bibliotecas escritas en C, C++, Fortran, entre otros, para lograr mejor rendimiento o integrar sistemas heredados.</p>
+<ul class="simple">
+<li><p><em>Gran ecosistema de bibliotecas</em>:</p></li>
+</ul>
+<p>Existen miles de paquetes para tareas diversas: <em>Ciencia de datos</em>: <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>; <em>Automatización</em>: <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">shutil</span></code>, <code class="docutils literal notranslate"><span class="pre">requests</span></code>; <em>Inteligencia Artificial</em>: <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code>, <code class="docutils literal notranslate"><span class="pre">pytorch</span></code></p>
+</li>
+<li><p><strong>Ejemplo simple en Python:</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcular el área de un círculo</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="n">radio</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">area</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radio</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El área del círculo es </span><span class="si">{</span><span class="n">area</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El área del círculo es 78.54
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="como-software">
+<h3>Como software<a class="headerlink" href="#como-software" title="Link to this heading">#</a></h3>
+<p>Cuando se instala Python en un ordenador, en realidad se está instalando un intérprete, que es un programa que lee, analiza y ejecuta el código escrito en el lenguaje Python.</p>
+<a class="reference internal image-reference" href="../_images/python.png"><img alt="numpy" class="align-center" src="../_images/python.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/code" title="code icons">Code icons created by Freepik - Flaticon</a>
+</p><ul>
+<li><p><strong>¿Qué es el intérprete de Python?</strong></p>
+<p>Es el núcleo del sistema que:</p>
+<ul class="simple">
+<li><p>Traduce el código fuente <code class="docutils literal notranslate"><span class="pre">.py</span></code> en instrucciones que la máquina puede entender (de forma indirecta).</p></li>
+<li><p>Gestiona la memoria, los errores, la ejecución paso a paso, etc.</p></li>
+<li><p>Puede usarse de forma interactiva (línea por línea) o para ejecutar scripts completos.</p></li>
+</ul>
+</li>
+<li><p><strong>¿Qué contiene una instalación típica de Python?</strong></p>
+<ul class="simple">
+<li><p>El intérprete (por ejemplo, <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> en Windows).</p></li>
+<li><p>La librería estándar, que incluye herramientas listas para usar (manejo de archivos, matemáticas, fechas, conexión a internet, etc.).</p></li>
+<li><p>Herramientas como <code class="docutils literal notranslate"><span class="pre">pip</span></code> para instalar paquetes externos.</p></li>
+<li><p>A veces incluye un entorno interactivo simple como IDLE (Python Shell con editor).</p></li>
+</ul>
+</li>
+<li><p><strong>Versiones y evolución</strong></p>
+<ul class="simple">
+<li><p>La versión más usada es Python 3, activa desde 2008. La serie Python 2 fue descontinuada oficialmente en 2020.</p></li>
+<li><p>Python se actualiza regularmente, mejorando rendimiento y añadiendo funcionalidades. La versión más reciente estable en 2025 es Python 3.12 (aunque podría haber versiones beta de 3.13).</p></li>
+</ul>
+</li>
+<li><p><strong>¿Quién creó Python y por qué?</strong></p>
+<p>Python fue creado por Guido Van Rossum a finales de los años 80, como un sucesor del lenguaje ABC, con la intención de ser un lenguaje fácil de aprender pero poderoso.</p>
+</li>
+</ul>
+<blockquote>
+<div><p>El nombre “Python” no proviene de la serpiente, sino del grupo cómico británico <strong>“Monty Python”</strong>.</p>
+</div></blockquote>
+<div class="tip admonition">
+<p class="admonition-title">Usos de Python hoy en día</p>
+<ul class="simple">
+<li><p>Ciencia de datos y análisis estadístico</p></li>
+<li><p>Inteligencia artificial y aprendizaje automático</p></li>
+<li><p>Desarrollo web</p></li>
+<li><p>Automatización de tareas</p></li>
+<li><p>Juegos y simulaciones</p></li>
+<li><p>Educación en programación</p></li>
+<li><p>Control de hardware y dispositivos embebidos</p></li>
+<li><p>Ciberseguridad y pruebas de penetración</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p><strong>Resumen gráfico (conceptual):</strong></p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Rol</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Lenguaje</p></td>
+<td><p>Conjunto de reglas y estructuras para escribir programas (como una gramática).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intérprete</p></td>
+<td><p>Programa que lee y ejecuta código Python (por ejemplo, <code class="docutils literal notranslate"><span class="pre">python.exe</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p>Archivos comunes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.py</span></code> (scripts), <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> (notebooks), <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> (código compilado internamente).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="anaconda">
+<h2>Anaconda<a class="headerlink" href="#anaconda" title="Link to this heading">#</a></h2>
+<p>Es una distribución gratuita y de código abierto de Python y R que incluye:</p>
+<ul class="simple">
+<li><p>Un intérprete de Python</p></li>
+<li><p>Un gran conjunto de paquetes científicos y de análisis de datos</p></li>
+<li><p>Herramientas para gestionar entornos virtuales</p></li>
+<li><p>Interfaces de trabajo como Jupyter Notebook</p></li>
+</ul>
+<p>Está pensada para facilitar el trabajo con análisis de datos, machine learning, ciencia, ingeniería y visualización, sin que el usuario tenga que instalar cada componente por separado.</p>
+<a class="reference internal image-reference" href="../_images/Anaconda-Logo.png"><img alt="numpy" class="align-center" src="../_images/Anaconda-Logo.png" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://anaconda.com/app/assets/images/logos/Anaconda-Horizontal-Full-Color.webp" title="demo icons">Imagotipo de Anaconda</a>
+</p><ul>
+<li><p><strong>¿Qué incluye Anaconda?</strong></p>
+<p>Al instalar Anaconda, se instalan cientos de componentes preconfigurados que suelen ser necesarios para trabajar en ciencia de datos y otras áreas. Aquí los más importantes:</p>
+<ul class="simple">
+<li><p><em>Herramientas de desarrollo</em>:</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Jupyter Notebook: Interfaz de notebooks interactivos.</p></li>
+<li><p>JupyterLab: Versión más avanzada y modular de Jupyter.</p></li>
+<li><p>Spyder: Entorno de desarrollo (IDE) tipo MATLAB para Python.</p></li>
+<li><p>VS Code (opcional): Se puede integrar fácilmente.</p></li>
+</ol>
+<ul class="simple">
+<li><p><em>Paquetes preinstalados</em>:</p></li>
+</ul>
+<p>Incluye más de 1500 paquetes populares en ciencia de datos, como:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo de tarea</p></th>
+<th class="head"><p>Paquetes incluidos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cálculo numérico</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Análisis de datos</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Visualización</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, <code class="docutils literal notranslate"><span class="pre">bokeh</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Machine Learning</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, <code class="docutils literal notranslate"><span class="pre">xgboost</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Deep Learning</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tensorflow</span></code>, <code class="docutils literal notranslate"><span class="pre">pytorch</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Web scraping</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">requests</span></code>, <code class="docutils literal notranslate"><span class="pre">beautifulsoup4</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Esto ahorra muchas horas de instalación y resolución de dependencias.</p>
+<ul class="simple">
+<li><p><em>Gestor de paquetes y entornos</em>:
+conda: Es el gestor de paquetes y entornos virtuales de Anaconda. Sirve para:</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Instalar y actualizar paquetes.</p></li>
+<li><p>Crear entornos separados con versiones distintas de Python o bibliotecas.</p></li>
+</ol>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/pantallazo_anaconda.png"><img alt="numpy" class="align-center" src="../_images/pantallazo_anaconda.png" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 12px;">
+    <strong> página de inicio de Anaconda </strong>
+</p><ul>
+<li><p><strong>¿Por qué usar Anaconda?</strong></p>
+<ul class="simple">
+<li><p><em>Todo en uno</em>: Viene con todo lo necesario para comenzar a trabajar en ciencia de datos o programación científica.</p></li>
+<li><p><em>Gestión de entornos</em>: Puedes tener diferentes versiones de Python y paquetes sin conflictos.</p></li>
+<li><p><em>Facilita instalación de paquetes pesados</em>: Algunos paquetes como <code class="docutils literal notranslate"><span class="pre">numpy</span></code> o <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code> pueden ser difíciles de instalar con <code class="docutils literal notranslate"><span class="pre">pip</span></code>, pero <code class="docutils literal notranslate"><span class="pre">conda</span></code> simplifica el proceso.</p></li>
+<li><p><em>Ideal para ciencia de datos y educación</em>: Muy popular en universidades y cursos de Python.</p></li>
+</ul>
+</li>
+<li><p><strong>¿Qué es un entorno en Anaconda?</strong></p>
+<p>Un entorno es una instalación aislada de Python con su propio conjunto de paquetes. Esto evita que un proyecto interfiera con otro. Ejemplo de uso:</p>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear un entorno nuevo</span>
+conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mi_entorno<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12
+
+<span class="c1"># Activar el entorno</span>
+conda<span class="w"> </span>activate<span class="w"> </span>mi_entorno
+
+<span class="c1"># Instalar paquetes en ese entorno</span>
+conda<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>matplotlib
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/pantallazo_anacondaprompt.png"><img alt="numpy" class="align-center" src="../_images/pantallazo_anacondaprompt.png" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 12px;">
+    <strong> Interfaz de Anaconda Prompt </strong>
+</p><ul>
+<li><p><strong>¿Dónde descargarlo?</strong></p>
+<p>Desde la página oficial:
+<a class="reference external" href="https://www.anaconda.com">https://www.anaconda.com</a></p>
+</li>
+<li><p><strong>¿Es necesario usar Anaconda para programar en Python?</strong></p>
+<p>No. Puedes usar Python directamente desde su sitio oficial e instalar paquetes con <code class="docutils literal notranslate"><span class="pre">pip</span></code>. Sin embargo, Anaconda:</p>
+<ul class="simple">
+<li><p>Te ahorra mucho tiempo en la configuración inicial</p></li>
+<li><p>Es ideal si trabajarás con datos, gráficos o inteligencia artificial</p></li>
+<li><p>Es muy amigable para aprender</p></li>
+</ul>
+</li>
+<li><p><strong>Resumen</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspecto</p></th>
+<th class="head"><p>Anaconda</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tipo</p></td>
+<td><p>Distribución de Python + herramientas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gestor de paquetes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Incluye Python</p></td>
+<td><p>Sí</p></td>
+</tr>
+<tr class="row-odd"><td><p>Incluye Jupyter</p></td>
+<td><p>Sí</p></td>
+</tr>
+<tr class="row-even"><td><p>Uso principal</p></td>
+<td><p>Ciencia de datos, análisis, machine learning</p></td>
+</tr>
+<tr class="row-odd"><td><p>Alternativa</p></td>
+<td><p>Miniconda (más ligera)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</section>
+<section id="jupyterlab">
+<h2>JupyterLab<a class="headerlink" href="#jupyterlab" title="Link to this heading">#</a></h2>
+<p>Es un entorno de desarrollo interactivo basado en la web, que permite trabajar con código, datos, documentos y visualizaciones de forma integrada. nFue desarrollado por <strong>Project Jupyter</strong>, la misma iniciativa detrás de Jupyter Notebook.</p>
+<a class="reference internal image-reference" href="../_images/Jupyter-Logo.png"><img alt="numpy" class="align-center" src="../_images/Jupyter-Logo.png" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://agent-jay.github.io/assets/images/jupyter.png" title="demo icons">Imagotipo de Project Juptyer</a>
+</p><ul>
+<li><p><strong>¿Para qué sirve?</strong></p>
+<p>JupyterLab sirve principalmente para:</p>
+<ul class="simple">
+<li><p>Ejecutar código en notebooks interactivos</p></li>
+<li><p>Documentar el trabajo con celdas de texto y ecuaciones</p></li>
+<li><p>Explorar y visualizar datos</p></li>
+<li><p>Desarrollar proyectos de análisis, simulación, aprendizaje automático, entre otros</p></li>
+<li><p>Escribir y ejecutar scripts <code class="docutils literal notranslate"><span class="pre">.py</span></code>, ver archivos <code class="docutils literal notranslate"><span class="pre">.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">.json</span></code>, <code class="docutils literal notranslate"><span class="pre">.md</span></code>, imágenes, y mucho más</p></li>
+</ul>
+</li>
+<li><p><strong>¿Qué incluye JupyterLab?</strong></p>
+<p>JupyterLab está compuesto por varios módulos integrados que trabajan juntos en una misma ventana web:</p>
+<ul class="simple">
+<li><p>**Editor de notebooks <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> con celdas de código y texto (como en Jupyter clásico)</p></li>
+<li><p>**Editor de texto/código para archivos <code class="docutils literal notranslate"><span class="pre">.py</span></code>, <code class="docutils literal notranslate"><span class="pre">.md</span></code>, <code class="docutils literal notranslate"><span class="pre">.json</span></code>, <code class="docutils literal notranslate"><span class="pre">.csv</span></code>, etc.</p></li>
+<li><p>Terminal interactiva (similar a una consola de Linux)</p></li>
+<li><p>Explorador de archivos para navegar por carpetas del sistema</p></li>
+<li><p>Vista previa de gráficos, PDFs, imágenes, hojas de cálculo**</p></li>
+<li><p>Soporte para múltiples <em>kernels</em> (ej. Python, R, Julia)</p></li>
+</ul>
+<p>Todo esto en un diseño de paneles acoplables (como pestañas o ventanas que puedes mover, dividir y reorganizar).</p>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/pantallazo_jupyterlab.png"><img alt="numpy" class="align-center" src="../_images/pantallazo_jupyterlab.png" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 12px;">
+    <strong> Interfaz gráfica de JupyterLab <br>
+    mostrando un notebook como entorno de desarrollo para Python. </strong>
+</p><ul>
+<li><p><strong>¿Cómo se instala?</strong></p>
+<p>JupyterLab se puede instalar fácilmente si ya tienes Anaconda o Python:</p>
+<ul class="simple">
+<li><p>Si usas Anaconda:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>jupyterlab
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Si usas <em>pip</em> (con instalación básica de Python):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyterlab
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>para ejecutarlo:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
+<p>Esto abrirá la interfaz de JupyterLab en tu navegador (por defecto en <code class="docutils literal notranslate"><span class="pre">http://localhost:8888</span></code>).</p>
+</li>
+<li><p><strong>¿Qué es un <em>kernel</em> en JupyterLab?</strong></p>
+<p>Un <em>kernel</em> es el motor que ejecuta el código. JupyterLab permite cambiar de kernel según el lenguaje que estés usando:</p>
+<ul class="simple">
+<li><p>Python (el más común)</p></li>
+<li><p>R</p></li>
+<li><p>Julia</p></li>
+<li><p>Bash</p></li>
+<li><p>C++</p></li>
+<li><p>Y otros, si instalas el kernel correspondiente</p></li>
+</ul>
+<p>Esto hace que JupyterLab no se limite a Python.</p>
+</li>
+<li><p><strong>¿Por qué usar JupyterLab?</strong></p>
+<ul class="simple">
+<li><p>Combina código, documentación, resultados y visualizaciones en un mismo entorno</p></li>
+<li><p>Permite trabajar de forma interactiva y modular</p></li>
+<li><p>Ideal para experimentación, análisis de datos, enseñanza y ciencia reproducible</p></li>
+<li><p>Todo se guarda como archivos legibles (JSON, Markdown, Python)</p></li>
+<li><p>Está en constante desarrollo y mejora</p></li>
+</ul>
+</li>
+</ul>
+<section id="notebook">
+<h3>Notebook<a class="headerlink" href="#notebook" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>¿Qué es un notebook en el contexto de los entornos de desarrollo de Python?</strong>:</p>
+<p>Un notebook es un tipo especial de interfaz interactiva que permite escribir y ejecutar código en fragmentos (llamados celdas) dentro de un entorno visual, junto con texto, fórmulas matemáticas, gráficos, tablas y otros elementos multimedia. En Python, el entorno de notebooks más común es Jupyter Notebook, aunque existen variantes como JupyterLab, Google Colab o los notebooks integrados en herramientas como VS Code.</p>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/pantallazo_colab.png"><img alt="numpy" class="align-center" src="../_images/pantallazo_colab.png" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 12px;">
+    <strong> Interfaz gráfica de Google Colab <br>
+    mostrando un notebook como entorno de desarrollo para Python. </strong>
+</p><ul>
+<li><p><strong>Características principales de un notebook:</strong></p>
+<ul class="simple">
+<li><p><em>Celdas de código</em>:</p></li>
+</ul>
+<p>Permiten escribir código Python (u otros lenguajes, dependiendo del kernel). El código se ejecuta por bloques, y su salida (texto, gráficos, errores) aparece justo debajo de cada celda.</p>
+<ul class="simple">
+<li><p><em>Celdas de texto (Markdown)</em>:</p></li>
+</ul>
+<p>Estas celdas permiten documentar el código, explicar procedimientos, agregar títulos, subtítulos, listas, ecuaciones LaTeX, etc. Son útiles para crear documentos bien estructurados y comprensibles.</p>
+<ul class="simple">
+<li><p><em>Ejecución interactiva</em>:</p></li>
+</ul>
+<p>A diferencia de un archivo .py que se ejecuta de principio a fin, en un notebook puedes ejecutar celdas de forma independiente, en cualquier orden. Esto facilita el análisis exploratorio de datos, pruebas de código o desarrollo incremental.</p>
+<ul class="simple">
+<li><p><em>Visualización integrada</em>:</p></li>
+</ul>
+<p>Gráficos generados con bibliotecas como matplotlib, seaborn o plotly se muestran automáticamente dentro del mismo notebook, lo que favorece la inspección visual inmediata de resultados.</p>
+<ul class="simple">
+<li><p><em>Persistencia del estado</em>:</p></li>
+</ul>
+<p>Las variables y objetos definidos en una celda quedan disponibles para otras celdas posteriores, siempre que el kernel (el motor que ejecuta el código) siga activo. Esto facilita la continuidad del trabajo.</p>
+<ul class="simple">
+<li><p><em>Exportabilidad</em>:</p></li>
+</ul>
+<p>Un notebook se guarda como archivo .ipynb (formato JSON). Puede exportarse a PDF, HTML, o incluso a archivos .py, permitiendo compartir análisis o informes reproducibles.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="otras-alternativas">
+<h2>Otras alternativas<a class="headerlink" href="#otras-alternativas" title="Link to this heading">#</a></h2>
+<section id="google-colab">
+<h3>Google Colab<a class="headerlink" href="#google-colab" title="Link to this heading">#</a></h3>
+<p>(Abreviatura de <em>Colaboratory</em>) es una plataforma gratuita basada en la nube, desarrollada por Google, que permite escribir y ejecutar código Python directamente desde el navegador, sin necesidad de instalar nada en el computador. Su interfaz está basada en Jupyter Notebook, lo que significa que puedes trabajar con celdas de código y de texto (Markdown), visualizar gráficos, manipular datos y documentar tus procesos de forma interactiva.</p>
+<a class="reference internal image-reference" href="../_images/Colab-Logo.png"><img alt="numpy" class="align-center" src="../_images/Colab-Logo.png" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://cdn.shortpixel.ai/spai/q_lossy+w_512+to_webp+ret_img+p_h/algotrading101.com/learn/wp-content/uploads/2021/05/Google-Colab-Guide-1024x683.jpg" title="demo icons">Imagotipo de Google Colab</a>
+</p><p>Colab es especialmente útil para análisis de datos, aprendizaje automático y tareas educativas, ya que ofrece acceso gratuito a recursos computacionales potentes, como GPU y TPU, lo que permite ejecutar modelos complejos de machine learning sin requerir un computador local potente. Además, está totalmente integrado con Google Drive, lo que facilita el guardado automático y el trabajo colaborativo en tiempo real, similar a Google Docs.</p>
+<p>Es una herramienta práctica y accesible para desarrollar y compartir proyectos en Python desde cualquier dispositivo con conexión a internet.</p>
+</section>
+<section id="vs-code">
+<h3>VS Code<a class="headerlink" href="#vs-code" title="Link to this heading">#</a></h3>
+<p><em>Visual Studio Code</em> es un editor de código fuente ligero, gratuito y de código abierto desarrollado por Microsoft. Está diseñado para ser rápido, versátil y altamente personalizable, lo que lo convierte en una de las herramientas favoritas de programadores de todos los niveles. Aunque no es un entorno de desarrollo completo por sí mismo (como un IDE tradicional), puede convertirse en uno muy potente mediante extensiones.</p>
+<a class="reference internal image-reference" href="../_images/VSCode-Logo.png"><img alt="numpy" class="align-center" src="../_images/VSCode-Logo.png" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.stickpng.com/img/download/62a79050e42d729d928b1756" title="demo icons">Imagotipo de VS Code</a>
+</p><p>VS Code permite escribir y ejecutar código en múltiples lenguajes de programación, incluyendo Python, JavaScript, C++, HTML y muchos más. Ofrece características como resaltado de sintaxis, autocompletado inteligente, depuración integrada, control de versiones con Git, y terminal incorporada. Para programar en Python, basta con instalar la extensión oficial de Python, que habilita soporte para notebooks, depuración, linting, entornos virtuales y ejecución interactiva del código.</p>
+<p>Es un editor moderno y flexible que, con las extensiones adecuadas, puede adaptarse a casi cualquier flujo de trabajo de desarrollo, desde scripts simples hasta proyectos complejos de software, incluyendo ciencia de datos, aplicaciones web o sistemas embebidos.</p>
+</section>
+<section id="spyder">
+<h3>Spyder<a class="headerlink" href="#spyder" title="Link to this heading">#</a></h3>
+<p>(Scientific Python Development Environment) es un entorno de desarrollo integrado (IDE) diseñado especialmente para científicos, ingenieros, analistas de datos y estudiantes que trabajan con Python. Su diseño recuerda al entorno de MATLAB, lo que lo hace especialmente cómodo para quienes vienen de disciplinas técnicas o numéricas.</p>
+<a class="reference internal image-reference" href="../_images/Spyder-Logo.png"><img alt="numpy" class="align-center" src="../_images/Spyder-Logo.png" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://upload.wikimedia.org/wikipedia/commons/archive/7/7e/20250701044221%21Spyder_logo.svg" title="demo icons">Imagotipo de Spyder</a>
+</p><p>Spyder incluye un editor de código con resaltado de sintaxis, autocompletado y depuración; una consola interactiva que permite ejecutar código en tiempo real; un explorador de variables para visualizar datos y estructuras como si fueran hojas de cálculo; y paneles adicionales para inspeccionar archivos, documentación, historial y gráficos. Todo esto lo convierte en una herramienta ideal para análisis de datos, computación científica y desarrollo de algoritmos.</p>
+<p>Generalmente viene incluido con Anaconda, por lo que está listo para usarse con bibliotecas como NumPy, Pandas, Matplotlib o SciPy sin configuraciones adicionales. En resumen, Spyder es un entorno claro, enfocado y funcional para quienes desean combinar programación con exploración interactiva de datos y resultados numéricos.</p>
+</section>
+<section id="pycharm">
+<h3>Pycharm<a class="headerlink" href="#pycharm" title="Link to this heading">#</a></h3>
+<p>Es un entorno de desarrollo integrado (IDE) especializado en Python, creado por la empresa JetBrains. Está diseñado para facilitar el desarrollo profesional de aplicaciones, automatización, análisis de datos y ciencia computacional. Ofrece una experiencia robusta con herramientas avanzadas como autocompletado inteligente, depuración visual, análisis estático de código, pruebas automáticas, control de versiones integrado (como Git) y soporte para entornos virtuales.</p>
+<a class="reference internal image-reference" href="../_images/Pycharm-logo.png"><img alt="numpy" class="align-center" src="../_images/Pycharm-logo.png" style="width: 400px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://upload.wikimedia.org/wikipedia/commons/5/5d/JetBrains_PyCharm_Product_Logo.svg" title="demo icons">Imagotipo de PyCharm</a>
+</p><p>Existen dos versiones principales: una <strong>Community Edition</strong>, gratuita y de código abierto, con lo esencial para programar en Python, y una <strong>Professional Edition</strong>, de pago, que incluye características adicionales como soporte para desarrollo web (Django, Flask), bases de datos, ciencia de datos y herramientas colaborativas.</p>
+<p>PyCharm permite gestionar proyectos grandes de forma ordenada, facilita el trabajo con notebooks, terminales y scripts, e integra herramientas de gestión de paquetes como pip y conda. En resumen, PyCharm es una opción potente y completa para quienes buscan un entorno enfocado en productividad, estructura y herramientas profesionales en el desarrollo con Python.</p>
+</section>
+<section id="aws-cloud9-y-azure-notebooks">
+<h3>AWS Cloud9 y Azure Notebooks<a class="headerlink" href="#aws-cloud9-y-azure-notebooks" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>AWS Cloud9</strong> es un entorno de desarrollo integrado (IDE) basado en la nube, ofrecido por Amazon Web Services. Permite escribir, ejecutar y depurar código directamente desde el navegador, sin necesidad de instalar nada en el computador local. Cloud9 incluye soporte para múltiples lenguajes (incluido Python), terminal Linux integrada, depurador gráfico, resaltado de sintaxis y control de versiones con Git. Su principal fortaleza está en que se integra profundamente con otros servicios de AWS, lo que facilita el desarrollo de aplicaciones que usen la nube (por ejemplo, APIs, bases de datos o funciones Lambda) desde un solo lugar. Además, el entorno corre sobre servidores virtuales (EC2), lo que permite ajustar recursos según las necesidades del proyecto.</p></li>
+<li><p><strong>Azure Notebooks</strong>, por su parte, fue un servicio gratuito ofrecido por Microsoft para trabajar con notebooks Jupyter en la nube, similar a Google Colab. Permitía ejecutar código Python desde el navegador, guardar los proyectos en la nube y compartirlos fácilmente. Aunque fue útil para tareas educativas y prototipos rápidos, Microsoft descontinuó oficialmente Azure Notebooks en 2021, recomendando en su lugar el uso de <strong>Azure Machine Learning Notebooks</strong>, que forman parte de su plataforma de inteligencia artificial en la nube. Estos nuevos notebooks están más enfocados en proyectos de ciencia de datos y aprendizaje automático, ofreciendo mayor potencia y escalabilidad, aunque requieren una configuración más técnica.</p></li>
+</ul>
+</section>
+</section>
+<section id="apendice">
+<h2>Apéndice<a class="headerlink" href="#apendice" title="Link to this heading">#</a></h2>
+<p>¡Gracias por su participación en el curso! Lo esperamos en una siguiente oportunidad.</p>
+<section id="documentacion">
+<h3>Documentación<a class="headerlink" href="#documentacion" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://www.python.org/">Documentación del software <em>Python</em></a>  <br>
+<a class="reference external" href="https://www.anaconda.com/">Documentación del software Anaconda</a>  <br>
+<a class="reference external" href="https://jupyter.org/">Documentación del software Jupyter</a> <br>
+<a class="reference external" href="https://www.spyder-ide.org/">Documentación del software Spyder</a> <br>
+<a class="reference external" href="https://code.visualstudio.com/">Documentación del software Visual Studio Code</a> <br>
+<a class="reference external" href="https://colab.research.google.com/">Documentación del servicio Google Colab</a> <br></p>
+</section>
+<section id="referencias">
+<h3>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bader, D., Jablonski, J., &amp; Heisler, F. (2021). Python Basics: A Practical Introduction to Python 3. Real Python.</p></li>
+</ul>
+<p><i>Taller de Análisis y procesamiento de datos con Open Source</i> © 2025 by <a href="https://scholar.google.es/citations?user=PP7CT6IAAAAJ">Aníbal Montero</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./modulo_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../modulo_0/modulo_0.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Sobre el curso</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-problema">Análisis del Problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-lenguaje-de-programacion">Como lenguaje de programación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-software">Como software</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda">Anaconda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook">Notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-alternativas">Otras alternativas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code">VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder">Spyder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">Pycharm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-cloud9-y-azure-notebooks">AWS Cloud9 y Azure Notebooks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice">Apéndice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion">Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Departamento Administrativo Nacional de Estadística - DANE
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
