@@ -1,0 +1,1100 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Un primer código en Python y R &#8212; Análisis y procesamiento de datos con Open Source</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modulo_2/modulo_2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Entornos de desarrollo" href="../modulo_1/modulo_1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Logo_DANE_2024.png" class="logo__image only-light" alt="Análisis y procesamiento de datos con Open Source - Home"/>
+    <script>document.write(`<img src="../_static/Logo_DANE_2024.png" class="logo__image only-dark" alt="Análisis y procesamiento de datos con Open Source - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Taller de Análisis y procesamiento de datos con Open Source
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bienvenida</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_0/modulo_0.html">Presentación del curso</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python y R</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_1/modulo_1.html">Entornos de desarrollo</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Un primer código en Python y R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/modulo_2/modulo_2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Un primer código en Python y R</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-problema">Análisis del Problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos">Tipos de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-r">en R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-python">en Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructuras-de-datos">Estructuras de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#de-las-librerias-estandar-python">de las librerías estándar Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-secuencia">Tipos de secuencia</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conjuntos-set-y-frozenset">Conjuntos (<code class="docutils literal notranslate"><span class="pre">set</span></code> y <code class="docutils literal notranslate"><span class="pre">frozenset</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionarios-dict">Diccionarios (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">en R</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vectores">Vectores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices">Matrices</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arreglos-arrays">Arreglos (arrays)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frames">Data frames</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">Listas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aritmeticos">aritméticos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacionales-o-de-comparacion">relacionales o de comparación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logicos">lógicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#de-asignacion">de asignación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especiales">especiales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jerarquia-de-operadores-en-python">Jerarquía de operadores en Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-numericos">1. Operadores numéricos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-relacionales-y-logicos">2. Operadores relacionales y lógicos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jerarquia-de-operadores-en-r">Jerarquía de operadores en R</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. Operadores numéricos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. Operadores relacionales y lógicos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice">Apéndice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion">Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="un-primer-codigo-en-python-y-r">
+<h1>Un primer código en Python y R<a class="headerlink" href="#un-primer-codigo-en-python-y-r" title="Link to this heading">#</a></h1>
+<p><strong>Fundamentos y operaciones básicas del lenguaje, tipos de datos.</strong></p>
+<a class="reference internal image-reference" href="../_images/python1.png"><img alt="numpy" class="align-center" src="../_images/python1.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/coding" title="coding icons">Coding icons created by Edwinp99 - Flaticon</a>
+</p><section id="analisis-del-problema">
+<h2>Análisis del Problema<a class="headerlink" href="#analisis-del-problema" title="Link to this heading">#</a></h2>
+<p>El aprendizaje de un lenguaje de programación constituye hoy en día un paso casi inevitable para quienes desean desenvolverse en ámbitos relacionados con el análisis de datos, la investigación aplicada o el desarrollo tecnológico. No obstante, este proceso de iniciación presenta diversos retos que van más allá de la simple memorización de comandos o sintaxis.</p>
+<blockquote>
+<div><p>La cantidad de información disponible en internet, que si bien es una ventaja, también puede resultar abrumadora. Los recursos suelen estar dispersos y, con frecuencia, carecen de una estructura que guíe al principiante paso a paso, desde los conceptos básicos hasta aplicaciones prácticas alineadas con sus necesidades profesionales o académicas.</p>
+</div></blockquote>
+<p>Es importante reconocer que aprender un lenguaje de programación no consiste únicamente en adquirir destrezas técnicas, sino también en adoptar una forma de pensar: resolver problemas de manera lógica, estructurar procesos y traducir necesidades reales en soluciones implementables mediante código.</p>
+<p>En este sentido, introducirse en un lenguaje de programación implica tanto un desafío intelectual como práctico, y requiere de una orientación inicial clara que permita construir bases sólidas para avanzar con confianza en un campo en constante evolución.</p>
+<a class="reference internal image-reference" href="../_images/code.png"><img alt="numpy" class="align-center" src="../_images/code.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/code" title="code icons">Code icons created by Freepik - Flaticon</a>
+</p><div class="tip admonition">
+<p class="admonition-title">Objetivos de la sesión</p>
+<ul class="simple">
+<li><p>Conocer sobre los tipos de datos y creación de variables en Python y R</p></li>
+<li><p>Reconocer los operadores de los lenguajes Python y R</p></li>
+<li><p>Conocer las estructuras de datos propias de R de las librerías estándar de Python</p></li>
+</ul>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Actividad</p>
+<p>Abrir los enlaces a los recursos de esta sesión y ejecutarlos en Google Colab de acuerdo a las indiocaciones del profesor.</p>
+</div>
+<div class="nota admonition">
+<p class="admonition-title">Recursos</p>
+<ul class="simple">
+<li><p>Notebook en Python: <a class="reference external" href="https://github.com/monteroanibal/CursoPython2025II/blob/main/notebooks/CP2025II_Sesion2_Python.ipynb">Enlace a GitHub</a></p></li>
+<li><p>Notebook en R: <a class="reference external" href="https://github.com/monteroanibal/CursoPython2025II/blob/main/notebooks/CP2025II_Sesion2_R.ipynb">Enlace a GitHub</a></p></li>
+</ul>
+</div>
+</section>
+<section id="tipos-de-datos">
+<h2>Tipos de datos<a class="headerlink" href="#tipos-de-datos" title="Link to this heading">#</a></h2>
+<p>La siguiente es una explicación de los tipos de datos tanto en Python como en R.</p>
+<section id="en-r">
+<h3>en R<a class="headerlink" href="#en-r" title="Link to this heading">#</a></h3>
+<p>todo análisis estadístico y proceso de programación parte del manejo adecuado de los <strong>tipos de datos</strong>, ya que estos determinan cómo se almacenan los valores, qué operaciones son posibles y qué funciones pueden aplicarse. A continuación, se describen los principales tipos de datos que ofrece el software R:</p>
+<ul class="simple">
+<li><p><strong>Numéricos (numeric)</strong>:</p>
+<ul>
+<li><p>Incluyen tanto números enteros como decimales (doble precisión).</p></li>
+<li><p>Son el tipo más común en operaciones estadísticas y matemáticas.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">3.14</span></code>, <code class="docutils literal notranslate"><span class="pre">42</span></code>, <code class="docutils literal notranslate"><span class="pre">-7.5</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Enteros (integer)</strong>:</p>
+<ul>
+<li><p>Representan valores enteros exactos.</p></li>
+<li><p>Se distinguen del tipo numérico al declararlos explícitamente con la letra <code class="docutils literal notranslate"><span class="pre">L</span></code>.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">5L</span></code>, <code class="docutils literal notranslate"><span class="pre">100L</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Caracteres o cadenas de texto (character)</strong>:</p>
+<ul>
+<li><p>Se utilizan para almacenar texto o cadenas alfanuméricas.</p></li>
+<li><p>Se definen entre comillas simples o dobles.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">&quot;Colombia&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;DANE&quot;</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Lógicos (logical)</strong>:</p>
+<ul>
+<li><p>Representan valores booleanos: <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> o <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p></li>
+<li><p>Son fundamentales para estructuras condicionales y filtrado de datos.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">10</span></code> devuelve un valor lógico.</p></li>
+</ul>
+</li>
+<li><p><strong>Factores (factor)</strong>:</p>
+<ul>
+<li><p>Se emplean para manejar variables categóricas (cualitativas).</p></li>
+<li><p>Pueden ser nominales (sin orden) u ordinales (con jerarquía).</p></li>
+<li><p>Internamente se representan con enteros, pero con etiquetas asociadas.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">factor(c(&quot;Alto&quot;,</span> <span class="pre">&quot;Medio&quot;,</span> <span class="pre">&quot;Bajo&quot;),</span> <span class="pre">ordered</span> <span class="pre">=</span> <span class="pre">TRUE)</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Valores especiales</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NA</span></code>: representa un dato faltante o no disponible.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: resultado de operaciones indefinidas (ej. <code class="docutils literal notranslate"><span class="pre">0/0</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Inf</span></code> y <code class="docutils literal notranslate"><span class="pre">-Inf</span></code>: valores infinitos (ej. <code class="docutils literal notranslate"><span class="pre">1/0</span></code>, <code class="docutils literal notranslate"><span class="pre">-1/0</span></code>).</p></li>
+</ul>
+</li>
+</ul>
+<p>Estos tipos de datos básicos son la base sobre la cual R construye <strong>estructuras de datos</strong>, como vectores, matrices, data frames y listas, que permiten organizar y manipular información de manera eficiente para el análisis estadístico.</p>
+<a class="reference internal image-reference" href="../_images/files.png"><img alt="numpy" class="align-center" src="../_images/files.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/structure" title="structure icons">Structure icons created by Alfredo Creates - Flaticon</a>
+</p></section>
+<section id="en-python">
+<h3>en Python<a class="headerlink" href="#en-python" title="Link to this heading">#</a></h3>
+<p>En Python, al igual que en R, el manejo de los <strong>tipos de datos</strong> es esencial, ya que de ellos depende la forma en que se representan los valores, las operaciones que se pueden realizar y el comportamiento de las funciones o métodos aplicables. Los principales tipos de datos básicos que ofrece el lenguaje son los siguientes:</p>
+<ul>
+<li><p><strong>Numéricos</strong>:</p>
+<p>Incluyen tres subtipos principales:</p>
+<ul class="simple">
+<li><p><strong>Enteros (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</strong>: representan números enteros sin parte decimal.
+Ejemplo: <code class="docutils literal notranslate"><span class="pre">42</span></code>, <code class="docutils literal notranslate"><span class="pre">-7</span></code>.</p></li>
+<li><p><strong>Flotantes (<code class="docutils literal notranslate"><span class="pre">float</span></code>)</strong>: números reales con parte decimal, de doble precisión.
+Ejemplo: <code class="docutils literal notranslate"><span class="pre">3.14</span></code>, <code class="docutils literal notranslate"><span class="pre">-0.001</span></code>.</p></li>
+<li><p><strong>Complejos (<code class="docutils literal notranslate"><span class="pre">complex</span></code>)</strong>: números con parte real e imaginaria.
+Ejemplo: <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3j</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Cadenas de texto (<code class="docutils literal notranslate"><span class="pre">str</span></code>)</strong>:</p>
+<ul class="simple">
+<li><p>Se utilizan para almacenar secuencias de caracteres.</p></li>
+<li><p>Se definen entre comillas simples, dobles o triples (para textos multilínea).</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">&quot;Colombia&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">'Python'</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;Texto</span> <span class="pre">en</span> <span class="pre">varias</span> <span class="pre">líneas&quot;&quot;&quot;</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Booleanos (<code class="docutils literal notranslate"><span class="pre">bool</span></code>)</strong>:</p>
+<ul class="simple">
+<li><p>Representan valores lógicos: <code class="docutils literal notranslate"><span class="pre">True</span></code> o <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p>Son fundamentales en estructuras condicionales y en operaciones de control.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">10</span></code> devuelve un valor booleano.</p></li>
+</ul>
+</li>
+<li><p><strong>Valores especiales</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: representa la ausencia de valor o un valor nulo. Puede usarse para inicializar variables o como valor de retorno por defecto en funciones.</p></li>
+</ul>
+</li>
+</ul>
+<p>Estos tipos de datos básicos constituyen la base sobre la cual Python construye estructuras de datos y son el punto de partida para las librerías <em>numpy</em> y <em>pandas</em>, para ampliar las posibilidades del lenguaje para el análisis estadístico.</p>
+<a class="reference internal image-reference" href="../_images/bracket-curly.png"><img alt="numpy" class="align-center" src="../_images/bracket-curly.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/json-file" title="json file icons">Json file icons created by Assetwave - Flaticon</a>
+</p></section>
+</section>
+<section id="estructuras-de-datos">
+<h2>Estructuras de datos<a class="headerlink" href="#estructuras-de-datos" title="Link to this heading">#</a></h2>
+<p>Apartir de los tipos de datos antes mencionados, se derivan las estructuras de datios básicas que se utilizan en cada uno de los dos softwares.</p>
+<section id="de-las-librerias-estandar-python">
+<h3>de las librerías estándar Python<a class="headerlink" href="#de-las-librerias-estandar-python" title="Link to this heading">#</a></h3>
+<p>Además de los tipos básicos como números, cadenas y booleanos, Python ofrece estructuras de datos integradas que permiten organizar y manipular información de manera eficiente. Entre las más utilizadas se encuentran las <em>secuencias</em>, los <em>conjuntos</em> y los <em>diccionarios</em>.</p>
+<ul class="simple">
+<li><p><strong>Secuencias</strong>: mantienen un <em>orden</em> de los elementos (listas y tuplas).</p></li>
+<li><p><strong>Conjuntos</strong>: no mantienen orden, pero garantizan <em>unicidad</em> de elementos.</p></li>
+<li><p><strong>Diccionarios</strong>: organizan la información mediante un esquema <em>clave–valor</em>, muy eficiente para representar estructuras más complejas.</p></li>
+</ul>
+<section id="tipos-de-secuencia">
+<h4>Tipos de secuencia<a class="headerlink" href="#tipos-de-secuencia" title="Link to this heading">#</a></h4>
+<p>Las secuencias son colecciones ordenadas de elementos, lo que significa que cada elemento ocupa una posición definida dentro de la estructura (índice).</p>
+<ul class="simple">
+<li><p><strong>Listas (<code class="docutils literal notranslate"><span class="pre">list</span></code>)</strong>:</p>
+<ul>
+<li><p>Colecciones ordenadas y <strong>mutables</strong>, lo que permite modificar, agregar o eliminar elementos.</p></li>
+<li><p>Se definen con corchetes <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">numeros</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Tuplas (<code class="docutils literal notranslate"><span class="pre">tuple</span></code>)</strong>:</p>
+<ul>
+<li><p>Colecciones ordenadas pero <strong>inmutables</strong>, es decir, no se pueden modificar después de creadas.</p></li>
+<li><p>Se definen con paréntesis <code class="docutils literal notranslate"><span class="pre">()</span></code>.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">coordenadas</span> <span class="pre">=</span> <span class="pre">(10,</span> <span class="pre">20)</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Rangos (<code class="docutils literal notranslate"><span class="pre">range</span></code>)</strong>:</p>
+<ul>
+<li><p>Representan una secuencia de enteros, comúnmente utilizada en bucles.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">range(0,</span> <span class="pre">5)</span></code> genera los valores <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p>Estas estructuras son la base del trabajo con colecciones en Python, y resultan esenciales en tareas de iteración y manipulación de datos.</p>
+</section>
+<section id="conjuntos-set-y-frozenset">
+<h4>Conjuntos (<code class="docutils literal notranslate"><span class="pre">set</span></code> y <code class="docutils literal notranslate"><span class="pre">frozenset</span></code>)<a class="headerlink" href="#conjuntos-set-y-frozenset" title="Link to this heading">#</a></h4>
+<p>Un conjunto es una colección <strong>desordenada</strong> de elementos <strong>únicos</strong>.</p>
+<ul class="simple">
+<li><p><strong>Set (<code class="docutils literal notranslate"><span class="pre">set</span></code>)</strong>:</p>
+<ul>
+<li><p>Mutable, permite agregar y eliminar elementos.</p></li>
+<li><p>Se define con llaves <code class="docutils literal notranslate"><span class="pre">{}</span></code> o con la función <code class="docutils literal notranslate"><span class="pre">set()</span></code>.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">colores</span> <span class="pre">=</span> <span class="pre">{&quot;rojo&quot;,</span> <span class="pre">&quot;verde&quot;,</span> <span class="pre">&quot;azul&quot;}</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Frozenset (<code class="docutils literal notranslate"><span class="pre">frozenset</span></code>)</strong>:</p>
+<ul>
+<li><p>Es la versión <strong>inmutable</strong> de un conjunto, útil cuando se requiere que los datos no cambien.</p></li>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">inmutable</span> <span class="pre">=</span> <span class="pre">frozenset([1,</span> <span class="pre">2,</span> <span class="pre">3])</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p>Los conjuntos resultan útiles para operaciones como uniones, intersecciones o diferencias de colecciones.</p>
+</section>
+<section id="diccionarios-dict">
+<h4>Diccionarios (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)<a class="headerlink" href="#diccionarios-dict" title="Link to this heading">#</a></h4>
+<p>Un diccionario es una colección de <strong>pares clave–valor</strong>, en la que cada clave es única y sirve para acceder a su valor asociado.</p>
+<ul>
+<li><p>Se define con llaves <code class="docutils literal notranslate"><span class="pre">{}</span></code>, donde cada elemento tiene la forma <code class="docutils literal notranslate"><span class="pre">&quot;clave&quot;:</span> <span class="pre">valor</span></code>.</p></li>
+<li><p>Ejemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">persona</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;ciudad&quot;</span><span class="p">:</span> <span class="s2">&quot;Bogotá&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Permiten una búsqueda rápida de información y son muy flexibles en la representación de datos estructurados.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/cells.png"><img alt="numpy" class="align-center" src="../_images/cells.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/table" title="table icons">Table icons created by Pixel perfect - Flaticon</a>
+</p></section>
+</section>
+<section id="id1">
+<h3>en R<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Además de los tipos de datos básicos (numéricos, lógicos, caracteres, factores), existen <em>estructuras de datos</em> que permiten organizar y manipular conjuntos de valores. Estas estructuras son la base del trabajo estadístico y computacional en este lenguaje.</p>
+<ul class="simple">
+<li><p><strong>Vectores</strong>: colecciones homogéneas en una dimensión.</p></li>
+<li><p><strong>Matrices y arreglos</strong>: colecciones homogéneas en dos o más dimensiones.</p></li>
+<li><p><strong>Data frames</strong>: colecciones heterogéneas en forma tabular (similar a hojas de cálculo).</p></li>
+<li><p><strong>Listas</strong>: colecciones heterogéneas y flexibles que pueden contener cualquier tipo de objeto.</p></li>
+</ul>
+<section id="vectores">
+<h4>Vectores<a class="headerlink" href="#vectores" title="Link to this heading">#</a></h4>
+<ul>
+<li><p>Son la <strong>unidad fundamental de almacenamiento en R</strong>.</p></li>
+<li><p>Contienen elementos del <strong>mismo tipo de dato</strong> (numéricos, lógicos, caracteres, etc.).</p></li>
+<li><p>Se crean con la función <code class="docutils literal notranslate"><span class="pre">c()</span></code>.</p></li>
+<li><p>Ejemplo:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="n">colores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;rojo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;verde&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;azul&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="matrices">
+<h4>Matrices<a class="headerlink" href="#matrices" title="Link to this heading">#</a></h4>
+<ul>
+<li><p>Extienden el concepto de vector a <strong>dos dimensiones</strong>.</p></li>
+<li><p>Todos los elementos deben ser del mismo tipo de dato.</p></li>
+<li><p>Se crean con la función <code class="docutils literal notranslate"><span class="pre">matrix()</span></code>.</p></li>
+<li><p>Ejemplo:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="arreglos-arrays">
+<h4>Arreglos (arrays)<a class="headerlink" href="#arreglos-arrays" title="Link to this heading">#</a></h4>
+<ul>
+<li><p>Generalizan las matrices a <strong>más de dos dimensiones</strong>.</p></li>
+<li><p>Todos los elementos son del mismo tipo de dato.</p></li>
+<li><p>Se crean con la función <code class="docutils literal notranslate"><span class="pre">array()</span></code>.</p></li>
+<li><p>Ejemplo:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">array</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">dim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="data-frames">
+<h4>Data frames<a class="headerlink" href="#data-frames" title="Link to this heading">#</a></h4>
+<ul>
+<li><p>Son una de las estructuras más utilizadas en R.</p></li>
+<li><p>Almacenan datos en forma de <strong>tabla</strong> (filas y columnas).</p></li>
+<li><p>Cada columna puede contener un tipo de dato distinto, lo que los hace especialmente útiles para datos estadísticos.</p></li>
+<li><p>Se crean con la función <code class="docutils literal notranslate"><span class="pre">data.frame()</span></code>.</p></li>
+<li><p>Ejemplo:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Luis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;María&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">23</span><span class="p">,</span><span class="w"> </span><span class="m">35</span><span class="p">,</span><span class="w"> </span><span class="m">29</span><span class="p">),</span>
+<span class="w">  </span><span class="n">estudiante</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="listas">
+<h4>Listas<a class="headerlink" href="#listas" title="Link to this heading">#</a></h4>
+<ul>
+<li><p>Son estructuras <strong>flexibles y heterogéneas</strong>, capaces de almacenar objetos de diferentes tipos y tamaños (vectores, matrices, data frames, incluso otras listas).</p></li>
+<li><p>Se crean con la función <code class="docutils literal notranslate"><span class="pre">list()</span></code>.</p></li>
+<li><p>Ejemplo:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">mi_lista</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">  </span><span class="n">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">texto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;R es poderoso&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">tabla</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/data-entry.png"><img alt="numpy" class="align-center" src="../_images/data-entry.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/data-entry" title="data entry icons">Data entry icons created by Uniconlabs - Flaticon</a>
+</p></section>
+</section>
+</section>
+<section id="operadores">
+<h2>Operadores<a class="headerlink" href="#operadores" title="Link to this heading">#</a></h2>
+<p>Los operadores son símbolos especiales que permiten realizar operaciones sobre variables y valores. Tanto Python como R disponen de un conjunto de operadores aritméticos, relacionales, lógicos y de asignación, aunque con algunas diferencias en su sintaxis y uso.</p>
+<section id="aritmeticos">
+<h3>aritméticos<a class="headerlink" href="#aritmeticos" title="Link to this heading">#</a></h3>
+<p>Se emplean para operaciones matemáticas básicas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operación</p></th>
+<th class="head"><p>Python</p></th>
+<th class="head"><p>R</p></th>
+<th class="head"><p>Ejemplo (resultado)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Suma</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">→</span> <span class="pre">5</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Resta</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">-</span> <span class="pre">2</span> <span class="pre">→</span> <span class="pre">1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Multiplicación</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">2</span> <span class="pre">→</span> <span class="pre">6</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>División real</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">→</span> <span class="pre">1.5</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>División entera</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%/%</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">//</span> <span class="pre">2</span> <span class="pre">→</span> <span class="pre">1</span></code> (Py) ; <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">%/%</span> <span class="pre">2</span> <span class="pre">→</span> <span class="pre">1</span></code> (R)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Módulo (resto)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%%</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">%</span> <span class="pre">3</span> <span class="pre">→</span> <span class="pre">1</span></code> (Py) ; <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">%%</span> <span class="pre">3</span> <span class="pre">→</span> <span class="pre">1</span></code> (R)</p></td>
+</tr>
+<tr class="row-even"><td><p>Potencia</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">^</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">**</span> <span class="pre">3</span> <span class="pre">→</span> <span class="pre">8</span></code> (Py) ; <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">^</span> <span class="pre">3</span> <span class="pre">→</span> <span class="pre">8</span></code> (R)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="relacionales-o-de-comparacion">
+<h3>relacionales o de comparación<a class="headerlink" href="#relacionales-o-de-comparacion" title="Link to this heading">#</a></h3>
+<p>Usados para comparar valores y devolver resultados booleanos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Comparación</p></th>
+<th class="head"><p>Python</p></th>
+<th class="head"><p>R</p></th>
+<th class="head"><p>Ejemplo (resultado)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Igual a</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">==</span> <span class="pre">3</span> <span class="pre">→</span> <span class="pre">True</span> <span class="pre">/</span> <span class="pre">TRUE</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Distinto de</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">!=</span> <span class="pre">2</span> <span class="pre">→</span> <span class="pre">True</span> <span class="pre">/</span> <span class="pre">TRUE</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Mayor que</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">&gt;</span> <span class="pre">3</span> <span class="pre">→</span> <span class="pre">True</span> <span class="pre">/</span> <span class="pre">TRUE</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Menor que</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">&lt;</span> <span class="pre">4</span> <span class="pre">→</span> <span class="pre">True</span> <span class="pre">/</span> <span class="pre">TRUE</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Mayor o igual</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">&gt;=</span> <span class="pre">3</span> <span class="pre">→</span> <span class="pre">True</span> <span class="pre">/</span> <span class="pre">TRUE</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Menor o igual</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">&lt;=</span> <span class="pre">3</span> <span class="pre">→</span> <span class="pre">True</span> <span class="pre">/</span> <span class="pre">TRUE</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="logicos">
+<h3>lógicos<a class="headerlink" href="#logicos" title="Link to this heading">#</a></h3>
+<p>Permiten combinar condiciones lógicas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operación</p></th>
+<th class="head"><p>Python</p></th>
+<th class="head"><p>R</p></th>
+<th class="head"><p>Ejemplo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Y lógico</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code> (vectorizado) / <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> (escalares)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">and</span> <span class="pre">False</span> <span class="pre">→</span> <span class="pre">False</span></code> ; <code class="docutils literal notranslate"><span class="pre">TRUE</span> <span class="pre">&amp;</span> <span class="pre">FALSE</span> <span class="pre">→</span> <span class="pre">FALSE</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>O lógico</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">|</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TRUE</span> <span class="pre">|</span> <span class="pre">FALSE</span> <span class="pre">→</span> <span class="pre">TRUE</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Negación lógica</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">!</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">True</span> <span class="pre">→</span> <span class="pre">False</span></code> ; <code class="docutils literal notranslate"><span class="pre">!TRUE</span> <span class="pre">→</span> <span class="pre">FALSE</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="de-asignacion">
+<h3>de asignación<a class="headerlink" href="#de-asignacion" title="Link to this heading">#</a></h3>
+<p>Se usan para almacenar valores en variables.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Python</p></th>
+<th class="head"><p>R</p></th>
+<th class="head"><p>Ejemplo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;-</span></code> o <code class="docutils literal notranslate"><span class="pre">=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">5</span></code> (Py) ; <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;-</span> <span class="pre">5</span></code> o <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">5</span></code> (R)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="especiales">
+<h3>especiales<a class="headerlink" href="#especiales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>En Python, destacan los operadores de pertenencia (<code class="docutils literal notranslate"><span class="pre">in</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">in</span></code>) y de identidad (<code class="docutils literal notranslate"><span class="pre">is</span></code>, <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span></code>), muy útiles en estructuras de datos.</p>
+<ul>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span> <span class="pre">in</span> <span class="pre">[&quot;a&quot;,</span> <span class="pre">&quot;b&quot;,</span> <span class="pre">&quot;c&quot;]</span> <span class="pre">→</span> <span class="pre">True</span></code>.</p></li>
+</ul>
+</li>
+<li><p>En R, existen operadores específicos para estadística y vectores, como <code class="docutils literal notranslate"><span class="pre">%in%</span></code> (pertenencia a un conjunto).</p>
+<ul>
+<li><p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span> <span class="pre">%in%</span> <span class="pre">c(&quot;a&quot;,</span> <span class="pre">&quot;b&quot;,</span> <span class="pre">&quot;c&quot;)</span> <span class="pre">→</span> <span class="pre">TRUE</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/flow-diagram.png"><img alt="numpy" class="align-center" src="../_images/flow-diagram.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/diagram" title="diagram icons">Diagram icons created by Freepik - Flaticon</a>
+</p></section>
+<section id="jerarquia-de-operadores-en-python">
+<h3>Jerarquía de operadores en Python<a class="headerlink" href="#jerarquia-de-operadores-en-python" title="Link to this heading">#</a></h3>
+<p>En Python, cuando una expresión combina distintos operadores, el intérprete sigue un <em>orden de prioridad</em> para decidir qué operaciones realizar primero. Esta jerarquía garantiza que los resultados sean consistentes y evita ambigüedades.</p>
+<div class="tip admonition">
+<p class="admonition-title">Recomendación práctica</p>
+<p>Aunque Python  respeta estrictamente las jerarquías explicadas a continuación, en la práctica se recomienda <strong>usar paréntesis ()</strong> para aclarar la intención del programador y mejorar la legibilidad del código.</p>
+</div>
+<section id="operadores-numericos">
+<h4>1. Operadores numéricos<a class="headerlink" href="#operadores-numericos" title="Link to this heading">#</a></h4>
+<p>De mayor a menor prioridad, el orden es el siguiente:</p>
+<ol class="arabic simple">
+<li><p>Paréntesis <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code></p></li>
+<li><p>Exponenciación <code class="docutils literal notranslate"><span class="pre">**</span></code></p></li>
+<li><p>Negación unaria <code class="docutils literal notranslate"><span class="pre">-x</span></code> y signo positivo <code class="docutils literal notranslate"><span class="pre">+x</span></code></p></li>
+<li><p>Multiplicación <code class="docutils literal notranslate"><span class="pre">*</span></code>, División <code class="docutils literal notranslate"><span class="pre">/</span></code>, División entera <code class="docutils literal notranslate"><span class="pre">//</span></code>, Módulo <code class="docutils literal notranslate"><span class="pre">%</span></code></p></li>
+<li><p>Suma <code class="docutils literal notranslate"><span class="pre">+</span></code> y Resta <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
+</ol>
+</section>
+<section id="operadores-relacionales-y-logicos">
+<h4>2. Operadores relacionales y lógicos<a class="headerlink" href="#operadores-relacionales-y-logicos" title="Link to this heading">#</a></h4>
+<p>En expresiones que combinan comparaciones y lógica booleana, la precedencia es:</p>
+<ol class="arabic simple">
+<li><p>Operadores relacionales: <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">not</span></code> (negación lógica)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">and</span></code> (conjunción lógica)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">or</span></code> (disyunción lógica)</p></li>
+</ol>
+</section>
+</section>
+<section id="jerarquia-de-operadores-en-r">
+<h3>Jerarquía de operadores en R<a class="headerlink" href="#jerarquia-de-operadores-en-r" title="Link to this heading">#</a></h3>
+<p>En R, al igual que en Python, las expresiones con múltiples operadores se evalúan según un <em>orden de precedencia</em> definido. Esto determina qué operaciones se realizan primero, salvo que el programador use <em>paréntesis</em> <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code> para modificar el orden natural.</p>
+<div class="tip admonition">
+<p class="admonition-title">Recomendación práctica</p>
+<p>Aunque Python  respeta estrictamente las jerarquías explicadas a continuación, en la práctica se recomienda <strong>usar paréntesis ()</strong> para aclarar la intención del programador y mejorar la legibilidad del código.</p>
+</div>
+<section id="id2">
+<h4>1. Operadores numéricos<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>De mayor a menor prioridad:</p>
+<ol class="arabic simple">
+<li><p>Paréntesis <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code></p></li>
+<li><p>Exponenciación <code class="docutils literal notranslate"><span class="pre">^</span></code> o <code class="docutils literal notranslate"><span class="pre">**</span></code></p></li>
+<li><p>Signos unarios <code class="docutils literal notranslate"><span class="pre">+x</span></code>, <code class="docutils literal notranslate"><span class="pre">-x</span></code></p></li>
+<li><p>Multiplicación <code class="docutils literal notranslate"><span class="pre">*</span></code>, División <code class="docutils literal notranslate"><span class="pre">/</span></code>, División entera <code class="docutils literal notranslate"><span class="pre">%/%</span></code>, Módulo <code class="docutils literal notranslate"><span class="pre">%%</span></code></p></li>
+<li><p>Suma <code class="docutils literal notranslate"><span class="pre">+</span></code> y Resta <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
+</ol>
+</section>
+<section id="id3">
+<h4>2. Operadores relacionales y lógicos<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>En expresiones booleanas, R sigue esta precedencia:</p>
+<ol class="arabic simple">
+<li><p>Operadores relacionales**: <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code></p></li>
+<li><p>Negación lógica <code class="docutils literal notranslate"><span class="pre">!</span></code></p></li>
+<li><p>Conjunción lógica <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> y <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code></p></li>
+<li><p>Disyunción lógica <code class="docutils literal notranslate"><span class="pre">|</span></code> y <code class="docutils literal notranslate"><span class="pre">||</span></code></p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="apendice">
+<h2>Apéndice<a class="headerlink" href="#apendice" title="Link to this heading">#</a></h2>
+<p>¡Gracias por su participación en el curso! Lo esperamos en una siguiente oportunidad.</p>
+<section id="documentacion">
+<h3>Documentación<a class="headerlink" href="#documentacion" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://github.com/chardiwall/Coding-for-beginners-and-beyond/blob/main/python-basics-a-practical-introduction-to-python-3.pdf">Libro de introducción al lenguaje <em>Python</em></a> <br>
+<a class="reference external" href="https://cran.r-project.org/doc/manuals/R-intro.pdf">Libro de introducción al lenguaje <em>R</em></a></p>
+</section>
+<section id="referencias">
+<h3>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bader, D., Jablonski, J., &amp; Heisler, F. (2021). Python Basics: A Practical Introduction to Python 3. Real Python.</p></li>
+<li><p>Venables, W. N., Smith, D. M., &amp; R Core Team. (2025). An introduction to R (version 4.5.1). The R Project for Statistical Computing.</p></li>
+</ul>
+<p><i>Taller de Análisis y procesamiento de datos con Open Source</i> © 2025 by <a href="https://scholar.google.es/citations?user=PP7CT6IAAAAJ">Aníbal Montero</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./modulo_2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../modulo_1/modulo_1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Entornos de desarrollo</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-problema">Análisis del Problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos">Tipos de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-r">en R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-python">en Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructuras-de-datos">Estructuras de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#de-las-librerias-estandar-python">de las librerías estándar Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-secuencia">Tipos de secuencia</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conjuntos-set-y-frozenset">Conjuntos (<code class="docutils literal notranslate"><span class="pre">set</span></code> y <code class="docutils literal notranslate"><span class="pre">frozenset</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionarios-dict">Diccionarios (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">en R</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vectores">Vectores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices">Matrices</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arreglos-arrays">Arreglos (arrays)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frames">Data frames</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">Listas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aritmeticos">aritméticos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacionales-o-de-comparacion">relacionales o de comparación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logicos">lógicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#de-asignacion">de asignación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especiales">especiales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jerarquia-de-operadores-en-python">Jerarquía de operadores en Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-numericos">1. Operadores numéricos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-relacionales-y-logicos">2. Operadores relacionales y lógicos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jerarquia-de-operadores-en-r">Jerarquía de operadores en R</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. Operadores numéricos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. Operadores relacionales y lógicos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice">Apéndice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion">Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Departamento Administrativo Nacional de Estadística - DANE
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
