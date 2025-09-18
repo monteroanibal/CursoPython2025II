@@ -1,0 +1,1248 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Manipulación de datos con numpy &#8212; Análisis y procesamiento de datos con Open Source</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modulo_3/modulo_3';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Un primer código en Python y R" href="../modulo_2/modulo_2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Logo_DANE_2024.png" class="logo__image only-light" alt="Análisis y procesamiento de datos con Open Source - Home"/>
+    <script>document.write(`<img src="../_static/Logo_DANE_2024.png" class="logo__image only-dark" alt="Análisis y procesamiento de datos con Open Source - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Taller de Análisis y procesamiento de datos con Open Source
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bienvenida</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_0/modulo_0.html">Presentación del curso</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python y R</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_1/modulo_1.html">Entornos de desarrollo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_2/modulo_2.html">Un primer código en Python y R</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Manipulación de datos con numpy</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/modulo_3/modulo_3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Manipulación de datos con numpy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-problema">Análisis del Problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formas-de-declaracion-y-exploracion-de-arrays">Formas de declaración y exploración de arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-arrays">Creación de arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-deste-un-archivo-raster">Datos deste un archivo ráster</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-y-funciones-aplicables-dentro-de-los-arrays">Métodos y funciones aplicables dentro de los arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexacion">Indexación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redimensionamiento-reshape">Redimensionamiento (reshape)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenamiento-de-arrays">Concatenamiento de arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copiado-de-arrays">Copiado de arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-listas-desde-arrays">Creación de listas desde arrays</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-dentro-de-los-arrays">Operaciones dentro de los arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-agregacion-o-reduccion">Métodos de agregación o reducción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-aritmeticas-vectorizadas">Operaciones aritméticas vectorizadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-y-mascaras">Comparaciones y máscaras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-especiales-sobre-ejes">Operaciones especiales sobre ejes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-funciones-utiles">Otras funciones útiles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-entre-arrays">Operaciones entre arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-aritmeticas-elemento-a-elemento">Operaciones aritméticas elemento a elemento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-broadcasting">Operaciones con <em>broadcasting</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-universales-ufuncs-en-combinaciones">Funciones universales (<em>ufuncs</em>) en combinaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-entre-arrays">Comparaciones entre arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-logicas-y-combinadas">Operaciones lógicas y combinadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-metodos-aplicados-entre-arrays-o-con-arrays">Otros métodos aplicados entre arrays o con arrays</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice">Apéndice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion">Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="manipulacion-de-datos-con-numpy">
+<h1>Manipulación de datos con numpy<a class="headerlink" href="#manipulacion-de-datos-con-numpy" title="Link to this heading">#</a></h1>
+<p><strong>Arrays, operaciones, Exploracion de datos, Analítica de datos.</strong></p>
+<a class="reference internal image-reference" href="../_images/fragmentation.png"><img alt="numpy" class="align-center" src="../_images/fragmentation.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/fragmentation" title="fragmentation icons">Fragmentation icons created by Karyative - Flaticon</a>
+</p><section id="analisis-del-problema">
+<h2>Análisis del Problema<a class="headerlink" href="#analisis-del-problema" title="Link to this heading">#</a></h2>
+<p>NumPy es una librería fundamental sobre la que se construye el ecosistema científico de Python. NumPy (Numerical Python) es una de las bibliotecas más uitilizadas del ecosistema de Python para trabajar con datos numéricos. Proporciona una estructura de datos central llamada array multidimensional (ndarray), que permite almacenar y manipular arreglos datos mediante sus funcionalidades diversas. Esta estructura de datos permite:</p>
+<ul class="simple">
+<li><p>Almacenar datos de manera eficiente: Los arrays de NumPy son homogéneos (todos los elementos son del mismo tipo) y se almacenan en bloques contiguos de memoria, lo que permite un acceso y una manipulación ultrarrápidos.</p></li>
+<li><p>Realizar operaciones vectorizadas: En lugar de escribir bucles for para procesar cada elemento uno por uno (lo cual es lento), NumPy nos permite aplicar operaciones matemáticas a arrays completos de una sola vez. Esta vectorización no solo hace que el código sea más conciso y legible, sino que se ejecuta a velocidades de <em>C</em>/<em>Fortran</em> gracias a su núcleo optimizado.</p></li>
+<li><p>Servir como cimiento para otras librerías: NumPy es la piedra angular sobre la que se construyen pilares del <em>data science</em> como Pandas (para análisis y manipulación de datos tabulares), SciPy (para algoritmos científicos y matemáticos), Scikit-learn (para machine learning) y Matplotlib (para visualización). Dominar NumPy es, por tanto, esencial para aprovechar al máximo todo el potencial de estas herramientas.</p></li>
+</ul>
+<p>A diferencia de las listas nativas de Python, los arreglos de NumPy están optimizados para operaciones vectorizadas y matriciales, lo que significa que pueden realizar cálculos complejos sobre conjuntos de datos completos sin necesidad de bucles explícitos. Esto no solo mejora el rendimiento, sino que también simplifica el código.</p>
+<p>Además de sus eficientes estructuras de datos, NumPy incluye un amplio conjunto de funciones matemáticas, estadísticas y de álgebra lineal, lo que lo convierte en una herramienta esencial para tareas como el preprocesamiento de datos, la transformación de formatos, el análisis exploratorio y la preparación de datos para modelos de machine learning.</p>
+<p>A lo largo de este material, exploraremos lo puntos mencionados en la lista de objetivos a continuación.</p>
+<a class="reference internal image-reference" href="../_images/array.png"><img alt="numpy" class="align-center" src="../_images/array.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/fragment" title="fragment icons">Fragment icons created by kerismaker - Flaticon</a>
+</p><div class="tip admonition">
+<p class="admonition-title">Objetivos de la sesión</p>
+<ul class="simple">
+<li><p>Conocer algunas formas de declaración y exploración de arrays</p></li>
+<li><p>Aplicar métodos y operaciones dentro de arrays</p></li>
+<li><p>Aplicar operaciones entre arrays</p></li>
+</ul>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Actividad</p>
+<p>Abrir el enlace al recurso de esta sesión y ejecutarlo en Google Colab de acuerdo a las indicaciones del profesor.</p>
+</div>
+<div class="nota admonition">
+<p class="admonition-title">Recursos</p>
+<ul class="simple">
+<li><p>Notebook en Python: <a class="reference external" href="https://github.com/monteroanibal/CursoPython2025II/blob/main/notebooks/CP2025II_Sesion3_Python.ipynb">Enlace a GitHub</a></p></li>
+</ul>
+</div>
+</section>
+<section id="formas-de-declaracion-y-exploracion-de-arrays">
+<h2>Formas de declaración y exploración de arrays<a class="headerlink" href="#formas-de-declaracion-y-exploracion-de-arrays" title="Link to this heading">#</a></h2>
+<p>A continuación, se mencionan las maneras de crear arrays desde sentencias de código o importando un archivo ráster.</p>
+<section id="creacion-de-arrays">
+<h3>Creación de arrays<a class="headerlink" href="#creacion-de-arrays" title="Link to this heading">#</a></h3>
+<p>NumPy ofrece varias formas de declarar y crear arrays (<strong>ndarray</strong>), según el tipo de datos que necesitemos y el contexto del procesamiento. A continuación se presentan las principales:</p>
+<ul class="simple">
+<li><p><strong>A partir de listas o secuencias de Python</strong>: La forma más directa es convertir listas o tuplas en arrays usando <code class="docutils literal notranslate"><span class="pre">numpy.array()</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># A partir de una lista</span>
+<span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="c1"># A partir de una lista de listas (matriz 2D)</span>
+<span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Arrays de ceros, unos o valores constantes</strong>: Cuando se requiere inicializar un array con valores predeterminados:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Array de ceros</span>
+<span class="n">zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># 3 filas, 4 columnas</span>
+
+<span class="c1"># Array de unos</span>
+<span class="n">ones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>    <span class="c1"># 2 filas, 5 columnas</span>
+
+<span class="c1"># Array con un valor constante</span>
+<span class="n">full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">7</span><span class="p">)</span> <span class="c1"># Matriz 3x3 llena de sietes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Secuencias numéricas</strong>: NumPy facilita la creación de rangos o secuencias numéricas:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Secuencia de números enteros</span>
+<span class="n">rango</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># De 0 a 8, paso 2</span>
+
+<span class="c1"># Secuencia con número fijo de puntos</span>
+<span class="n">lin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>   <span class="c1"># 5 valores entre 0 y 1 (inclusive)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Arrays aleatorios</strong>: Útiles para simulaciones, inicialización de modelos o pruebas:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Valores aleatorios uniformes entre 0 y 1</span>
+<span class="n">rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Enteros aleatorios entre 0 y 9</span>
+<span class="n">randint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Distribución normal</span>
+<span class="n">normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Arrays identidad y diagonales</strong>: Para operaciones de álgebra lineal:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz identidad 4x4</span>
+<span class="n">identity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Matriz diagonal a partir de una lista</span>
+<span class="n">diagonal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Creación a partir de formas de otros arrays</strong>: Permite generar nuevos arrays con las mismas dimensiones que otro:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+
+<span class="c1"># Array de ceros con misma forma que &#39;base&#39;</span>
+<span class="n">zeros_like</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+
+<span class="c1"># Array de unos con misma forma que &#39;base&#39;</span>
+<span class="n">ones_like</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Reshape y creación desde buffers</strong>: También es posible reorganizar datos existentes o usar buffers de memoria:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reorganizar un rango en forma de matriz</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>En resumen</strong>: <br>
+<em><code class="docutils literal notranslate"><span class="pre">array()</span></code></em>: convierte listas/tuplas en arrays. <br>
+<em><code class="docutils literal notranslate"><span class="pre">zeros()</span></code>, <code class="docutils literal notranslate"><span class="pre">ones()</span></code>, <code class="docutils literal notranslate"><span class="pre">full()</span></code></em>: inicializan arrays con valores fijos.  <br>
+<em><code class="docutils literal notranslate"><span class="pre">arange()</span></code>, <code class="docutils literal notranslate"><span class="pre">linspace()</span></code></em>: generan secuencias numéricas.  <br>
+<em><code class="docutils literal notranslate"><span class="pre">random</span></code></em>: crea arrays con valores aleatorios. <br>
+<em><code class="docutils literal notranslate"><span class="pre">eye()</span></code>, <code class="docutils literal notranslate"><span class="pre">diag()</span></code></em>: producen matrices identidad o diagonales.  <br>
+<em><code class="docutils literal notranslate"><span class="pre">*_like()</span></code></em>: imitan la forma de otro array.  <br>
+<em><code class="docutils literal notranslate"><span class="pre">reshape()</span></code></em>: reorganiza datos existentes.</p></li>
+</ul>
+</section>
+<section id="datos-deste-un-archivo-raster">
+<h3>Datos deste un archivo ráster<a class="headerlink" href="#datos-deste-un-archivo-raster" title="Link to this heading">#</a></h3>
+<p>En análisis geoespacial, los archivos ráster (como GeoTIFF) contienen información en forma de celdas organizadas en filas y columnas, asociadas a una referencia espacial. La librería <em>rasterio</em> en Python permite la lectura, escritura y manipulación de datos ráster, integrándose con <em>NumPy</em> para el procesamiento de datos.</p>
+<ul class="simple">
+<li><p><strong>Importar Rasterio y abrir un archivo ráster</strong>: Para trabajar con un ráster, se utiliza un administrador de contexto (<code class="docutils literal notranslate"><span class="pre">with</span></code>) que garantiza el cierre seguro del archivo:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+
+<span class="c1"># Abrir el archivo ráster</span>
+<span class="n">ruta</span> <span class="o">=</span> <span class="s2">&quot;ruta/al/archivo.tif&quot;</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>       <span class="c1"># Nombre del archivo</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>      <span class="c1"># Número de bandas</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>        <span class="c1"># Sistema de referencia de coordenadas</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span>  <span class="c1"># Transformación afín (ubicación espacial)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Leer los datos en un array de NumPy</strong>: Una vez abierto el archivo, puedes extraer sus bandas como arrays:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="c1"># Leer la primera banda (índice 1)</span>
+    <span class="n">banda1</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">banda1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>   <span class="c1"># Dimensiones del array (filas, columnas)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">src.read(1)</span></code> devuelve un <em>ndarray</em> de NumPy, lo que permite aplicar fácilmente operaciones numéricas o estadísticas. Si el ráster tiene varias bandas, puedes leerlas todas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">todas_bandas</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># Devuelve un array 3D: (bandas, filas, columnas)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="propiedades">
+<h3>Propiedades<a class="headerlink" href="#propiedades" title="Link to this heading">#</a></h3>
+<p>El método <em>shape</em> aplicado a una matriz devuelve una tupla con el tamaño de cada dimensión de la matriz:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="nb">float</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación, se encuentra la explicación de las propiedades de un ráster: <br></p>
+<p><code class="docutils literal notranslate"><span class="pre">src.name</span></code>: Ruta del archivo ráster. <br>
+<code class="docutils literal notranslate"><span class="pre">src.mode</span></code>: Modo de apertura del archivo (p. ej., “r” para lectura). <br>
+<code class="docutils literal notranslate"><span class="pre">src.driver</span></code>: Controlador GDAL utilizado para abrir el archivo (p. ej., “GTiff”). <br>
+<code class="docutils literal notranslate"><span class="pre">src.width</span></code>: Número de columnas del ráster. <br>
+<code class="docutils literal notranslate"><span class="pre">src.height</span></code>: Número de filas del ráster. <br>
+<code class="docutils literal notranslate"><span class="pre">src.count</span></code>: Número de bandas del ráster. <br>
+<code class="docutils literal notranslate"><span class="pre">src.dtypes</span></code>: Tupla que contiene el tipo de dato de cada banda (p. ej., “uint8”, “float32”). <br>
+<code class="docutils literal notranslate"><span class="pre">src.nodatavals</span></code>: Tupla que contiene el valor “NoData” de cada banda. <br>
+<code class="docutils literal notranslate"><span class="pre">src.crs</span></code>: Sistema de Referencia de Coordenadas del ráster. <br>
+<code class="docutils literal notranslate"><span class="pre">src.transform</span></code>: Matriz de transformación afín que asigna las coordenadas de los píxeles a las coordenadas espaciales. <br>
+<code class="docutils literal notranslate"><span class="pre">src.bounds</span></code>: La extensión geográfica del ráster como un objeto BoundingBox. <br>
+<code class="docutils literal notranslate"><span class="pre">src.res</span></code>: Una tupla que representa la resolución x e y de los píxeles. <br>
+<code class="docutils literal notranslate"><span class="pre">src.meta</span></code>: Un diccionario que contiene todos los metadatos asociados al dataset ráster.</p>
+<a class="reference internal image-reference" href="../_images/design.png"><img alt="numpy" class="align-center" src="../_images/design.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/pixel" title="pixel icons">Pixel icons created by Xinh Studio - Flaticon</a>
+</p></section>
+</section>
+<section id="metodos-y-funciones-aplicables-dentro-de-los-arrays">
+<h2>Métodos y funciones aplicables dentro de los arrays<a class="headerlink" href="#metodos-y-funciones-aplicables-dentro-de-los-arrays" title="Link to this heading">#</a></h2>
+<p>A continuación, se abarca la explicación de los métodos y funciones más comunes aplicables a un array.</p>
+<section id="indexacion">
+<h3>Indexación<a class="headerlink" href="#indexacion" title="Link to this heading">#</a></h3>
+<p>La indexación permite acceder, seleccionar o modificar elementos específicos de un array. NumPy amplía las capacidades de las listas de Python, permitiendo indexación avanzada y eficiente tanto en arreglos unidimensionales como bidimensionales.</p>
+<ul class="simple">
+<li><p><strong>En arreglos unidimensionales</strong>: Un arreglo unidimensional es similar a una lista:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Crear un array 1D</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Acceso por índice: los índices empiezan en <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># 10 (primer elemento)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># 40 (cuarto elemento)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Indexación negativa: permite contar desde el final.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># 50 (último elemento)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># 30 (tercer elemento desde el final)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Rebanado (slicing): accede a rangos de valores:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>  <span class="c1"># [20 30 40] (del índice 1 al 3)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>   <span class="c1"># [10 20 30] (del inicio al índice 2)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>   <span class="c1"># [30 40 50] (desde índice 2 al final)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Saltos en el slicing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># [10 30 50] (paso de 2 en 2)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>En arreglos bidimensionales</strong>: Un arreglo bidimensional puede verse como una <em>matriz (filas y columnas)</em>:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Acceso por fila y columna: se usa la forma <code class="docutils literal notranslate"><span class="pre">[fila,</span> <span class="pre">columna]</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>  <span class="c1"># 3 (fila 0, columna 2)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># 8 (fila 2, columna 1)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Acceso a filas o columnas completas: <code class="docutils literal notranslate"><span class="pre">:</span></code> significa “todos los elementos” en esa dimensión.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>     <span class="c1"># [4 5 6] (fila completa)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># [1 4 7] (columna completa)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Rebanado en 2D: Selección de submatrices (Filas de la 0 a la 1 y columnas de la 1 a la 2.):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+<span class="c1"># Resultado:</span>
+<span class="c1"># [[2 3]</span>
+<span class="c1">#  [5 6]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="redimensionamiento-reshape">
+<h3>Redimensionamiento (reshape)<a class="headerlink" href="#redimensionamiento-reshape" title="Link to this heading">#</a></h3>
+<p>El redimensionamiento cambia la forma (número de filas y columnas) de un array sin alterar sus datos. Es requerido que el número total de elementos debe mantenerse constante.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>  <span class="c1"># [0,1,2,...,11]</span>
+
+<span class="c1"># Redimensionar a una matriz de 3 filas x 4 columnas</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+<span class="c1"># Resultado:</span>
+<span class="c1"># [[ 0  1  2  3]</span>
+<span class="c1">#  [ 4  5  6  7]</span>
+<span class="c1">#  [ 8  9 10 11]]</span>
+
+<span class="c1"># Uso de -1 para calcular automáticamente una dimensión</span>
+<span class="n">mat2</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 2 filas, calcula columnas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>También es posible “aplanar” un array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flat</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>  <span class="c1"># Devuelve un array 1D</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="concatenamiento-de-arrays">
+<h3>Concatenamiento de arrays<a class="headerlink" href="#concatenamiento-de-arrays" title="Link to this heading">#</a></h3>
+<p>Permite unir varios arrays en una sola estructura.</p>
+<ul class="simple">
+<li><p><strong>Concatenar unidimensionales</strong>:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+
+<span class="n">concat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">concat</span><span class="p">)</span>  <span class="c1"># [1 2 3 4 5 6]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Concatenar matrices (bidimensionales)</strong>:</p></li>
+</ul>
+<p>Por filas (<code class="docutils literal notranslate"><span class="pre">axis=0</span></code>) o por columnas (<code class="docutils literal notranslate"><span class="pre">axis=1</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
+
+<span class="c1"># Por filas (agrega nuevas filas)</span>
+<span class="n">por_filas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Por columnas (agrega nuevas columnas)</span>
+<span class="n">por_columnas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>También existen funciones especializadas:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">np.vstack((a,</span> <span class="pre">b))</span></code> → apila verticalmente (filas).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.hstack((a,</span> <span class="pre">b))</span></code> → apila horizontalmente (columnas).</p></li>
+</ul>
+</section>
+<section id="copiado-de-arrays">
+<h3>Copiado de arrays<a class="headerlink" href="#copiado-de-arrays" title="Link to this heading">#</a></h3>
+<p>NumPy distingue entre <em>copias</em> y <em>vistas</em>.</p>
+<ul class="simple">
+<li><p><strong>Asignación directa</strong>: crea solo una referencia, no una copia real:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>          <span class="c1"># y apunta al mismo objeto</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>       <span class="c1"># [99 20 30] (cambió también x)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Copia independiente</strong> (modificaciones no afectan al original):</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>   <span class="c1"># Copia profunda</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>       <span class="c1"># [10 20 30] (no cambió)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>       <span class="c1"># [99 20 30]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="creacion-de-listas-desde-arrays">
+<h3>Creación de listas desde arrays<a class="headerlink" href="#creacion-de-listas-desde-arrays" title="Link to this heading">#</a></h3>
+<p>Para convertir un array de NumPy en una lista de Python estándar. Útil para exportar datos o trabajar con funciones que requieren listas nativas.:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+
+<span class="n">lista</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>   <span class="c1"># [[1, 2, 3], [4, 5, 6]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">lista</span><span class="p">))</span>  <span class="c1"># &lt;class &#39;list&#39;&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<a class="reference internal image-reference" href="../_images/grid.png"><img alt="numpy" class="align-center" src="../_images/grid.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/array" title="array icons">Array icons created by meaicon - Flaticon</a>
+</p></section>
+</section>
+<section id="operaciones-dentro-de-los-arrays">
+<h2>Operaciones dentro de los arrays<a class="headerlink" href="#operaciones-dentro-de-los-arrays" title="Link to this heading">#</a></h2>
+<p>Estas operaciones permiten realizar cálculos, transformaciones o extracciones directamente sobre los arrays, de modo vectorizado, aprovechando la eficiencia de NumPy. Aquí van algunas de las funciones/métodos más comunes, junto con su explicación, sintaxis, ejemplos y cuándo usarlos.</p>
+<section id="metodos-de-agregacion-o-reduccion">
+<h3>Métodos de agregación o reducción<a class="headerlink" href="#metodos-de-agregacion-o-reduccion" title="Link to this heading">#</a></h3>
+<p>Estas funciones operan sobre uno o varios ejes del array, devolviendo un valor o un array con dimensiones reducidas:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">np.sum(arr,</span> <span class="pre">axis=…)</span></code>: Suma todos los elementos del array, o los de un eje específico.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>          <span class="c1"># 21</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># array([5, 7, 9]) → suma por columnas</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># array([6, 15]) → suma por filas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">np.mean(arr,</span> <span class="pre">axis=…)</span></code>: Calcula el promedio (media aritmética). Funciona igual que <code class="docutils literal notranslate"><span class="pre">sum</span></code>, pero divide por el número de elementos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.min(arr,</span> <span class="pre">axis=…)</span></code>, <code class="docutils literal notranslate"><span class="pre">np.max(arr,</span> <span class="pre">axis=…)</span></code>: Encuentra el valor mínimo o máximo. Útil para conocer rangos, extremos de datos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.std(arr,</span> <span class="pre">axis=…)</span></code>, <code class="docutils literal notranslate"><span class="pre">np.var(arr,</span> <span class="pre">axis=…)</span></code>: Desviación estándar y varianza. Miden dispersión de los datos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.argmin(arr)</span></code>, <code class="docutils literal notranslate"><span class="pre">np.argmax(arr)</span></code>: Devuelven el índice (o posición) del valor mínimo o máximo. En arrays multidimensionales puede usarse con un eje.</p></li>
+</ul>
+</section>
+<section id="operaciones-aritmeticas-vectorizadas">
+<h3>Operaciones aritméticas vectorizadas<a class="headerlink" href="#operaciones-aritmeticas-vectorizadas" title="Link to this heading">#</a></h3>
+<p>Estas son operaciones que se aplican elemento a elemento sin necesidad de bucles explícitos:</p>
+<ul class="simple">
+<li><p>Suma, resta, multiplicación, división: <code class="docutils literal notranslate"><span class="pre">arr1</span> <span class="pre">+</span> <span class="pre">arr2</span></code>, <code class="docutils literal notranslate"><span class="pre">arr</span> <span class="pre">*</span> <span class="pre">scalar</span></code>, etc.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>   <span class="c1"># [11,22,33]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>   <span class="c1"># [2,4,6]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Potencia: <code class="docutils literal notranslate"><span class="pre">arr</span> <span class="pre">**</span> <span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">np.power(arr,</span> <span class="pre">exponent)</span></code>.</p></li>
+<li><p>Funciones universales (ufuncs), por ejemplo <code class="docutils literal notranslate"><span class="pre">np.sin(arr)</span></code>, <code class="docutils literal notranslate"><span class="pre">np.log(arr)</span></code>, <code class="docutils literal notranslate"><span class="pre">np.exp(arr)</span></code> — aplican la función matemática a cada elemento.</p></li>
+</ul>
+</section>
+<section id="comparaciones-y-mascaras">
+<h3>Comparaciones y máscaras<a class="headerlink" href="#comparaciones-y-mascaras" title="Link to this heading">#</a></h3>
+<p>Permiten generar condiciones, filtrar elementos, etc.:</p>
+<ul class="simple">
+<li><p>Comparadores: <code class="docutils literal notranslate"><span class="pre">arr</span> <span class="pre">&gt;</span> <span class="pre">value</span></code>, <code class="docutils literal notranslate"><span class="pre">arr</span> <span class="pre">==</span> <span class="pre">value</span></code>, etc. Devuelven un array booleano de la misma forma.</p></li>
+<li><p>Uso de la máscara booleana para filtrar:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">arr</span> <span class="o">&gt;</span> <span class="mi">4</span>         <span class="c1"># [False, True, True, False]</span>
+<span class="n">arr</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>              <span class="c1"># [5, 10]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Métodos como <code class="docutils literal notranslate"><span class="pre">np.where(condition,</span> <span class="pre">x,</span> <span class="pre">y)</span></code> para construir un nuevo array usando una condición.</p></li>
+</ul>
+</section>
+<section id="operaciones-especiales-sobre-ejes">
+<h3>Operaciones especiales sobre ejes<a class="headerlink" href="#operaciones-especiales-sobre-ejes" title="Link to this heading">#</a></h3>
+<p>Algunas funciones tienen parámetros para indicar sobre qué eje se operan:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">axis</span></code>: como en <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, para operar filas o columnas en matrices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">keepdims</span></code>: para mantener la dimensión reducida. Ejemplo:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># s tendrá forma (2,1) en lugar de (2,)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="otras-funciones-utiles">
+<h3>Otras funciones útiles<a class="headerlink" href="#otras-funciones-utiles" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">np.unique(arr)</span></code> → obtiene los valores únicos en el array; útil para encontrar categorías.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.sort(arr)</span></code> y <code class="docutils literal notranslate"><span class="pre">arr.sort()</span></code> → ordenar los elementos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.clip(arr,</span> <span class="pre">min_val,</span> <span class="pre">max_val)</span></code> → limita los valores del array a un rango dado (los que están por debajo se fijan al mínimo, por encima al máximo).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.round(arr,</span> <span class="pre">decimals=…)</span></code> → redondear los elementos a un número de decimales dado.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/matrix.png"><img alt="numpy" class="align-center" src="../_images/matrix.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/matrix" title="matrix icons">Matrix icons created by Freepik - Flaticon</a>
+</p></section>
+</section>
+<section id="operaciones-entre-arrays">
+<h2>Operaciones entre arrays<a class="headerlink" href="#operaciones-entre-arrays" title="Link to this heading">#</a></h2>
+<p>Las operaciones entre arrays permiten combinar, comparar o manipular dos o más arrays simultáneamente. Estas operaciones se realizan de forma vectorizada, lo que significa que NumPy aplica operaciones elemento a elemento cuando es posible, lo que da eficiencia y expresividad. Aquí te explico las más habituales:</p>
+<section id="operaciones-aritmeticas-elemento-a-elemento">
+<h3>Operaciones aritméticas elemento a elemento<a class="headerlink" href="#operaciones-aritmeticas-elemento-a-elemento" title="Link to this heading">#</a></h3>
+<p>Estas operaciones funcionan entre arrays del mismo tamaño (o compatibles mediante <em>broadcasting</em>).</p>
+<ul class="simple">
+<li><p><strong>Suma (<code class="docutils literal notranslate"><span class="pre">+</span></code>)</strong>: suma elemento por elemento.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>  <span class="c1"># array([5, 7, 9])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Resta (<code class="docutils literal notranslate"><span class="pre">-</span></code>)</strong>, <strong>multiplicación (<code class="docutils literal notranslate"><span class="pre">*</span></code>)</strong>, <strong>división (<code class="docutils literal notranslate"><span class="pre">/</span></code>)</strong>: igual que la suma pero con sus respectivos operadores.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span>   <span class="c1"># array([3, 3, 3])</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>   <span class="c1"># array([4, 10, 18])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">b</span> <span class="o">/</span> <span class="n">a</span>   <span class="c1"># array([4.0, 2.5, 2.0])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Potencia (<code class="docutils literal notranslate"><span class="pre">**</span></code>)</strong>, raíces, etc.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">a</span> <span class="o">**</span> <span class="mi">2</span>  <span class="c1"># array([1, 4, 9])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operaciones-con-broadcasting">
+<h3>Operaciones con <em>broadcasting</em><a class="headerlink" href="#operaciones-con-broadcasting" title="Link to this heading">#</a></h3>
+<p>El <em>broadcasting</em> es el mecanismo que permite operar arrays de diferentes formas siempre que cumplan ciertas reglas (una dimensión debe ser igual o uno de los tamaños debe ser 1, etc.). Ejemplo: sumar un escalar o añadir un vector corto a uno más grande. Aquí <code class="docutils literal notranslate"><span class="pre">v</span></code> se “broadcast” a cada fila de <code class="docutils literal notranslate"><span class="pre">A</span></code> para hacer la operación.:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">v</span>  
+<span class="c1"># Resultado:</span>
+<span class="c1"># [[11, 22, 33],</span>
+<span class="c1">#  [14, 25, 36]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="funciones-universales-ufuncs-en-combinaciones">
+<h3>Funciones universales (<em>ufuncs</em>) en combinaciones<a class="headerlink" href="#funciones-universales-ufuncs-en-combinaciones" title="Link to this heading">#</a></h3>
+<p>NumPy tiene muchas funciones matemáticas que operan elemento a elemento y pueden aplicarse a uno o varios arrays:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">np.add(a,</span> <span class="pre">b)</span></code> es equivalente a <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.multiply(a,</span> <span class="pre">b)</span></code>, <code class="docutils literal notranslate"><span class="pre">np.subtract(a,</span> <span class="pre">b)</span></code>, etc.</p></li>
+</ul>
+<p>También funciones como <code class="docutils literal notranslate"><span class="pre">np.maximum(a,</span> <span class="pre">b)</span></code> que produce un array con los máximos entre los elementos correspondientes de <code class="docutils literal notranslate"><span class="pre">a</span></code> y <code class="docutils literal notranslate"><span class="pre">b</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># array([5, 7, 9])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparaciones-entre-arrays">
+<h3>Comparaciones entre arrays<a class="headerlink" href="#comparaciones-entre-arrays" title="Link to this heading">#</a></h3>
+<p>Permiten generar arrays booleanos comparando elemento a elemento:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">!=</span> <span class="pre">b</span></code>, etc.</p></li>
+<li><p>Esto se usa para filtrar, máscaras, contar, etc.</p></li>
+</ul>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span>
+<span class="c1"># si a = [5,2,9], b = [3,7,4] → mask = [True, False, True]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con la máscara:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>  <span class="c1"># array([5, 9]) → sólo los elementos donde la condición es True</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operaciones-logicas-y-combinadas">
+<h3>Operaciones lógicas y combinadas<a class="headerlink" href="#operaciones-logicas-y-combinadas" title="Link to this heading">#</a></h3>
+<p>Operaciones booleanas, que combinan comparaciones con lógicas (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code>, <code class="docutils literal notranslate"><span class="pre">~</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">np.logical_and(condition1,</span> <span class="pre">condition2)</span></code>, <code class="docutils literal notranslate"><span class="pre">np.logical_or(...)</span></code>, etc.</p></li>
+<li><p>O usar operadores <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> o <code class="docutils literal notranslate"><span class="pre">|</span></code>, teniendo cuidado con los paréntesis para respetar precedencia.</p></li>
+</ul>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask2</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">b</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="otros-metodos-aplicados-entre-arrays-o-con-arrays">
+<h3>Otros métodos aplicados entre arrays o con arrays<a class="headerlink" href="#otros-metodos-aplicados-entre-arrays-o-con-arrays" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">np.clip(a,</span> <span class="pre">min_val,</span> <span class="pre">max_val)</span></code></strong>: limita los valores de <code class="docutils literal notranslate"><span class="pre">a</span></code> al rango <code class="docutils literal notranslate"><span class="pre">[min_val,</span> <span class="pre">max_val]</span></code>. Si un elemento es menor que <code class="docutils literal notranslate"><span class="pre">min_val</span></code>, se convierte en <code class="docutils literal notranslate"><span class="pre">min_val</span></code>; si es mayor que <code class="docutils literal notranslate"><span class="pre">max_val</span></code>, en <code class="docutils literal notranslate"><span class="pre">max_val</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">np.where(condition,</span> <span class="pre">x,</span> <span class="pre">y)</span></code></strong>: construye un nuevo array tomando valores de <code class="docutils literal notranslate"><span class="pre">x</span></code> donde <code class="docutils literal notranslate"><span class="pre">condition</span></code> es True, y de <code class="docutils literal notranslate"><span class="pre">y</span></code> donde es False. Puede usarse con arrays <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># elemento a elemento, toma el mayor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">,round()</span></code>, <code class="docutils literal notranslate"><span class="pre">.astype()</span></code></strong>: <code class="docutils literal notranslate"><span class="pre">round</span></code> para redondear, <code class="docutils literal notranslate"><span class="pre">astype</span></code> para cambiar tipo de datos entre arrays.</p></li>
+</ul>
+</section>
+</section>
+<section id="apendice">
+<h2>Apéndice<a class="headerlink" href="#apendice" title="Link to this heading">#</a></h2>
+<p>¡Gracias por su participación en el curso! Lo esperamos en una siguiente oportunidad.</p>
+<section id="documentacion">
+<h3>Documentación<a class="headerlink" href="#documentacion" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://github.com/monteroanibal/CursoPython2025II/blob/1fcc4625340e556e9a637f65e93f5f999f484695/otrxs/INFORMATICS%20PRACTICES%20Textbook%20for%20Class%20XI%20ISBN%20978-93-5292-148-5.pdf">Capítulo de introducción a la librería <em>NumPy</em> (Capítulo 6)</a> <br>
+<a class="reference external" href="https://numpy.org/">Documentación de la librería NumPy</a></p>
+</section>
+<section id="referencias">
+<h3>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>National Council of Educational Research and Training. (2019). Informatics Practices: Textbook for Class XI (ISBN 978-93-5292-148-5). New Delhi: NCERT.</p></li>
+</ul>
+<p><i>Taller de Análisis y procesamiento de datos con Open Source</i> © 2025 by <a href="https://scholar.google.es/citations?user=PP7CT6IAAAAJ">Aníbal Montero</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./modulo_3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../modulo_2/modulo_2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Un primer código en Python y R</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-problema">Análisis del Problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formas-de-declaracion-y-exploracion-de-arrays">Formas de declaración y exploración de arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-arrays">Creación de arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-deste-un-archivo-raster">Datos deste un archivo ráster</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades">Propiedades</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-y-funciones-aplicables-dentro-de-los-arrays">Métodos y funciones aplicables dentro de los arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexacion">Indexación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redimensionamiento-reshape">Redimensionamiento (reshape)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenamiento-de-arrays">Concatenamiento de arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copiado-de-arrays">Copiado de arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-listas-desde-arrays">Creación de listas desde arrays</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-dentro-de-los-arrays">Operaciones dentro de los arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-agregacion-o-reduccion">Métodos de agregación o reducción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-aritmeticas-vectorizadas">Operaciones aritméticas vectorizadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-y-mascaras">Comparaciones y máscaras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-especiales-sobre-ejes">Operaciones especiales sobre ejes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-funciones-utiles">Otras funciones útiles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-entre-arrays">Operaciones entre arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-aritmeticas-elemento-a-elemento">Operaciones aritméticas elemento a elemento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-broadcasting">Operaciones con <em>broadcasting</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-universales-ufuncs-en-combinaciones">Funciones universales (<em>ufuncs</em>) en combinaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-entre-arrays">Comparaciones entre arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-logicas-y-combinadas">Operaciones lógicas y combinadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-metodos-aplicados-entre-arrays-o-con-arrays">Otros métodos aplicados entre arrays o con arrays</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice">Apéndice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion">Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Departamento Administrativo Nacional de Estadística - DANE
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
