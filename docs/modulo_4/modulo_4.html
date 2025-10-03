@@ -1,0 +1,1200 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Manipulación de datos con pandas &#8212; Análisis y procesamiento de datos con Open Source</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modulo_4/modulo_4';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Manipulación de datos con numpy" href="../modulo_3/modulo_3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Logo_DANE_2024.png" class="logo__image only-light" alt="Análisis y procesamiento de datos con Open Source - Home"/>
+    <script>document.write(`<img src="../_static/Logo_DANE_2024.png" class="logo__image only-dark" alt="Análisis y procesamiento de datos con Open Source - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Taller de Análisis y procesamiento de datos con Open Source
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bienvenida</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_0/modulo_0.html">Presentación del curso</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python y R</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_1/modulo_1.html">Entornos de desarrollo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_2/modulo_2.html">Un primer código en Python y R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_3/modulo_3.html">Manipulación de datos con numpy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Manipulación de datos con pandas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/modulo_4/modulo_4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Manipulación de datos con pandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-problema">Análisis del Problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-y-exploracion-de-series-y-dataframes">Declaración y exploración de series y dataframes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series">Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">DataFrame</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexacion-y-slicing">Indexación y slicing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexacion-en-series">Indexación en <em>Series</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-en-series"><em>Slicing</em> en <em>Series</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexacion-en-dataframes">Indexación en <em>DataFrames</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-filas-y-columnas">Eliminación de filas y columnas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-filas">Eliminación de <em>filas</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-columnas">Eliminación de <em>columnas</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-condicional-de-filas">Eliminación condicional de filas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-valores-nulos-con-dropna">Eliminación de valores nulos con dropna()</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupacion-de-filas">Agrupación de filas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupacion-con-groupby">Agrupación con groupby()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-de-datos">Agregación de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupacion-por-multiples-columnas">Agrupación por múltiples columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-agg-para-personalizar-agregaciones">Uso de agg() para personalizar agregaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reiniciar-el-indice-despues-de-agrupar">Reiniciar el índice después de agrupar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenacion-y-merge">Concatenación y merge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenacion-con-pd-concat">Concatenación con pd.concat()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-con-pd-merge"><em>Merge</em> con pd.merge()</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape-y-de-tabla-de-contingencia">Reshape y de tabla de contingencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice">Apéndice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion">Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="manipulacion-de-datos-con-pandas">
+<h1>Manipulación de datos con pandas<a class="headerlink" href="#manipulacion-de-datos-con-pandas" title="Link to this heading">#</a></h1>
+<p><strong>Dataframes, operaciones, cruce de datos, Analítica de datos.</strong></p>
+<a class="reference internal image-reference" href="../_images/science.png"><img alt="numpy" class="align-center" src="../_images/science.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/dataframe" title="dataframe icons">Dataframe icons created by orvipixel - Flaticon</a>
+</p><section id="analisis-del-problema">
+<h2>Análisis del Problema<a class="headerlink" href="#analisis-del-problema" title="Link to this heading">#</a></h2>
+<p>En el análisis de datos, una de las tareas más importantes es contar con herramientas que permitan organizar, transformar y explorar la información de manera eficiente. En el ecosistema de Python, la librería <em>pandas</em> se ha consolidado como un estándar para estas labores, gracias a su facilidad de uso y a la potencia de sus estructuras de datos principales: <em>Series</em> y <em>DataFrame</em>.</p>
+<p>Con <em>pandas</em> es posible realizar operaciones como la limpieza de datos, la selección y filtrado de registros, la creación de nuevas variables, la combinación de diferentes fuentes de información y el cálculo de estadísticas descriptivas, entre muchas otras. Estas funcionalidades convierten a <em>pandas</em> en un recurso fundamental tanto para el trabajo académico como para el entorno profesional, ya que permite transformar datos en bruto en información lista para su análisis e interpretación.</p>
+<p>A lo largo de este material se explorarán las bases del manejo de <em>pandas</em>, con ejemplos prácticos que mostrarán cómo esta librería puede facilitar de manera notable el procesamiento y análisis de datos en Python.</p>
+<a class="reference internal image-reference" href="../_images/frame.png"><img alt="numpy" class="align-center" src="../_images/frame.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/footage" title="footage icons">Footage icons created by Sebastian Belalcazar - Flaticon</a>
+</p><div class="tip admonition">
+<p class="admonition-title">Objetivos de la sesión</p>
+<ul class="simple">
+<li><p>Conocer algunas formas de declaración y exploración de series y dataframes</p></li>
+<li><p>Aplicar métodos de indexación y slicing</p></li>
+<li><p>Aplicar métodos de eliminación de filas y columnas</p></li>
+<li><p>Aplicar métodos de agrupación de filas</p></li>
+<li><p>Aplicar operaciones de concatenación y merge</p></li>
+<li><p>Aplicar funciones de reshape y de tabla de contingencia</p></li>
+</ul>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Actividad</p>
+<p>Abrir el enlace al recurso de esta sesión y ejecutarlo en Google Colab de acuerdo a las indicaciones del profesor.</p>
+</div>
+<div class="nota admonition">
+<p class="admonition-title">Recursos</p>
+<ul class="simple">
+<li><p>Notebook en Python: <a class="reference external" href="https://github.com/monteroanibal/CursoPython2025II/blob/main/notebooks/CP2025II_Sesion4_Python.ipynb">Enlace a GitHub</a></p></li>
+</ul>
+</div>
+</section>
+<section id="declaracion-y-exploracion-de-series-y-dataframes">
+<h2>Declaración y exploración de series y dataframes<a class="headerlink" href="#declaracion-y-exploracion-de-series-y-dataframes" title="Link to this heading">#</a></h2>
+<p>A continuación, una explicación sobre cómo declarar o crear <em>Series</em> y <em>DataFrames</em> en <em>pandas</em>:</p>
+<section id="series">
+<h3>Series<a class="headerlink" href="#series" title="Link to this heading">#</a></h3>
+<p>Una <em>Serie</em> es un arreglo unidimensional con etiquetas (índices) que pueden asociarse a cada valor. Es similar a una columna en una tabla de datos. A continuación se muestran las formas de creación de una Serie:</p>
+<ul class="simple">
+<li><p><strong>A partir de una lista o arreglo de Python</strong>:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>  
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Especificando índices personalizados</strong>:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">])</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>A partir de un diccionario</strong>:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">})</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dataframe">
+<h3>DataFrame<a class="headerlink" href="#dataframe" title="Link to this heading">#</a></h3>
+<p>Un <em>DataFrame</em> es una estructura bidimensional que puede entenderse como una tabla de datos con filas y columnas. Cada columna es una <em>Serie</em> y todas comparten el mismo índice de filas. A continuación se muestran las formas de creación de un DataFrame:</p>
+<ul class="simple">
+<li><p><strong>A partir de un diccionario de listas o arreglos</strong>: Las claves del diccionario se convierten en nombres de columna:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Nombre&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;Marta&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Edad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">29</span><span class="p">],</span>
+    <span class="s2">&quot;Ciudad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Bogotá&quot;</span><span class="p">,</span> <span class="s2">&quot;Medellín&quot;</span><span class="p">,</span> <span class="s2">&quot;Cali&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>A partir de una lista de diccionarios</strong>: Cada diccionario representa una fila de datos:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;Nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Edad&quot;</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span> <span class="s2">&quot;Ciudad&quot;</span><span class="p">:</span> <span class="s2">&quot;Bogotá&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;Nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;Edad&quot;</span><span class="p">:</span> <span class="mi">34</span><span class="p">,</span> <span class="s2">&quot;Ciudad&quot;</span><span class="p">:</span> <span class="s2">&quot;Medellín&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;Nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Marta&quot;</span><span class="p">,</span> <span class="s2">&quot;Edad&quot;</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span> <span class="s2">&quot;Ciudad&quot;</span><span class="p">:</span> <span class="s2">&quot;Cali&quot;</span><span class="p">}</span>
+<span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>A partir de un arreglo de NumPy</strong>: Se pueden combinar con etiquetas de columnas y filas:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>  
+
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>  
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Creación vacía y llenado posterior</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Nombre&quot;</span><span class="p">,</span> <span class="s2">&quot;Edad&quot;</span><span class="p">,</span> <span class="s2">&quot;Ciudad&quot;</span><span class="p">])</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En resumen, <em>Series</em> representan datos unidimensionales con índices, mientras que los <em>DataFrames</em> permiten trabajar con información tabular de múltiples dimensiones. Estas estructuras constituyen la base para casi todas las operaciones de manipulación y análisis en <em>pandas</em>.</p>
+<a class="reference internal image-reference" href="../_images/graph.png"><img alt="numpy" class="align-center" src="../_images/graph.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/index" title="index icons">Index icons created by Nixxdsgn - Flaticon</a>
+</p></section>
+</section>
+<section id="indexacion-y-slicing">
+<h2>Indexación y slicing<a class="headerlink" href="#indexacion-y-slicing" title="Link to this heading">#</a></h2>
+<p>Una vez creadas las estructuras de datos en <em>pandas</em> (Series y DataFrames), es fundamental aprender a acceder y seleccionar la información que contienen. Esto se logra mediante indexación y <em>slicing</em>.</p>
+<section id="indexacion-en-series">
+<h3>Indexación en <em>Series</em><a class="headerlink" href="#indexacion-en-series" title="Link to this heading">#</a></h3>
+<p>Una <em>Serie</em> tiene un índice asociado a cada valor, lo que permite acceder a los elementos de manera similar a los diccionarios o listas de Python.</p>
+<ul class="simple">
+<li><p><strong>Acceso por posición (entero)</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>  
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">])</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>      <span class="c1"># Accede al primer elemento -&gt; 10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Acceso por etiqueta (índice nombrado)</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">])</span>    <span class="c1"># Accede al elemento con índice &quot;c&quot; -&gt; 30</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Acceso a varios elementos</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">]])</span>   <span class="c1"># Devuelve una Serie con los índices &quot;a&quot; y &quot;d&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="slicing-en-series">
+<h3><em>Slicing</em> en <em>Series</em><a class="headerlink" href="#slicing-en-series" title="Link to this heading">#</a></h3>
+<p>Permite obtener subconjuntos de datos, ya sea por posición o por etiquetas.</p>
+<ul class="simple">
+<li><p><strong>Por posición (estilo listas de Python)</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>   <span class="c1"># Del índice 1 al 2 (excluye el 3)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Por etiquetas (incluye el final)</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="s2">&quot;d&quot;</span><span class="p">])</span>   <span class="c1"># Incluye desde &quot;b&quot; hasta &quot;d&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indexacion-en-dataframes">
+<h3>Indexación en <em>DataFrames</em><a class="headerlink" href="#indexacion-en-dataframes" title="Link to this heading">#</a></h3>
+<p>En los <em>DataFrames</em>*, la selección puede hacerse por <em>filas</em> y/o <em>columnas</em>. Para ello, <em>pandas</em> ofrece principalmente dos métodos:</p>
+<ul class="simple">
+<li><p><strong>.loc[] → acceso por etiquetas</strong>: Selección de una fila por índice:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Nombre&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;Marta&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Edad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">29</span><span class="p">],</span>
+    <span class="s2">&quot;Ciudad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Bogotá&quot;</span><span class="p">,</span> <span class="s2">&quot;Medellín&quot;</span><span class="p">,</span> <span class="s2">&quot;Cali&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>        <span class="c1"># Fila con índice 0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;Edad&quot;</span><span class="p">])</span> <span class="c1"># Toda la columna &quot;Edad&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>.loc[] → acceso por etiquetas</strong>: Selección de un rango de filas y columnas:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Nombre&quot;</span><span class="p">,</span> <span class="s2">&quot;Edad&quot;</span><span class="p">]])</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>.iloc[]` → acceso por posición numérica</strong>: Selección de una fila:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>        <span class="c1"># Primera fila</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>     <span class="c1"># Segunda columna (Edad)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>.iloc[]` → acceso por posición numérica</strong>: Selección de un rango:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># Primeras dos filas y dos columnas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">loc</span></code> incluye el índice final, mientras que <code class="docutils literal notranslate"><span class="pre">iloc</span></code> lo excluye</strong>, igual que en las listas de Python. Es posible combinar condiciones para filtrar datos:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Edad&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">25</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Nombre&quot;</span><span class="p">,</span> <span class="s2">&quot;Ciudad&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<a class="reference internal image-reference" href="../_images/table.png"><img alt="numpy" class="align-center" src="../_images/table.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/excel" title="excel icons">Excel icons created by Freepik - Flaticon</a>
+</p></section>
+</section>
+<section id="eliminacion-de-filas-y-columnas">
+<h2>Eliminación de filas y columnas<a class="headerlink" href="#eliminacion-de-filas-y-columnas" title="Link to this heading">#</a></h2>
+<p>En el trabajo con datos, es frecuente que se requiera descartar filas o columnas que no son necesarias para el análisis. La librería <em>pandas</em> facilita esta tarea a través del método <em><code class="docutils literal notranslate"><span class="pre">drop()</span></code></em>, entre otras opciones.</p>
+<section id="eliminacion-de-filas">
+<h3>Eliminación de <em>filas</em><a class="headerlink" href="#eliminacion-de-filas" title="Link to this heading">#</a></h3>
+<p>Por defecto, el método <code class="docutils literal notranslate"><span class="pre">drop()</span></code> elimina <em>filas</em> si se especifica su índice.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>  
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Nombre&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;Marta&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Edad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">29</span><span class="p">],</span>
+    <span class="s2">&quot;Ciudad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Bogotá&quot;</span><span class="p">,</span> <span class="s2">&quot;Medellín&quot;</span><span class="p">,</span> <span class="s2">&quot;Cali&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># Eliminar la fila con índice 1</span>
+<span class="n">df_filas</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_filas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El DataFrame original no se modifica a menos que se use el parámetro <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="eliminacion-de-columnas">
+<h3>Eliminación de <em>columnas</em><a class="headerlink" href="#eliminacion-de-columnas" title="Link to this heading">#</a></h3>
+<p>Para eliminar columnas se utiliza el parámetro <code class="docutils literal notranslate"><span class="pre">axis=1</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar la columna &quot;Ciudad&quot;</span>
+<span class="n">df_columnas</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_columnas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>También se pueden eliminar varias columnas a la vez:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_varias</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;Edad&quot;</span><span class="p">,</span> <span class="s2">&quot;Ciudad&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="eliminacion-condicional-de-filas">
+<h3>Eliminación condicional de filas<a class="headerlink" href="#eliminacion-condicional-de-filas" title="Link to this heading">#</a></h3>
+<p>Es posible eliminar filas según una condición lógica. Por ejemplo, eliminar personas menores de 30 años:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cond</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Edad&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_cond</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="eliminacion-de-valores-nulos-con-dropna">
+<h3>Eliminación de valores nulos con dropna()<a class="headerlink" href="#eliminacion-de-valores-nulos-con-dropna" title="Link to this heading">#</a></h3>
+<p>Además de <code class="docutils literal notranslate"><span class="pre">drop()</span></code>, pandas cuenta con métodos especializados para limpieza:</p>
+<ul class="simple">
+<li><p><strong>Eliminar filas con valores nulos</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sin_nulos</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Eliminar columnas con valores nulos</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sin_nulos_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<a class="reference internal image-reference" href="../_images/filtering.png"><img alt="numpy" class="align-center" src="../_images/filtering.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/filtering" title="filtering icons">Filtering icons created by Freepik - Flaticon</a>
+</p></section>
+</section>
+<section id="agrupacion-de-filas">
+<h2>Agrupación de filas<a class="headerlink" href="#agrupacion-de-filas" title="Link to this heading">#</a></h2>
+<p>En análisis de datos, muchas veces no basta con tener la información fila por fila: necesitamos <em>resumirla</em>, <em>clasificarla</em> u <em>obtener estadísticas</em> a partir de grupos. Para ello, <em>pandas</em> ofrece las operaciones de <em>agrupación</em> (<em>grouping</em>) y <em>agregación</em> (<em>aggregation</em>).</p>
+<section id="agrupacion-con-groupby">
+<h3>Agrupación con groupby()<a class="headerlink" href="#agrupacion-con-groupby" title="Link to this heading">#</a></h3>
+<p>El método <strong><code class="docutils literal notranslate"><span class="pre">groupby()</span></code></strong> permite dividir un DataFrame en grupos basados en los valores de una o más columnas. Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>  
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Ciudad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Bogotá&quot;</span><span class="p">,</span> <span class="s2">&quot;Bogotá&quot;</span><span class="p">,</span> <span class="s2">&quot;Medellín&quot;</span><span class="p">,</span> <span class="s2">&quot;Cali&quot;</span><span class="p">,</span> <span class="s2">&quot;Cali&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Ventas&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">180</span><span class="p">],</span>
+    <span class="s2">&quot;Vendedor&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Marta&quot;</span><span class="p">,</span> <span class="s2">&quot;Luis&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># Agrupar por ciudad</span>
+<span class="n">grupo</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">grupo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El resultado de <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> no es un DataFrame directo, sino un objeto agrupado que se puede combinar con operaciones posteriores.</p>
+</section>
+<section id="agregacion-de-datos">
+<h3>Agregación de datos<a class="headerlink" href="#agregacion-de-datos" title="Link to this heading">#</a></h3>
+<p>Una vez definidos los grupos, se pueden aplicar funciones de agregación para obtener estadísticas:</p>
+<ul class="simple">
+<li><p><strong>Funciones comunes</strong> (<code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">count</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>):</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suma de ventas por ciudad</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">)[</span><span class="s2">&quot;Ventas&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># Promedio de ventas por ciudad</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">)[</span><span class="s2">&quot;Ventas&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Varias funciones a la vez</strong>:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">)[</span><span class="s2">&quot;Ventas&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="agrupacion-por-multiples-columnas">
+<h3>Agrupación por múltiples columnas<a class="headerlink" href="#agrupacion-por-multiples-columnas" title="Link to this heading">#</a></h3>
+<p>También es posible agrupar usando más de una columna:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Agrupar por Ciudad y Vendedor</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">,</span> <span class="s2">&quot;Vendedor&quot;</span><span class="p">])[</span><span class="s2">&quot;Ventas&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esto genera una tabla con índice jerárquico (MultiIndex).</p>
+</section>
+<section id="uso-de-agg-para-personalizar-agregaciones">
+<h3>Uso de agg() para personalizar agregaciones<a class="headerlink" href="#uso-de-agg-para-personalizar-agregaciones" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">agg()</span></code> permite aplicar diferentes funciones a distintas columnas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resumen</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s2">&quot;Ventas&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">],</span>      <span class="c1"># sumar y promediar ventas</span>
+    <span class="s2">&quot;Vendedor&quot;</span><span class="p">:</span> <span class="s2">&quot;count&quot;</span>             <span class="c1"># contar vendedores</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resumen</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reiniciar-el-indice-despues-de-agrupar">
+<h3>Reiniciar el índice después de agrupar<a class="headerlink" href="#reiniciar-el-indice-despues-de-agrupar" title="Link to this heading">#</a></h3>
+<p>Por defecto, la columna usada para agrupar se convierte en índice. Para devolverla como columna normal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultado</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">)[</span><span class="s2">&quot;Ventas&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<a class="reference internal image-reference" href="../_images/grouping.png"><img alt="numpy" class="align-center" src="../_images/grouping.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/outlier" title="outlier icons">Outlier icons created by mia elysia - Flaticon</a>
+</p></section>
+</section>
+<section id="concatenacion-y-merge">
+<h2>Concatenación y merge<a class="headerlink" href="#concatenacion-y-merge" title="Link to this heading">#</a></h2>
+<p>En el análisis de datos, es común que la información se encuentre distribuida en diferentes tablas o estructuras. Para trabajar con ella de manera integrada, <em>pandas</em> ofrece mecanismos para <em>combinar</em> datos: la <em>concatenación</em> y el <em>merge</em>.</p>
+<section id="concatenacion-con-pd-concat">
+<h3>Concatenación con pd.concat()<a class="headerlink" href="#concatenacion-con-pd-concat" title="Link to this heading">#</a></h3>
+<p>La función <strong><code class="docutils literal notranslate"><span class="pre">concat()</span></code></strong> permite unir objetos de <em>pandas</em> (Series o DataFrames) de manera vertical (uno debajo del otro) u horizontal (uno al lado del otro).</p>
+<ul class="simple">
+<li><p><strong>Concatenación vertical (apilar filas)</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>  
+
+<span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="s2">&quot;Nombre&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;Marta&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="s2">&quot;Nombre&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="s2">&quot;Elena&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df_concat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_concat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se agregan las filas de <code class="docutils literal notranslate"><span class="pre">df2</span></code> debajo de las de <code class="docutils literal notranslate"><span class="pre">df1</span></code>.</p>
+<ul class="simple">
+<li><p><strong>Concatenación horizontal (unir columnas)</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Edad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">29</span><span class="p">],</span>
+    <span class="s2">&quot;Ciudad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Bogotá&quot;</span><span class="p">,</span> <span class="s2">&quot;Medellín&quot;</span><span class="p">,</span> <span class="s2">&quot;Cali&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df_horiz</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_horiz</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aquí, las columnas se pegan una al lado de la otra, alineadas por el índice.</p>
+</section>
+<section id="merge-con-pd-merge">
+<h3><em>Merge</em> con pd.merge()<a class="headerlink" href="#merge-con-pd-merge" title="Link to this heading">#</a></h3>
+<p>El método <strong><code class="docutils literal notranslate"><span class="pre">merge()</span></code></strong> permite combinar DataFrames de manera similar a un <em>join</em> en bases de datos relacionales. Se basa en claves comunes (columnas).</p>
+<ul class="simple">
+<li><p><strong>Inner join (intersección)</strong>: Devuelve solo las filas con ID en común en ambos DataFrames.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_ventas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="s2">&quot;Ventas&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">300</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df_clientes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="s2">&quot;Nombre&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;Marta&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df_inner</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_clientes</span><span class="p">,</span> <span class="n">df_ventas</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_inner</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Left join (todos los de la izquierda)</strong>: Devuelve todos los clientes, aunque no tengan ventas asociadas.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_clientes</span><span class="p">,</span> <span class="n">df_ventas</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_left</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Right join (todos los de la derecha)</strong>:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_clientes</span><span class="p">,</span> <span class="n">df_ventas</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_right</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Outer join (unión completa)</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_outer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_clientes</span><span class="p">,</span> <span class="n">df_ventas</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_outer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Devuelve todos los registros, incluso si no coinciden en ambos DataFrames (rellenando con <code class="docutils literal notranslate"><span class="pre">NaN</span></code> donde no hay correspondencia).</p>
+<a class="reference internal image-reference" href="../_images/join.png"><img alt="numpy" class="align-center" src="../_images/join.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://www.flaticon.com/free-icons/combine" title="combine icons">Combine icons created by orvipixel - Flaticon</a>
+</p></section>
+</section>
+<section id="reshape-y-de-tabla-de-contingencia">
+<h2>Reshape y de tabla de contingencia<a class="headerlink" href="#reshape-y-de-tabla-de-contingencia" title="Link to this heading">#</a></h2>
+<p>Cuando se trabaja con conjuntos de datos, muchas veces se necesita resumir la información en forma de tabla, calculando totales o promedios de manera agrupada. Para esto, <em>pandas</em> ofrece dos funciones poderosas: <em><code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code></em> y <em><code class="docutils literal notranslate"><span class="pre">crosstab()</span></code></em>.</p>
+<p>La función <em><code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code></em> permite crear tablas dinámicas similares a las de Excel. Se utiliza para reorganizar y resumir datos a partir de un DataFrame. Sintaxis básica:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">aggfunc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>data</em> → DataFrame de origen. <em>values</em> → columna(s) numéricas a resumir. <em>index</em> → filas de la tabla. <em>columns</em> → columnas de la tabla. <em>aggfunc</em> → función de agregación (ej: sum, mean, count).</p>
+<p>Esto muestra el total de ventas por <em>Ciudad</em> (filas) y <em>Vendedor</em> (columnas).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>  
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Ciudad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Bogotá&quot;</span><span class="p">,</span> <span class="s2">&quot;Bogotá&quot;</span><span class="p">,</span> <span class="s2">&quot;Medellín&quot;</span><span class="p">,</span> <span class="s2">&quot;Cali&quot;</span><span class="p">,</span> <span class="s2">&quot;Cali&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Vendedor&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Marta&quot;</span><span class="p">,</span> <span class="s2">&quot;Luis&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Ventas&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">180</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">tabla</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;Ventas&quot;</span><span class="p">,</span>
+                       <span class="n">index</span><span class="o">=</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">,</span>
+                       <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Vendedor&quot;</span><span class="p">,</span>
+                       <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+                       <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La función <em><code class="docutils literal notranslate"><span class="pre">crosstab()</span></code></em> crea una tabla de contingencia que muestra <em>frecuencias</em> (conteo de ocurrencias). Es muy útil para análisis de variables categóricas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>index</em> → categorías en filas. <em>columns</em> → categorías en columnas. <em>values + aggfunc</em> (opcional) → para resumir valores numéricos en lugar de contar. Por ejemplo aquí, se muestra cuántas veces aparece cada vendedor en cada ciudad.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conteo de vendedores por ciudad</span>
+<span class="n">tabla_frec</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Vendedor&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabla_frec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con valores y función de agregación:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suma de ventas por ciudad y vendedor</span>
+<span class="n">tabla_sum</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Ciudad&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Vendedor&quot;</span><span class="p">],</span>
+                        <span class="n">values</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Ventas&quot;</span><span class="p">],</span>
+                        <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabla_sum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="apendice">
+<h2>Apéndice<a class="headerlink" href="#apendice" title="Link to this heading">#</a></h2>
+<p>¡Gracias por su participación en el curso! Lo esperamos en una siguiente oportunidad.</p>
+<section id="documentacion">
+<h3>Documentación<a class="headerlink" href="#documentacion" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://dokumen.pub/python-pandas-for-beginners-pandas-specialization-for-data-scientist-9781956591101-1956591109.html">Capítulo de introducción a la librería <em>pandas</em> (Capítulo 2)</a> <br>
+<a class="reference external" href="https://pandas.pydata.org/">Documentación de la librería pandas</a></p>
+</section>
+<section id="referencias">
+<h3>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>AI Publishing. (2021). Python Pandas for Beginners: Pandas Specialization for Data Scientist. AI Publishing LLC.</p></li>
+</ul>
+<p><i>Taller de Análisis y procesamiento de datos con Open Source</i> © 2025 by <a href="https://scholar.google.es/citations?user=PP7CT6IAAAAJ">Aníbal Montero</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./modulo_4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../modulo_3/modulo_3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Manipulación de datos con numpy</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-problema">Análisis del Problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-y-exploracion-de-series-y-dataframes">Declaración y exploración de series y dataframes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series">Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">DataFrame</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexacion-y-slicing">Indexación y slicing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexacion-en-series">Indexación en <em>Series</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-en-series"><em>Slicing</em> en <em>Series</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexacion-en-dataframes">Indexación en <em>DataFrames</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-filas-y-columnas">Eliminación de filas y columnas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-filas">Eliminación de <em>filas</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-columnas">Eliminación de <em>columnas</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-condicional-de-filas">Eliminación condicional de filas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-valores-nulos-con-dropna">Eliminación de valores nulos con dropna()</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupacion-de-filas">Agrupación de filas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupacion-con-groupby">Agrupación con groupby()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-de-datos">Agregación de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupacion-por-multiples-columnas">Agrupación por múltiples columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-agg-para-personalizar-agregaciones">Uso de agg() para personalizar agregaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reiniciar-el-indice-despues-de-agrupar">Reiniciar el índice después de agrupar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenacion-y-merge">Concatenación y merge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenacion-con-pd-concat">Concatenación con pd.concat()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-con-pd-merge"><em>Merge</em> con pd.merge()</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape-y-de-tabla-de-contingencia">Reshape y de tabla de contingencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice">Apéndice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion">Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Departamento Administrativo Nacional de Estadística - DANE
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
