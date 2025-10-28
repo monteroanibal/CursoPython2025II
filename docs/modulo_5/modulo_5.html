@@ -1,0 +1,2361 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Visualización de datos &#8212; Análisis y procesamiento de datos con Open Source</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modulo_5/modulo_5';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Elaboración de mapas interactivos" href="../modulo_6/modulo_6.html" />
+    <link rel="prev" title="Manipulación de datos con pandas" href="../modulo_4/modulo_4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Logo_DANE_2024.png" class="logo__image only-light" alt="Análisis y procesamiento de datos con Open Source - Home"/>
+    <script>document.write(`<img src="../_static/Logo_DANE_2024.png" class="logo__image only-dark" alt="Análisis y procesamiento de datos con Open Source - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Taller de Análisis y procesamiento de datos con Open Source
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bienvenida</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_0/modulo_0.html">Presentación del curso</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python y R</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_1/modulo_1.html">Entornos de desarrollo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_2/modulo_2.html">Un primer código en Python y R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_3/modulo_3.html">Manipulación de datos con numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_4/modulo_4.html">Manipulación de datos con pandas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Visualización de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_6/modulo_6.html">Elaboración de mapas interactivos</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/modulo_5/modulo_5.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Visualización de datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-la-visualizacion-de-datos">Introducción a la visualización de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-visualizar-datos">¿Por qué visualizar datos?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#que-resuelven-las-herramientas-de-visualizacion-de-datos">¿Qué resuelven las herramientas de visualización de datos?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-graficas-mas-comunes">Tipos de gráficas más comunes.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#significado-de-las-librerias-en-lenguaje-de-programacion">Significado de las librerías en lenguaje de programación</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-vs-ggplot2">Matplotlib VS Ggplot2</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#primera-ronda-grafica-de-dispersion">Primera ronda - gráfica de dispersión</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#segunda-ronda-grafica-de-contorno">Segunda ronda - gráfica de contorno</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tercera-ronda-grafica-de-correlacion-heatmap">Tercera ronda - gráfica de correlación «heatmap»</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cuarta-ronda-grafica-de-lineas-y-puntos-regresion-lineal">Cuarta ronda - gráfica de líneas y puntos «Regresión líneal»</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#quinta-ronda-grafico-polar">Quinta Ronda - gráfico polar</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sexta-ronda-grafica-de-cajas-y-alambres-boxplot">Sexta ronda - gráfica de cajas y alambres «Boxplot»</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#septima-ronda-grafico-en-3d">Septima ronda - gráfico en 3D</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativa-por-tipo-de-grafico-matplotlib-vs-ggplot2"><strong>Comparativa por tipo de gráfico: Matplotlib vs ggplot2</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflexion-sobre-la-comparacion"><strong>Reflexión sobre la comparación</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-plotly-visualizacion-interactiva-en-python">Introducción a Plotly: Visualización Interactiva en Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glosario">Glosario</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b">B</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c">C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e">E</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f">F</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g">G</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h">H</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i">I</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k">K</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l">L</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m">M</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n">N</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o">O</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p">P</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r">R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#s">S</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t">T</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v">V</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z">Z</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consulta-bibliografica">Consulta bibliográfica.</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="visualizacion-de-datos">
+<h1>Visualización de datos<a class="headerlink" href="#visualizacion-de-datos" title="Link to this heading">#</a></h1>
+<section id="introduccion-a-la-visualizacion-de-datos">
+<h2>Introducción a la visualización de datos<a class="headerlink" href="#introduccion-a-la-visualizacion-de-datos" title="Link to this heading">#</a></h2>
+<section id="por-que-visualizar-datos">
+<h3>¿Por qué visualizar datos?<a class="headerlink" href="#por-que-visualizar-datos" title="Link to this heading">#</a></h3>
+<p>Permite la transformación de información abstracta en representaciones visuales que nuestro cerebro puede procesar más eficientemente. haciendo posible:</p>
+<ul class="simple">
+<li><p><strong>Identificar patrones y tendencias</strong>: Nuestro cerebro detecta visualmente correlaciones, clusters y comportamientos temporales en gráficos que pasarían desapercibidos en tablas numéricas, facilitando el análisis exploratorio.</p></li>
+<li><p><strong>Detectar valores atípicos y anomalías</strong>: Los puntos inusuales que rompen la distribución visual general se       destacan inmediatamente, permitiendo una identificación rápida de errores o eventos significativos para su investigación.</p></li>
+<li><p><strong>Comunicar hallazgos complejos</strong>: Un gráfico bien diseñado sintetiza grandes volúmenes de datos y relaciones complejas en una narrativa visual clara y accesible, superando las barreras del lenguaje técnico.</p></li>
+<li><p><strong>Explorar datos de forma interactiva</strong>: Herramientas modernas permiten filtrar, hacer zoom y consultar datos en tiempo real, fomentando una investigación dinámica y la formulación de preguntas más profundas sobre el dataset.</p></li>
+</ul>
+<section id="que-resuelven-las-herramientas-de-visualizacion-de-datos">
+<h4>¿Qué resuelven las herramientas de visualización de datos?<a class="headerlink" href="#que-resuelven-las-herramientas-de-visualizacion-de-datos" title="Link to this heading">#</a></h4>
+<p>Las herramientas de visualización cumplen varias funciones:</p>
+<ul class="simple">
+<li><p><strong>Exploración</strong>: ayudan a identificar tendencias, distribuciones, anomalías y relaciones entre variables durante la fase inicial del análisis.</p></li>
+<li><p><strong>Comunicación</strong>: permiten transmitir hallazgos de forma comprensible, tanto a equipos técnicos como a públicos no especializados.</p></li>
+<li><p><strong>Validación</strong>: facilitan la detección de inconsistencias o valores atípicos en los registros antes de avanzar a etapas más complejas de modelado.</p></li>
+<li><p><strong>Apoyo en la toma de decisiones</strong>: al presentar la información de manera visual, favorecen la construcción de evidencia sólida para sustentar políticas       públicas y programas estadísticos.</p></li>
+</ul>
+</section>
+<section id="tipos-de-graficas-mas-comunes">
+<h4>Tipos de gráficas más comunes.<a class="headerlink" href="#tipos-de-graficas-mas-comunes" title="Link to this heading">#</a></h4>
+<p>Dependiendo del objetivo y del tipo de variable, se utilizan diferentes formas de representación:</p>
+<ul class="simple">
+<li><p>Gráficas de barras y columnas: comparaciones entre categorías.</p></li>
+<li><p>Histogramas y diagramas de densidad: distribución de variables numéricas.</p></li>
+<li><p>Gráficas de líneas: evolución temporal de una variable.</p></li>
+<li><p>Diagramas de dispersión (scatter plots): relación entre dos variables.</p></li>
+<li><p>Boxplots: análisis de dispersión y detección de valores atípicos.</p></li>
+<li><p>Mapas: análisis espacial y geográfico.</p></li>
+<li><p>Pirámides poblacionales: representación de estructura por sexo y edad.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cada una de estas gráficas puede ser enriquecida con elementos adicionales como colores, facetas o animaciones para mejorar la interpretación.</p>
+</div>
+</section>
+<section id="significado-de-las-librerias-en-lenguaje-de-programacion">
+<h4>Significado de las librerías en lenguaje de programación<a class="headerlink" href="#significado-de-las-librerias-en-lenguaje-de-programacion" title="Link to this heading">#</a></h4>
+<p>Antes de crear nuestros primeros gráficos, es fundamental familiarizarnos con las herramientas disponibles. Tanto Python como R cuentan con ecosistemas robustos para la visualización de datos, donde no es necesario generar gráficos desde cero, sino que se emplean librerías especializadas que agilizan y simplifican notablemente este proceso. A continuación, se presentan las más utilizadas en ambos entornos:</p>
+<ul class="simple">
+<li><p>Matplotlib <code class="docutils literal notranslate"><span class="pre">(Python)</span></code>:
+Es la librería más antigua de visualización en Python. Actúa como el cimiento sobre el que se construyen muchas otras. Ofrece un control granular sobre cada elemento de un gráfico (ejes, líneas, leyendas, colores, etc), pero su API puede ser verbosa para gráficos complejos. Se suele importar como plt.</p></li>
+<li><p>Seaborn <code class="docutils literal notranslate"><span class="pre">(Python)</span></code>:
+Construida sobre Matplotlib, se centra en la estética estadística. Simplifica la creación de gráficos complejos (como facetas o gráficos de distribución) y aplica estilos atractivos por defecto. Está muy integrada con DataFrames de pandas.</p></li>
+<li><p>Folium <code class="docutils literal notranslate"><span class="pre">(Python)</span></code>: Une las bondades de la biblioteca JavaScript Leaflet con la simplicidad de Python. Genera mapas interactivos que se pueden exportar como HTML.</p></li>
+<li><p>Librerías para Mapas y Geodatos
+Geopandas <code class="docutils literal notranslate"><span class="pre">(Python)</span></code>: Extiende los DataFrames de pandas para trabajar con datos geoespaciales. Es la base para crear mapas temáticos estáticos.</p></li>
+<li><p>ggplot2 <code class="docutils literal notranslate"><span class="pre">(R)</span></code>:
+Esta librería domina el ecosistema de R. Implementa la “Gramática de los Gráficos”, una filosofía que concibe un gráfico como la suma de capas (datos, estéticas, geometrías, escalas). Esta estructura lógica hace que la creación y reproducción de visualizaciones sea intuitiva y poderosa.</p></li>
+<li><p>Librerías Interactivas y para Web
+Plotly <code class="docutils literal notranslate"><span class="pre">(Python</span> <span class="pre">&amp;</span> <span class="pre">R)</span></code>: Crea visualizaciones interactivas (zoom, tooltips, paneo) de alta calidad. Su versatilidad entre ambos lenguajes la hace una herramienta fundamental.</p></li>
+<li><p>Shiny <code class="docutils literal notranslate"><span class="pre">(R)</span></code>: Va más allá de los gráficos. Es un framework para construir aplicaciones web y dashboards interactivos completos directamente desde R, sin necesidad de JavaScript.</p></li>
+<li><p>Leaflet <code class="docutils literal notranslate"><span class="pre">(R)</span></code>: La librería principal para crear mapas interactivos en R, permitiendo agregar capas, marcadores y popups de manera sencilla.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/Graphyers.png"><img alt="numpy" class="align-center" src="../_images/Graphyers.png" style="width: 175px;" />
+</a>
+<p style="text-align: center; font-size: 8px;">
+    <a href="https://towardsdatascience.com/matplotlib-vs-ggplot2-c86dd35a9378/" title="Las Tres Grandes Librerías de Visualización">Towards Data Science - tds</a>
+</p><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Antes de finalizar el curso se dispondrá de una guia de instalación de miniconda, jupyter lab, pyspark y R.</p>
+</div>
+</section>
+</section>
+<section id="matplotlib-vs-ggplot2">
+<h3>Matplotlib VS Ggplot2<a class="headerlink" href="#matplotlib-vs-ggplot2" title="Link to this heading">#</a></h3>
+<p>¿Qué lenguaje es mejor para visualización?, ¿o en este caso cuál de los dos paquetes es mejor? para aprovechar el ejercicio y aprender a usar las librerías es aún mejor ubicarlas hombro a hombro para divisar las fortalezas y debilidades mediante unas reglas de comparación establecidas en 6 rondas y una ronda adicional. En cada ronda se van a utilizar los mismos datos y utilizar gráficos idénticos en ambos lenguajes. las rondas son las siguientes:</p>
+<ul class="simple">
+<li><p>Gráfico de dispersión <code class="docutils literal notranslate"><span class="pre">(Scatter</span> <span class="pre">Plot)</span></code></p></li>
+<li><p>Gráfico de contorno <code class="docutils literal notranslate"><span class="pre">(Contour</span> <span class="pre">Plot)</span></code></p></li>
+<li><p>Mapa de calor “Correlación” <code class="docutils literal notranslate"><span class="pre">(Heatmap)</span></code></p></li>
+<li><p>Gráfico multilínea de regresión <code class="docutils literal notranslate"><span class="pre">(Regression</span> <span class="pre">Multiline</span> <span class="pre">Graph)</span></code></p></li>
+<li><p>Gráfico de barras polares <code class="docutils literal notranslate"><span class="pre">(Polar</span> <span class="pre">Bar</span> <span class="pre">Chart)</span></code></p></li>
+<li><p>Múltiples diagramas de caja <code class="docutils literal notranslate"><span class="pre">(Multiple</span> <span class="pre">Boxplots)</span></code></p></li>
+<li><p>Ronda adicional <code class="docutils literal notranslate"><span class="pre">(Bonus</span> <span class="pre">Round)</span></code></p></li>
+</ul>
+<div class="admonition-hoja-de-ruta-para-la-comparacion admonition">
+<p class="admonition-title">Hoja de ruta para la comparación</p>
+<p>En cada ronda, los paquetes se califican sobre 5, basándose en la estética y la facilidad de uso. Los resultados se encuentran al final de la sesión. Se intentará mantener el sesgo personal al mínimo y ser lo más objetivo posible.</p>
+<p>En todas las rondas, excepto en la adicional, se intentó crear el mismo gráfico en ambos paquetes. Utilizando los mismos datos (simulados) y la misma paleta de colores.</p>
+<p>Esto es una comparación de visualización entre paquetes, lo que significa que si matplotlib o ggplot2 no pueden producir el mismo gráfico pero otro paquete del mismo lenguaje (como seaborn o plotly) sí puede, eso no cuenta.</p>
+<p>En todas las imágenes siguientes, tanto los gráficos como el código, matplotlib (Python) aparece primero, seguido de ggplot2 (R).</p>
+</div>
+<div class="nota admonition">
+<p class="admonition-title">Recursos notebooks en Colab - Python y R</p>
+<ul class="simple">
+<li><p>Notebook en Python: <a class="reference external" href="https://colab.research.google.com/drive/1Noj8Awd9pwPFzBMOa9O99BGusM4QxDrd?usp=sharing">Enlace a Googledrive</a></p></li>
+<li><p>Notebook en R: <a class="reference external" href="https://colab.research.google.com/drive/1fXdimfDKkxc9E6g8_6-oNDHBIUnaZdmH?usp=sharing">Enlace a Googledrive</a></p></li>
+</ul>
+</div>
+<section id="primera-ronda-grafica-de-dispersion">
+<h4>Primera ronda - gráfica de dispersión<a class="headerlink" href="#primera-ronda-grafica-de-dispersion" title="Link to this heading">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Para elaborar la gráfica se dispone de datos sintéticos o generados aleatoriamente para facilitar la reproducción de la gráfica evitando la carga de archivos adicionales.</p>
+</div>
+<p>La temática de los datos dispuestos son altura “height”, peso “weight” y un índice de densidad corporal “brozek” para revisar la relación entre las variables mediante un diagráma de dispersión.</p>
+<p>A continuación se expresan los scripts que se utilizaron para elaborar las gráficas en los lenguajes de programación de Python y R</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Python - Gráfico de dispersión</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Simular dataset
+np.random.seed(42)  # Fija la semilla aleatoria para reproducibilidad
+n = 200  # Define el número de muestras a generar
+
+# Genera 200 valores aleatorios con distribución normal (media=180, desv=35)
+weight = np.random.normal(180, 35, n)
+
+# Genera 200 valores aleatorios con distribución normal (media=66, desv=3)
+height = np.random.normal(66, 3, n)
+
+# Calcula la grasa como combinación lineal de peso y altura más ruido aleatorio
+brozek = 0.3 * weight + 0.7 * height + np.random.normal(0, 5, n)
+
+# Crear DataFrame
+df = pd.DataFrame({&#39;Peso&#39;: weight, &#39;Altura&#39;: height, &#39;Grasa&#39;: brozek})  # Organiza los datos en una tabla
+
+# Crear el scatterplot
+plt.figure(figsize=(5, 5))  # Crea una figura de 5x5 pulgadas
+
+# Dibuja puntos con Peso en X, Altura en Y, coloreados según Grasa
+scatter = plt.scatter(df[&#39;Peso&#39;], df[&#39;Altura&#39;], 
+                      c=df[&#39;Grasa&#39;],  # Color basado en el valor de Grasa
+                      cmap=&#39;viridis&#39;,  # Esquema de colores viridis
+                      alpha=0.7,  # Transparencia del 70%
+                      s=50)  # Tamaño de los puntos
+
+plt.colorbar(scatter, label=&#39;Grasa&#39;)  # Añade barra de colores con etiqueta
+plt.xlabel(&#39;Peso&#39;, fontsize=9)  # Etiqueta del eje X
+plt.ylabel(&#39;Altura&#39;, fontsize=9)  # Etiqueta del eje Y
+plt.title(&#39;Peso vs Altura frente al nivel de Grasa&#39;, fontsize=10)  # Título del gráfico
+plt.grid(True, alpha=0.4)  # Añade cuadrícula con 40% de transparencia
+
+plt.xlim(120, 260)  # Define límites del eje X
+plt.ylim(64, 70)  # Define límites del eje Y
+
+plt.tight_layout()  # Ajusta automáticamente el espaciado
+plt.show()  # Muestra el gráfico
+
+Estructura:
+Matplotlib
+│
+├── Figure (figura completa)
+│   └── Axes (subgráfico dentro de la figura)
+│       ├── Data (x, y, z, etc.)
+│       ├── Plot Elements
+│       │   ├── Line (plot, plot_date)
+│       │   ├── Scatter (scatter)
+│       │   ├── Bar (bar, barh)
+│       │   ├── Image (imshow)
+│       │   └── Text (annotate, text)
+│       ├── Labels
+│       │   ├── xlabel
+│       │   ├── ylabel
+│       │   └── title
+│       ├── Ticks &amp; Grid
+│       │   ├── xticks, yticks
+│       │   └── grid
+│       ├── Legend
+│       └── Colorbar (si hay mapeo de color)
+│
+└── Styling
+    ├── rcParams (config global)
+    ├── Colormaps (cmap)
+    └── Layout (tight_layout, subplots_adjust)
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+R - Gráfico de dispersión</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(ggplot2)  # Carga librería para gráficos avanzados
+library(dplyr)  # Carga librería para manipulación de datos
+
+# Simular datos (misma estructura que en Python)
+set.seed(42)  # Fija la semilla aleatoria para reproducibilidad
+n &lt;- 200  # Define el número de muestras a generar
+
+# Crea un data frame con datos aleatorios
+df &lt;- data.frame(
+  Weight = rnorm(n, mean = 180, sd = 35),  # Genera 200 pesos con media=180, desv=35
+  Height = rnorm(n, mean = 66, sd = 3)  # Genera 200 alturas con media=66, desv=3
+) %&gt;%
+  mutate(Brozek = 0.3 * Weight + 0.7 * Height + rnorm(n, 0, 5))  # Calcula índice de grasa con ruido
+
+# Crear el gráfico con ggplot2
+ggplot(df, aes(x = Weight, y = Height, color = Brozek)) +  # Define datos y estética básica
+  geom_point(alpha = 0.7, size = 5) +  # Dibuja puntos con 70% opacidad y tamaño 5
+  scale_color_viridis_c(option = &quot;viridis&quot;, name = &quot;Índice Grasa&quot;) +  # Escala de color viridis continua
+  labs(
+    title = &quot;Relación Peso vs Altura&quot;,  # Título principal
+    subtitle = &quot;Color representa el índice composición corporal&quot;,  # Subtítulo
+    x = &quot;Peso (lbs)&quot;,  # Etiqueta eje X
+    y = &quot;Altura (pulgadas)&quot;  # Etiqueta eje Y
+  ) +
+  theme_minimal() +  # Aplica tema minimalista
+  theme(
+    # Títulos de los ejes (más grandes y en negrita)
+    axis.title.x = element_text(size = 16, face = &quot;bold&quot;, margin = margin(t = 10)),  # Estilo título eje X
+    axis.title.y = element_text(size = 16, face = &quot;bold&quot;, margin = margin(r = 10)),  # Estilo título eje Y
+    
+    # Etiquetas de los ejes (valores numéricos - más grandes)
+    axis.text.x = element_text(size = 14, color = &quot;black&quot;),  # Tamaño y color de números eje X
+    axis.text.y = element_text(size = 14, color = &quot;black&quot;),  # Tamaño y color de números eje Y
+    
+    # Título principal
+    plot.title = element_text(face = &quot;bold&quot;, size = 18, hjust = 0.5),  # Título centrado, negrita, tamaño 18
+    
+    # Subtítulo
+    plot.subtitle = element_text(size = 14, hjust = 0.5, color = &quot;gray40&quot;),  # Subtítulo centrado, gris
+    
+    # Grid y otros elementos
+    panel.grid.major = element_line(color = &quot;gray70&quot;, linewidth = 0.3),  # Líneas de cuadrícula principales
+    panel.grid.minor = element_blank(),  # Elimina cuadrícula secundaria
+    legend.position = &quot;right&quot;,  # Posiciona leyenda a la derecha
+    legend.text = element_text(size = 14),  # Tamaño del texto de la leyenda
+    legend.title = element_text(size = 16, face = &quot;bold&quot;)  # Título de leyenda en negrita
+  ) +
+  xlim(120, 260) +  # Límites del eje X
+  ylim(64, 70)  # Límites del eje Y
+
+Estructura:
+ggplot2
+│
+├── ggplot(data, aes(...))  ← base del gráfico
+│   └── Geoms (geometrías)
+│       ├── geom_point
+│       ├── geom_line
+│       ├── geom_bar
+│       ├── geom_histogram
+│       └── geom_smooth
+│
+├── Scales
+│   ├── scale_x_continuous / scale_y_continuous
+│   ├── scale_color_viridis_c / scale_fill_manual
+│   └── breaks, limits, labels
+│
+├── Coordinates
+│   └── coord_cartesian / coord_flip / coord_polar
+│
+├── Facets
+│   └── facet_wrap / facet_grid
+│
+├── Labels
+│   └── labs(title, subtitle, x, y, caption)
+│
+├── Theme
+│   ├── theme_minimal / theme_classic / theme_void
+│   └── theme(...) ← ajustes finos
+│
+└── Guides
+    └── legend.position, legend.title, legend.text
+</pre></div>
+</div>
+</div>
+</div>
+<section id="graficos">
+<h5><strong>Gráficos</strong><a class="headerlink" href="#graficos" title="Link to this heading">#</a></h5>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><img alt="" src="../_images/scatterplot_pythonpng.png" /></p></th>
+<th class="head text-center"><p><img alt="" src="../_images/scatterplot_Rpng.png" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en Python</strong> <br> Utiliza la librería <code>Matplotlib</code> para representa la relación entre peso y altura, con el color indicando el nivel estimado de composición corporal según el modelo Brozek.</div></p></td>
+<td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en R</strong><br>Utiliza <code>Ggplot2</code> para mostrar la misma relación, con una estética más detallada y leyenda personalizada en la composición corporal.</div></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Comparando las librerías en el primer round</p>
+<p>Ambos son excelentes, pero el mejor depende de tu objetivo.</p>
+<p><strong>Diferencias entre estilos</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Elemento clave</strong></p></th>
+<th class="head"><p><strong>Matplotlib</strong></p></th>
+<th class="head"><p><strong>ggplot2</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Operativa</strong></p></td>
+<td><p>Procedural / manual</p></td>
+<td><p>Declarativa / por capas</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Entrada de datos</strong></p></td>
+<td><p>Arrays, DataFrames</p></td>
+<td><p>DataFrames (tidy)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Personalización</strong></p></td>
+<td><p>Muy detallada, más código</p></td>
+<td><p>Más elegante, menos código</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Composición</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fig</span> <span class="pre">→</span> <span class="pre">ax</span> <span class="pre">→</span> <span class="pre">plot</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ggplot</span> <span class="pre">→</span> <span class="pre">geoms</span> <span class="pre">→</span> <span class="pre">theme</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Estilo por defecto</strong></p></td>
+<td><p>Básico</p></td>
+<td><p>Profesional y limpio</p></td>
+</tr>
+<tr class="row-odd"><td><p><br></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Detalles</strong>:</p>
+<ul class="simple">
+<li><p>Facilidad: ggplot2 es más amigable para empezar, Matplotlib requiere más tiempo de aprendizaje pero ofrece más libertad.</p></li>
+<li><p>Detalle: Matplotlib ofrece control quirúrgico, ggplot2 es más elegante y algo más estructurado (por capas).</p></li>
+<li><p>Versatilidad: Matplotlib es más flexible en variedad de gráficos, pero ggplot2 es tendencia en análisis estadístico.</p></li>
+<li><p>Estética: ggplot2 tiene ventaja en apariencia profesional con menos esfuerzo.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="segunda-ronda-grafica-de-contorno">
+<h4>Segunda ronda - gráfica de contorno<a class="headerlink" href="#segunda-ronda-grafica-de-contorno" title="Link to this heading">#</a></h4>
+<p>Mapa de contorno KDE (Estimación por Densidad Kernel) condicional en Matplotlib vs ggplot2</p>
+<p>Simulamos 500 observaciones de dos variables:</p>
+<ul class="simple">
+<li><p><strong>Amygdala</strong>: distribución normal con media 0 y desviación estándar 1.5</p></li>
+<li><p><strong>ACC</strong>: distribución normal con media 0 y desviación estándar 1.0.</p></li>
+</ul>
+<p>Luego estimamos la densidad condicional del error sobre el plano (Amygdala, ACC) usando <strong>Kernel Density Estimation (KDE)</strong>. El resultado se interpreta como una medida de probabilidad de ocurrencia de error en distintas regiones del espacio.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>En el contexto de este gráfico KDE, se está visualizando cómo varía la densidad de error en función de la actividad conjunta de la <strong>Amygdala</strong> y el <strong>ACC</strong>. Las zonas de alta densidad podrían representar estados emocionales o cognitivos donde el sistema es más propenso al error, lo cual puede ser relevante en contextos como ansiedad, toma de decisiones financieras o aprendizaje adaptativo.</p>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Python - Gráfico de contorno</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import gaussian_kde  # Importa estimador de densidad por kernel gaussiano
+from mpl_toolkits.axes_grid1 import make_axes_locatable  # Herramienta para dividir ejes
+
+# Simulación de datos
+np.random.seed(42)  # Fija semilla para reproducibilidad
+n_points = 500  # Define número de puntos a simular
+
+# Genera 500 valores para Amygdala con distribución normal (media=0, desv=1.5)
+amy = np.random.normal(loc=0, scale=1.5, size=n_points)
+
+# Genera 500 valores para ACC con distribución normal (media=0, desv=1.0)
+acc = np.random.normal(loc=0, scale=1.0, size=n_points)
+
+# Simulación de errores como función de Amygdala y ACC
+values = np.vstack([amy, acc])  # Apila los datos en forma de matriz 2xN
+kde = gaussian_kde(values)  # Crea estimador de densidad kernel con los datos
+
+# Define límites del espacio de visualización
+xmin, xmax = -5, 5
+ymin, ymax = -4, 4
+
+# Crea una malla de 100x100 puntos para evaluar la densidad
+gridx, gridy = np.mgrid[xmin:xmax:100j, ymin:ymax:100j]
+
+# Reorganiza la malla en formato columnas para evaluar KDE
+positions = np.vstack([gridx.ravel(), gridy.ravel()])
+
+# Evalúa la densidad en cada punto de la malla y le da forma de matriz
+Z_error = np.reshape(kde(positions).T, gridx.shape)
+
+# Visualización
+fig, ax = plt.subplots(figsize=(5, 5))  # Crea figura de 5x5 pulgadas
+divider = make_axes_locatable(ax)  # Crea divisor para añadir ejes adicionales
+ax_cb = divider.new_horizontal(size=&quot;5%&quot;, pad=0.05)  # Crea eje para barra de color (5% ancho, separación 0.05)
+fig.add_axes(ax_cb)  # Añade el eje de la barra de color a la figura
+
+# Contornos blancos sobre el mapa
+c = ax.contour(np.rot90(np.fliplr(Z_error)), colors=&#39;white&#39;,  # Dibuja líneas de contorno blancas
+               extent=[xmin, xmax, ymin, ymax])  # Define extensión del gráfico
+plt.clabel(c, inline=True, fontsize=8)  # Añade etiquetas numéricas a las líneas de contorno
+
+# Mapa de calor
+im = ax.imshow(np.rot90(Z_error), cmap=&#39;viridis&#39;,  # Muestra densidad como imagen con paleta viridis
+               extent=[xmin, xmax, ymin, ymax], alpha=1)  # Define extensión y opacidad 100%
+
+# Barra de color
+plt.colorbar(im, cax=ax_cb)  # Añade barra de color en el eje secundario
+
+# Puntos de datos
+ax.plot(amy, acc, &#39;k.&#39;, markersize=2)  # Dibuja puntos originales en negro, tamaño 2
+
+# Etiquetas y límites
+ax.set_xlim([xmin, xmax])  # Establece límites eje X
+ax.set_ylim([ymin, ymax])  # Establece límites eje Y
+ax.set_title(&#39;Gráfico de contorno condicional de KDE de error&#39;)  # Título del gráfico
+ax.set_xlabel(&#39;Amygdala&#39;)  # Etiqueta eje X
+ax.set_ylabel(&#39;ACC&#39;)  # Etiqueta eje Y
+plt.show()  # Muestra el gráfico
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
+R - Gráfico de contorno</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Requisitos
+library(ggplot2)  # Carga librería para gráficos avanzados
+library(MASS)  # Carga librería para análisis estadísticos (incluye KDE)
+
+# Configurar el tamaño del gráfico ANTES de crearlo
+options(repr.plot.width = 7, repr.plot.height = 5.6, repr.plot.res = 100)  # Define ancho, alto y resolución
+
+# Simulación de datos
+set.seed(42)  # Fija semilla para reproducibilidad
+n_points &lt;- 500  # Define número de puntos a simular
+amy &lt;- rnorm(n_points, mean = 0, sd = 1.5)  # Genera 500 valores de Amygdala (media=0, desv=1.5)
+acc &lt;- rnorm(n_points, mean = 0, sd = 1.0)  # Genera 500 valores de ACC (media=0, desv=1.0)
+df &lt;- data.frame(Amygdala = amy, ACC = acc)  # Crea data frame con ambas variables
+
+# Visualización KDE 2D
+ggplot(df, aes(x = Amygdala, y = ACC)) +  # Define datos y mapeo de variables a ejes
+  stat_density_2d(aes(fill = ..level..), geom = &quot;polygon&quot;, contour = TRUE) +  # Crea polígonos rellenos según densidad
+  geom_density_2d(color = &quot;white&quot;) +  # Añade líneas de contorno blancas
+  geom_point(color = &quot;black&quot;, size = 0.5) +  # Dibuja puntos originales en negro, tamaño 0.5
+  scale_fill_viridis_c(option = &quot;viridis&quot;) +  # Aplica escala de color viridis continua
+  labs(
+    title = &quot;Gráfico de contorno condicional de KDE de error&quot;,  # Título del gráfico
+    x = &quot;Amygdala&quot;,  # Etiqueta eje X
+    y = &quot;ACC&quot;,  # Etiqueta eje Y
+    fill = &quot;Densidad&quot;  # Etiqueta de la leyenda de color
+  ) +
+  theme_minimal(base_size = 14)  # Aplica tema minimalista con tamaño de fuente base 14
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h5><strong>Gráficos</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h5>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><img alt="" src="../_images/Contorno_python.png" /></p></th>
+<th class="head text-center"><p><img alt="" src="../_images/Contorno_R.png" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en Python</strong> <br> Utiliza la librería <code>Matplotlib</code> Las zonas amarillas indican mayor densidad (más probabilidad de error), mientras que las púrpuras son menos frecuentes. Los contornos ayudan a identificar transiciones suaves y agrupamientos. Los puntos muestran la distribución original de los datos.</div></p></td>
+<td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en R</strong><br>Utiliza <code>Ggplot2</code> El gráfico ofrece una estética más pulida por defecto. Las áreas de mayor densidad están bien definidas, y los contornos permiten una lectura clara de las transiciones. La gramática gráfica de ggplot2 facilita la construcción del gráfico con menos líneas de código.</div></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Interpretación</strong><br />
+Las zonas amarillas indican mayor densidad (más probabilidad de error), mientras que las púrpuras son menos frecuentes. Los contornos ayudan a identificar transiciones suaves y agrupamientos. Los puntos muestran la distribución original de los datos.</p>
+<div class="tip admonition">
+<p class="admonition-title">Comparando las librerías en el segundo round</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspecto</p></th>
+<th class="head"><p>Matplotlib (Python)</p></th>
+<th class="head"><p>ggplot2 (R)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Estética por defecto</strong></p></td>
+<td><p>Requiere ajustes manuales</p></td>
+<td><p>Pulida y coherente desde el inicio</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Versatilidad</strong></p></td>
+<td><p>Altamente personalizable</p></td>
+<td><p>Muy expresivo con menos líneas</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Facilidad de uso</strong></p></td>
+<td><p>Más técnico, requiere configuración</p></td>
+<td><p>Intuitivo para visualizaciones estadísticas</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Detalle técnico</strong></p></td>
+<td><p>Control total sobre cada elemento</p></td>
+<td><p>Excelente para prototipos rápidos</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Documentación</strong></p></td>
+<td><p>Extensa pero dispersa</p></td>
+<td><p>Clara y bien organizada</p></td>
+</tr>
+<tr class="row-odd"><td><p><br></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>Matplotlib</strong> es ideal cuando se necesita control absoluto sobre cada elemento visual, especialmente en contextos científicos o técnicos donde la personalización es clave.</p></li>
+<li><p><strong>ggplot2</strong> brilla en entornos donde la rapidez, la estética y la coherencia visual son prioritarias, como en reportes estadísticos o exploración de datos.</p></li>
+</ul>
+<p>Ambas herramientas son poderosas, y entender sus diferencias permite elegir la más adecuada según el tipo de proyecto, audiencia y nivel de detalle requerido.</p>
+</div>
+</section>
+</section>
+<section id="tercera-ronda-grafica-de-correlacion-heatmap">
+<h4>Tercera ronda - gráfica de correlación «heatmap»<a class="headerlink" href="#tercera-ronda-grafica-de-correlacion-heatmap" title="Link to this heading">#</a></h4>
+<p>En esta sección se compara la visualización de una <strong>matriz de correlación</strong> entre variables antropométricas simuladas.</p>
+<p>El conjunto de variable representa medidas corporales similares al clásico “fat dataset”, incluyendo variables como porcentaje de grasa (<code class="docutils literal notranslate"><span class="pre">brozek</span></code>, <code class="docutils literal notranslate"><span class="pre">siri</span></code>), densidad corporal, edad, peso, altura y circunferencias de distintas partes del cuerpo.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La matriz de correlación permite identificar relaciones lineales entre pares de variables, lo cual es útil para:</p>
+<ul class="simple">
+<li><p>Detectar redundancias</p></li>
+<li><p>Seleccionar variables predictivas</p></li>
+<li><p>Comprender patrones fisiológicos</p></li>
+</ul>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-4">
+Python - Gráfico de correlación - heatmap</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+import matplotlib.pyplot as plt
+
+# 1. Simular dataset antropométrico con nombres en español
+np.random.seed(42)  # Fija semilla para reproducibilidad
+n = 250  # Define número de individuos a simular
+
+# Crea DataFrame con 18 variables antropométricas simuladas
+fat_es = pd.DataFrame({
+    &quot;brozek&quot;: np.random.normal(20, 5, n),  # Genera % grasa corporal método Brozek (media=20, desv=5)
+    &quot;siri&quot;: np.random.normal(20, 5, n),  # Genera % grasa corporal método Siri (media=20, desv=5)
+    &quot;densidad&quot;: np.random.normal(1.05, 0.02, n),  # Genera densidad corporal (media=1.05, desv=0.02)
+    &quot;edad&quot;: np.random.normal(40, 12, n),  # Genera edad en años (media=40, desv=12)
+    &quot;peso&quot;: np.random.normal(180, 30, n),  # Genera peso en libras (media=180, desv=30)
+    &quot;estatura&quot;: np.random.normal(70, 3, n),  # Genera estatura en pulgadas (media=70, desv=3)
+    &quot;adiposo&quot;: np.random.normal(25, 4, n),  # Genera masa grasa en kg (media=25, desv=4)
+    &quot;masa_libre&quot;: np.random.normal(150, 25, n),  # Genera masa libre de grasa (media=150, desv=25)
+    &quot;cuello&quot;: np.random.normal(37, 3, n),  # Genera circunferencia cuello en cm (media=37, desv=3)
+    &quot;pecho&quot;: np.random.normal(100, 8, n),  # Genera circunferencia pecho en cm (media=100, desv=8)
+    &quot;abdomen&quot;: np.random.normal(90, 10, n),  # Genera circunferencia abdomen en cm (media=90, desv=10)
+    &quot;cadera&quot;: np.random.normal(95, 6, n),  # Genera circunferencia cadera en cm (media=95, desv=6)
+    &quot;muslo&quot;: np.random.normal(60, 6, n),  # Genera circunferencia muslo en cm (media=60, desv=6)
+    &quot;rodilla&quot;: np.random.normal(40, 4, n),  # Genera circunferencia rodilla en cm (media=40, desv=4)
+    &quot;tobillo&quot;: np.random.normal(22, 2, n),  # Genera circunferencia tobillo en cm (media=22, desv=2)
+    &quot;bíceps&quot;: np.random.normal(30, 3, n),  # Genera circunferencia bíceps en cm (media=30, desv=3)
+    &quot;antebrazo&quot;: np.random.normal(27, 3, n),  # Genera circunferencia antebrazo en cm (media=27, desv=3)
+    &quot;muñeca&quot;: np.random.normal(18, 1.5, n)  # Genera circunferencia muñeca en cm (media=18, desv=1.5)
+})
+
+# 2. Graficar la matriz de correlación
+corr = fat_es.corr()  # Calcula matriz de correlación entre todas las variables
+
+fig, ax = plt.subplots(figsize=(8, 8))  # Crea figura de 8x8 pulgadas
+cax = ax.matshow(corr, cmap=&quot;viridis&quot;, vmin=-1, vmax=1)  # Muestra matriz de correlación como mapa de calor con paleta viridis
+
+# Ticks
+ax.set_xticks(range(len(corr.columns)))  # Establece posiciones de marcas en eje X
+ax.set_yticks(range(len(corr.columns)))  # Establece posiciones de marcas en eje Y
+ax.set_xticklabels(corr.columns, rotation=45, ha=&quot;left&quot;, fontsize=9)  # Etiquetas X rotadas 45°, tamaño 9
+ax.set_yticklabels(corr.columns, fontsize=9)  # Etiquetas Y, tamaño 9
+
+# Barra de color
+cb = fig.colorbar(cax, label=&quot;Correlación&quot;)  # Añade barra de color a la figura
+cb.ax.tick_params(labelsize=10)  # Define tamaño de etiquetas de la barra de color
+
+# Título
+plt.title(&quot;Matriz de Correlación Antropométrica&quot;, fontsize=12, pad=20)  # Título con tamaño 12 y separación 20
+plt.show()  # Muestra el gráfico
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-5">
+R - Gráfico de correlación - heatmap</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(ggplot2)  # Carga librería para gráficos avanzados
+library(reshape2)  # Carga librería para transformar datos (melt)
+
+#  Configurar tamaño del gráfico
+options(repr.plot.width = 11, repr.plot.height = 11, repr.plot.res = 100)  # Define ancho, alto y resolución
+
+#  Simular dataset antropométrico con nombres en español
+set.seed(42)  # Fija semilla para reproducibilidad
+n &lt;- 250  # Define número de individuos a simular
+
+# Crea data frame con 18 variables antropométricas simuladas
+fat_es &lt;- data.frame(
+  brozek      = rnorm(n, 20, 5),     # Genera % grasa corporal Brozek (media=20, desv=5)
+  siri        = rnorm(n, 20, 5),     # Genera % grasa corporal Siri (media=20, desv=5)
+  densidad    = rnorm(n, 1.05, 0.02),  # Genera densidad corporal (media=1.05, desv=0.02)
+  edad        = rnorm(n, 40, 12),    # Genera edad en años (media=40, desv=12)
+  peso        = rnorm(n, 180, 30),   # Genera peso en libras (media=180, desv=30)
+  estatura    = rnorm(n, 70, 3),     # Genera estatura en pulgadas (media=70, desv=3)
+  adiposo     = rnorm(n, 25, 4),     # Genera masa grasa en kg (media=25, desv=4)
+  masa_libre  = rnorm(n, 150, 25),   # Genera masa libre de grasa (media=150, desv=25)
+  cuello      = rnorm(n, 37, 3),     # Genera circunferencia cuello en cm (media=37, desv=3)
+  pecho       = rnorm(n, 100, 8),    # Genera circunferencia pecho en cm (media=100, desv=8)
+  abdomen     = rnorm(n, 90, 10),    # Genera circunferencia abdomen en cm (media=90, desv=10)
+  cadera      = rnorm(n, 95, 6),     # Genera circunferencia cadera en cm (media=95, desv=6)
+  muslo       = rnorm(n, 60, 6),     # Genera circunferencia muslo en cm (media=60, desv=6)
+  rodilla     = rnorm(n, 40, 4),     # Genera circunferencia rodilla en cm (media=40, desv=4)
+  tobillo     = rnorm(n, 22, 2),     # Genera circunferencia tobillo en cm (media=22, desv=2)
+  bíceps      = rnorm(n, 30, 3),     # Genera circunferencia bíceps en cm (media=30, desv=3)
+  antebrazo   = rnorm(n, 27, 3),     # Genera circunferencia antebrazo en cm (media=27, desv=3)
+  muñeca      = rnorm(n, 18, 1.5)    # Genera circunferencia muñeca en cm (media=18, desv=1.5)
+)
+
+#  Calcular matriz de correlación
+corr &lt;- cor(fat_es)  # Calcula matriz de correlación entre todas las variables
+melted_corr &lt;- melt(corr)  # Convierte matriz de formato ancho a formato largo para ggplot2
+
+#  Visualización con ggplot2
+ggplot(data = melted_corr, aes(x = Var1, y = Var2, fill = value)) +  # Define datos y mapeo estético
+  geom_tile(color = &quot;white&quot;) +  # Crea mosaico de rectángulos con bordes blancos
+  scale_fill_viridis_c(name = &quot;Correlación&quot;, option = &quot;viridis&quot;, limits = c(-1, 1)) +  # Escala de color viridis continua de -1 a 1
+  theme_minimal(base_size = 20) +  # Aplica tema minimalista con tamaño de fuente base 20
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 18),  # Etiquetas X rotadas 45°, tamaño 18
+    axis.text.y = element_text(size = 18),  # Etiquetas Y, tamaño 18
+    panel.grid = element_blank()  # Elimina líneas de cuadrícula
+  ) +
+  labs(
+    title = &quot;Matriz de Correlación Antropométrica&quot;,  # Título del gráfico
+    x = &quot;&quot;,  # Sin etiqueta en eje X
+    y = &quot;&quot;   # Sin etiqueta en eje Y
+  )
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h5><strong>Gráficos</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h5>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><img alt="" src="../_images/Corr_python.png" /></p></th>
+<th class="head text-center"><p><img alt="" src="../_images/Corr_R.png" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en Python</strong> <br> Utiliza la librería <code>Matplotlib</code> Cada celda representa el coeficiente de correlación entre dos variables. Los colores más brillantes (verde claro) indican correlaciones más fuertes, mientras que los oscuros (púrpura) indican correlaciones débiles o negativas. La diagonal principal siempre tiene valor 1, ya que cada variable se correlaciona perfectamente consigo misma.</div></p></td>
+<td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en R</strong><br>Utiliza <code>Ggplot2</code> El gráfico ofrece una estética más pulida por defecto. Las celdas están delineadas en blanco, y la paleta viridis se adapta automáticamente a los valores entre -1 y 1. La gramática gráfica de ggplot2 permite construir el gráfico de forma declarativa, lo que facilita su personalización y extensión.</div></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Comparando las librerías en la tercera ronda</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepto</p></th>
+<th class="head"><p>Matplotlib (Python)</p></th>
+<th class="head"><p>ggplot2 (R)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Estética por defecto</p></td>
+<td><p>Básica y técnica; requiere ajustes manuales para lograr una presentación pulida</p></td>
+<td><p>Elegante desde el inicio; ideal para informes y publicaciones</p></td>
+</tr>
+<tr class="row-odd"><td><p>Versatilidad</p></td>
+<td><p>Altamente personalizable; permite control total sobre cada elemento visual</p></td>
+<td><p>Muy expresivo con menos líneas de código; excelente para gráficos estadísticos</p></td>
+</tr>
+<tr class="row-even"><td><p>Facilidad de uso</p></td>
+<td><p>Requiere conocimiento detallado de funciones y configuración</p></td>
+<td><p>Sintaxis declarativa facilita la construcción rápida de gráficos complejos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Detalle técnico</p></td>
+<td><p>Precisión absoluta en cada componente; ideal para visualizaciones científicas</p></td>
+<td><p>Menos granular pero suficientemente detallado para análisis exploratorios</p></td>
+</tr>
+<tr class="row-even"><td><p>Documentación</p></td>
+<td><p>Extensa pero dispersa; requiere búsqueda activa en múltiples fuentes</p></td>
+<td><p>Clara, estructurada y con ejemplos integrados en la comunidad tidyverse</p></td>
+</tr>
+<tr class="row-odd"><td><p><br></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Resaltando el contraste entre las librerías:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Matplotlib</span></code>: Prioriza el control absoluto y la personalización. Es la herramienta ideal para contextos científicos o técnicos donde cada elemento visual debe ser ajustado meticulosamente.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ggplot2</span></code>: Prioriza la rapidez, la estética coherente y la narrativa visual. se especializa en análisis estadístico y exploración de datos, donde la generación de gráficos consistentes y elegantes de forma eficiente es clave.</p></li>
+</ul>
+<p>En esencia, la brecha radica en la flexibilidad y control total (Matplotlib) versus productividad y estética predefinida (ggplot2). La elección no es sobre cuál es mejor, sino sobre qué enfoque es más adecuado para el tipo de proyecto, la audiencia y el nivel de detalle requerido.</p>
+</div>
+</section>
+</section>
+<section id="cuarta-ronda-grafica-de-lineas-y-puntos-regresion-lineal">
+<h4>Cuarta ronda - gráfica de líneas y puntos «Regresión líneal»<a class="headerlink" href="#cuarta-ronda-grafica-de-lineas-y-puntos-regresion-lineal" title="Link to this heading">#</a></h4>
+<p>Se utilizó el conjunto de datos Iris para generar un gráfico multilínea. Este muestra los puntos y las líneas de regresión del ancho del sépalo, usando su longitud como variable predictiva, agrupadas por especie.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>el gráfico permite identificar si existen patrones morfológicos únicos y consistentes para cada especie en las variables analizadas, y evaluar si estas variables son útiles para clasificar o discriminar entre ellas. Es un primer paso visual fundamental antes de realizar pruebas estadísticas formales para comparar las regresiones.</p>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-6">
+Python - Regresión lineal multilinea</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Importación de librerías necesarias
+
+import matplotlib.pyplot as plt  # Para crear gráficos y visualizaciones
+import numpy as np              # Para operaciones matemáticas y arrays
+import pandas as pd             # Para manejo de datos tabulares
+from sklearn.datasets import load_iris  # Para cargar el dataset de Iris
+
+
+# Preparación y carga de datos
+# Cargar el famoso dataset de Iris desde sklearn
+iris_data = load_iris()
+
+# Crear un DataFrame de pandas con los datos numéricos
+# Las columnas serán: sepal length, sepal width, petal length, petal width
+iris1 = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
+
+# Agregar una columna &#39;species&#39; con los nombres de las especies
+# iris_data.target contiene números (0,1,2), los convertimos a nombres reales
+iris1[&#39;species&#39;] = iris_data.target_names[iris_data.target]
+
+# Agrupación de datos por especie
+# Agrupar el dataset por especie para analizar cada una por separado
+groups = iris1.groupby(&quot;species&quot;)
+
+
+# Configuración del gráfico
+# Modifica la figura de tamaño para mejor visualización en pulgadas
+plt.figure(figsize=(3.5, 3.5))
+
+# Definir colores específicos para cada especie
+# Esto asegura consistencia visual y mejor diferenciación
+colors = {
+    &#39;setosa&#39;: &#39;darkviolet&#39;,        # Violeta oscuro
+    &#39;versicolor&#39;: &#39;cornflowerblue&#39;, # Azul aciano
+    &#39;virginica&#39;: &#39;orchid&#39;          # Orquídea
+}
+
+# Creación del scatter plot con líneas de regresión
+# Iterar sobre cada grupo de especies
+for name, group in groups:
+    # PASO 1: Crear scatter plot (puntos) para cada especie
+    plt.plot(group[&quot;sepal length (cm)&quot;], group[&quot;sepal width (cm)&quot;],
+             marker=&quot;o&quot;,           # Usar círculos como marcadores
+             linestyle=&quot;&quot;,         # Sin líneas conectando puntos
+             label=name,           # Etiqueta para la leyenda
+             ms=2,               # Tamaño del marcador (marker size)
+             color=colors[name],   # Color específico de la especie
+             alpha=.8)            # Transparencia (80% opaco)
+
+    # PASO 2: Calcular regresión lineal para mostrar tendencia
+    # np.polyfit calcula los coeficientes de un polinomio de grado 1 (línea recta)
+    # m = pendiente, b = intersección con el eje y
+    m, b = np.polyfit(group[&quot;sepal length (cm)&quot;], group[&quot;sepal width (cm)&quot;], 1)
+
+    # PASO 3: Dibujar la línea de regresión
+    # Usar la ecuación y = mx + b para calcular los puntos de la línea
+    plt.plot(group[&quot;sepal length (cm)&quot;],
+             m * group[&quot;sepal length (cm)&quot;] + b,  # Ecuación de la recta
+             linewidth=1,          # Grosor de la línea
+             color=colors[name],   # Mismo color que los puntos
+             alpha=.5)            # Más transparente (50% opaco)
+
+# Personalización y finalización del gráfico
+plt.legend(fontsize=7,          # Tamaño texto de la leyenda
+           title_fontsize=8,    # Tamaño título de la leyenda
+           title=&#39;Especies&#39;)                                    # Mostrar leyenda con los nombres de especies
+plt.title(&#39;Clasificación de especies Iris&#39;)       # Título del gráfico
+plt.xlabel(&#39;Largo del Sépalo (cm)&#39;)                # Etiqueta del eje X
+plt.ylabel(&#39;Ancho del Sépalo (cm)&#39;)                 # Etiqueta del eje Y
+plt.grid(True, alpha=0.2)                     # Agregar cuadrícula sutil
+plt.tight_layout()                             # Ajustar automáticamente el layout
+plt.show()                                     # Mostrar el gráfico
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-7">
+R - Regresión lineal multilinea</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Cargar librerías necesarias
+library(ggplot2)    # Grammar of Graphics - el corazón de la visualización
+library(dplyr)      # Para manipulación de datos (pipe %&gt;%, group_by, etc.)
+library(datasets)   # Contiene el dataset iris precargado en R
+
+options(repr.plot.width = 12.5, repr.plot.height = 12.6, repr.plot.res = 100) # define el tamaño del gráfico
+
+# Definir paleta de colores personalizada
+# Crear un vector nombrado con colores específicos para cada especie
+custom_colors &lt;- c(
+  &quot;setosa&quot; = &quot;darkviolet&quot;,        # Violeta oscuro
+  &quot;versicolor&quot; = &quot;cornflowerblue&quot;, # Azul aciano
+  &quot;virginica&quot; = &quot;orchid&quot;          # Orquídea
+)
+
+# Creación del gráfico con ggplot2
+# ggplot2 usa la &quot;Grammar of Graphics&quot; - construimos el gráfico por capas
+
+iris_plot &lt;- iris %&gt;%                           # Usar pipe operator para claridad
+  ggplot(aes(x = Sepal.Length,                 # Mapear variables a estética
+             y = Sepal.Width,                  # x = longitud sépalo, y = ancho sépalo
+             color = Species)) +               # Color por especie
+
+  # CAPA 1: Puntos (scatter plot)
+  geom_point(aes(fill = Species),              # Puntos con relleno por especie
+             size = 6,                          # Tamaño de puntos (equivale a ms=10 en matplotlib)
+             alpha = 0.8,                       # Transparencia (80% opaco)
+             shape = 21,                        # Forma 21 = círculos con borde y relleno
+             stroke = 1.5) +                    # Grosor del borde
+
+  # CAPA 2: Líneas de regresión lineal
+  geom_smooth(method = &quot;lm&quot;,                   # method = &quot;lm&quot; significa regresión lineal
+              se = TRUE,                       # se = FALSE quita el área de confianza
+              size = 4,                         # Grosor de línea (equivale a linewidth=5)
+              alpha = 0.3) +                    # Transparencia de las líneas
+
+  # CAPA 3: Personalización de colores
+  scale_color_manual(values = custom_colors) +  # Colores para bordes y líneas
+  scale_fill_manual(values = custom_colors) +   # Colores para relleno de puntos
+
+  # CAPA 4: Etiquetas y títulos
+  labs(title = &quot;Iris Species Classification&quot;,   # Título principal
+       subtitle = &quot;Relación entre longitud y ancho del sépalo por especie&quot;, # Subtítulo
+       x = &quot;Sepal Length (cm)&quot;,                 # Etiqueta eje X
+       y = &quot;Sepal Width (cm)&quot;,                  # Etiqueta eje Y
+       color = &quot;Species&quot;,                       # Título de leyenda
+       fill = &quot;Species&quot;,                        # Título de leyenda (fill)
+       caption = &quot;Dataset: Iris de R datasets&quot;) + # Pie de página
+
+  # CAPA 5: Tema y personalización visual
+  theme_minimal() +                             # Tema limpio y moderno
+  theme(
+    plot.title = element_text(size = 30,        # Tamaño título
+                              face = &quot;bold&quot;,     # Texto en negrita
+                              hjust = 0.5),      # Centrar título
+    plot.subtitle = element_text(size = 28,     # Tamaño subtítulo
+                                 hjust = 0.5,    # Centrar subtítulo
+                                 color = &quot;gray40&quot;), # Color gris
+    axis.text.x = element_text(angle = 0, hjust = 1, size = 28),  # Tamaño aumentado para eje X
+    axis.text.y = element_text(size = 28),                         # Tamaño aumentado para eje Y
+    axis.title.x = element_text(size = 26, face = &quot;bold&quot;),  # Título eje X
+    axis.title.y = element_text(size = 26, face = &quot;bold&quot;),  # Título eje Y
+    legend.title = element_text(size = 24, face = &quot;bold&quot;),  # Título de la leyenda
+    legend.text = element_text(size = 24),                   # Texto de los items de la leyenda
+    legend.position = &quot;bottom&quot;,                  # Leyenda en la parte inferior
+    panel.grid.minor = element_blank(),          # Quitar cuadrícula menor
+    axis.title = element_text(face = &quot;bold&quot;),    # Títulos de ejes en negrita
+    plot.background = element_rect(fill = &quot;white&quot;, color = NA), # Fondo blanco
+    panel.background = element_rect(fill = &quot;white&quot;, color = NA)  # Panel blanco
+  )
+
+# Mostrar el gráfico
+iris_plot
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h5><strong>Gráficos</strong><a class="headerlink" href="#id3" title="Link to this heading">#</a></h5>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><img alt="" src="../_images/Regression_python.png" /></p></th>
+<th class="head text-center"><p><img alt="" src="../_images/Regression_R.png" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en Python</strong> <br> Utiliza la librería <code>Matplotlib</code> Presenta limitaciones, ya que no puede crear dicha banda de confianza de manera inherente.</div></p></td>
+<td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en R</strong><br>Utiliza <code>Ggplot2</code> Se destaca por generar <br>de forma sencilla la banda <br>de confianza (región sombreada).</div></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Comparando las librerías en la tercera ronda</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepto</p></th>
+<th class="head"><p>Matplotlib (Python)</p></th>
+<th class="head"><p>ggplot2 (R)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Estética por defecto</strong></p></td>
+<td><p>Básica y técnica; requiere configuración manual para agrupación y colores</p></td>
+<td><p>Elegante y coherente; maneja automáticamente colores y agrupaciones por especie</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Bandas de confianza</strong></p></td>
+<td><p>Requiere cálculo manual o uso de Seaborn; implementación compleja</p></td>
+<td><p>Integradas nativamente con <code class="docutils literal notranslate"><span class="pre">geom_smooth()</span></code>; se generan automáticamente</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Agrupación por especie</strong></p></td>
+<td><p>Codificación manual necesaria para colores, marcadores y leyendas</p></td>
+<td><p>Automática mediante <code class="docutils literal notranslate"><span class="pre">aes(color=species)</span></code> o <code class="docutils literal notranslate"><span class="pre">group=species</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Sintaxis para regresión</strong></p></td>
+<td><p>Cálculo manual de coeficientes o uso de <code class="docutils literal notranslate"><span class="pre">np.polyfit()</span></code> + trazado manual</p></td>
+<td><p>Declarativa con <code class="docutils literal notranslate"><span class="pre">geom_smooth(method=&quot;lm&quot;)</span></code> para regresión lineal por grupo</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Personalización</strong></p></td>
+<td><p>Control granular absoluto sobre cada elemento visual</p></td>
+<td><p>Sistema de temas coherente; personalización mediante capas adicionales</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Leyendas e identificación</strong></p></td>
+<td><p>Configuración manual requerida para leyendas de colores y especies</p></td>
+<td><p>Generación automática y posicionamiento inteligente de leyendas</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Contraste Específico para Gráficos de Regresión Multilínea</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Matplotlib</span></code>: Enfoque de precisión con multiples opciones de configuración</p></li>
+<li><p><strong>Ventaja</strong>: Control absoluto sobre la ubicación, estilo y formato de cada elemento del gráfico.</p></li>
+<li><p><strong>Desafío</strong>: Requiere múltiples pasos manuales para agrupar datos por especie y calcular regresiones individuales.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ggplot2</span></code>: Enfoque de Expresividad Estadística</p></li>
+<li><p><strong>Ventaja</strong>: Sintaxis intuitiva donde <code class="docutils literal notranslate"><span class="pre">aes(color=species)</span> <span class="pre">+</span> <span class="pre">geom_smooth(method=&quot;lm&quot;)</span></code> genera el gráfico completo con bandas de confianza.</p></li>
+<li><p><strong>Fortaleza</strong>: Integración nativa con conceptos estadísticos como intervalos de confianza y agrupaciones.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="quinta-ronda-grafico-polar">
+<h4>Quinta Ronda - gráfico polar<a class="headerlink" href="#quinta-ronda-grafico-polar" title="Link to this heading">#</a></h4>
+<p>Los gráficos polares presentan desafíos significativos en visualización de datos:</p>
+<ul class="simple">
+<li><p><strong>Dificultad de interpretación</strong>: Complicados de descifrar y no transmiten información eficientemente</p></li>
+<li><p><strong>Objetivo incumplido</strong>: La visualización debe priorizar la legibilidad, meta difícil de alcanzar con este formato</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>el gráfico permite identificar el rendimiento del combustible en millas por galón de diferentes marcas de automovil.</p>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-8">
+Python - Gráfico de barras polar</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt  # Librería principal para crear gráficos
+import numpy as np              # Para operaciones matemáticas y arrays
+import pandas as pd             # Para manipulación de datos tabulares
+import seaborn as sns           # Para acceder a datasets de ejemplo
+
+# Cargar y preparar los datos
+cars = sns.load_dataset(&#39;mpg&#39;)  # Cargar dataset de coches desde seaborn
+
+# Limpieza de datos
+cars_clean = cars.dropna().drop_duplicates(subset=[&#39;name&#39;])  # Eliminar filas con valores nulos y coches duplicados
+
+# Seleccionar muestra de autos
+cars_sample = cars_clean.sample(n=10, random_state=42).sort_values(&#39;mpg&#39;)  # Tomar 10 coches aleatorios, semilla=42 para reproducibilidad, ordenar por MPG
+
+# Configuración del gráfico polar
+fig, ax = plt.subplots(figsize=(5, 5), subplot_kw=dict(projection=&#39;polar&#39;))  # Crear figura 5x5 con proyección polar (circular)
+
+# Cálculos para posicionamiento angular
+n_cars = len(cars_sample)  # Contar número de coches en la muestra
+angles = np.linspace(0, 2 * np.pi, n_cars, endpoint=False)  # Distribuir coches uniformemente en círculo completo (360°)
+
+# Extraer valores de eficiencia
+mpg_values = cars_sample[&#39;mpg&#39;].values  # Obtener valores de millas por galón como array numpy
+
+# Generar colores degradados
+colors = plt.cm.viridis_r(np.linspace(0.1, 0.9, n_cars))  # Crear colores de amarillo (alta eficiencia) a violeta (baja eficiencia)
+
+# Crear las barras radiales
+bar_width = 2 * np.pi / n_cars * 1.2  # Calcular ancho de cada barra (1.2 factor para que se toquen ligeramente)
+
+bars = ax.bar(angles,           # Posiciones angulares donde van las barras
+              mpg_values,       # Alturas de las barras (valores de MPG)
+              width=bar_width,  # Ancho de cada barra
+              color=colors,     # Colores degradados calculados arriba
+              alpha=0.8,        # Transparencia (80% opaco)
+              edgecolor=&#39;white&#39;, # Bordes blancos para separar barras
+              linewidth=0.5)    # Grosor de los bordes
+
+# Añadir nombres de coches como etiquetas HORIZONTALES
+label_radius = max(mpg_values) + 5  # Posición radial para etiquetas (5 unidades más allá de la barra más alta)
+
+car_names = cars_sample[&#39;name&#39;].values  # Obtener nombres de los coches como array
+
+# Bucle para colocar cada etiqueta
+for angle, name, mpg_val in zip(angles, car_names, mpg_values):
+    # Colocar etiqueta de texto SIEMPRE HORIZONTAL
+    ax.text(angle,          # Posición angular
+            label_radius,   # Posición radial (distancia del centro)
+            name,           # Texto a mostrar (nombre del coche)
+            rotation=0,              # SIN ROTACIÓN - siempre horizontal
+            ha=&#39;center&#39;,             # Alineación horizontal centrada
+            va=&#39;center&#39;,             # Alineación vertical centrada
+            fontsize=7,              # Tamaño de fuente pequeño para que quepa
+            color=&#39;black&#39;)           # Color del texto
+
+# Personalización visual del gráfico
+ax.set_title(&#39;Gráfica polar datos de carros\n(Millas por galón)&#39;,  # Título principal con salto de línea
+             pad=20,           # Espacio entre título y gráfico
+             fontsize=10,      # Tamaño de fuente del título
+             fontweight=&#39;bold&#39;, # Título en negrita
+             color=&#39;black&#39;)    # Color del título
+
+# Configurar escala radial
+ax.set_ylim(0, max(mpg_values) + 8)  # Establecer límites del eje radial (desde 0 hasta máximo MPG + 8)
+
+# Configurar grilla y orientación
+ax.grid(True, alpha=0.3, linestyle=&#39;-&#39;, linewidth=0.5)  # Mostrar grilla sutil (30% transparente, líneas finas)
+ax.set_theta_zero_location(&#39;N&#39;)   # Establecer 0° en la parte superior (Norte)
+ax.set_theta_direction(-1)        # Dirección horaria (sentido de las agujas del reloj)
+
+# Configurar etiquetas de los círculos concéntricos
+ax.set_rlabel_position(0)  # Posición de las etiquetas radiales en 0° (arriba)
+ax.set_ylabel(&#39;mpg&#39;,       # Etiqueta del eje radial
+              rotation=0,  # Sin rotación
+              labelpad=15, # Espacio entre etiqueta y eje
+              fontsize=8,  # Tamaño de fuente
+              fontweight=&#39;bold&#39;)  # En negrita
+
+# Configurar marcas numéricas en círculos concéntricos
+yticks = np.arange(0, max(mpg_values) + 5, 5)  # Crear marcas cada 5 unidades desde 0 hasta máximo+5
+ax.set_yticks(yticks)  # Establecer posiciones de las marcas
+ax.set_yticklabels([f&#39;{int(y)}&#39; for y in yticks], fontsize=10)  # Convertir a enteros y establecer tamaño de fuente
+ax.set_thetagrids([])  # Quitar etiquetas angulares (grados) para mayor limpieza
+
+# Crear barra de colores para referencia
+sm = plt.cm.ScalarMappable(cmap=&#39;viridis_r&#39;,  # Usar el mismo mapa de colores que las barras
+                          norm=plt.Normalize(vmin=min(mpg_values),   # Valor mínimo de la escala
+                                           vmax=max(mpg_values)))   # Valor máximo de la escala
+sm.set_array([])  # Necesario para matplotlib (array vacío)
+
+# Posicionar y configurar la barra de colores
+cbar = plt.colorbar(sm,        # Objeto ScalarMappable creado arriba
+                   ax=ax,      # Asociar con el eje principal
+                   pad=0.1,    # Separación del gráfico principal
+                   shrink=0.8) # Reducir altura al 80%
+
+cbar.set_label(&#39;mpg&#39;,          # Etiqueta de la barra de colores
+               rotation=0,     # Sin rotación
+               labelpad=10,    # Espacio entre etiqueta y barra
+               fontsize=8,     # Tamaño de fuente
+               fontweight=&#39;bold&#39;)  # En negrita
+
+cbar.ax.tick_params(labelsize=10)  # Tamaño de fuente de los números en la barra
+
+# Ajustar diseño y mostrar
+plt.tight_layout()  # Ajustar automáticamente el espaciado para evitar solapamientos
+plt.show()
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-9">
+R - Gráfico de barras polar</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Polar Bar Chart Simplificado con ggplot2
+# Versión minimalista y elegante
+
+library(ggplot2)
+
+# Preparar datos del dataset mtcars (ya viene en R)
+mtcars$car &lt;- rownames(mtcars)  # Convertir nombres de filas en columna
+options(repr.plot.width = 8, repr.plot.height = 7.5, repr.plot.res = 100) # define el tamaño del gráfico
+# Configurar tema base
+theme_set(theme_bw())
+
+
+
+# Versión con título
+p_final &lt;- ggplot(mtcars, aes(x = car, y = mpg, fill = mpg)) +
+  geom_col(width = 1, color = &quot;white&quot;) +
+  coord_polar() +
+  scale_fill_viridis_c(option = &#39;C&#39;, alpha = .8) +
+  labs(title = &quot;Gráfica polar datos de carros&quot;,
+       subtitle = &quot;Millas por galón&quot;) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = &quot;bold&quot;),
+    plot.subtitle = element_text(hjust = 0.5),
+    axis.text.y = element_text(size = 18), # Tamaño aumentado para eje Y
+    axis.title.x = element_text(size = 16, face = &quot;bold&quot;),  # Título eje X
+    axis.title.y = element_text(size = 16, face = &quot;bold&quot;),  # Título eje Y
+    axis.text.x = element_text(size = 10)
+  )
+
+print(p_final)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id4">
+<h5><strong>Gráficos</strong><a class="headerlink" href="#id4" title="Link to this heading">#</a></h5>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><img alt="" src="../_images/Polar_bar_chart_python.png" /></p></th>
+<th class="head text-center"><p><img alt="" src="../_images/Polar_bar_chart_R.png" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en Python</strong> <br> Utiliza la librería <code>Matplotlib</code> Es un medio muy complejo para hacer esta gráfica, organizar las etiquetas en un entorno circular.</div></p></td>
+<td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en R</strong><br>Utiliza <code>Ggplot2</code> Los elementos de la gráfica se adaptan muy facilmente a su forma.</div></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Comparando las librerías en la quinta ronda</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Criterio</p></th>
+<th class="head"><p>Mejor opción</p></th>
+<th class="head"><p>Justificación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Versatilidad</strong></p></td>
+<td><p>Matplotlib</p></td>
+<td><p>Control total sobre personalización</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Facilidad</strong></p></td>
+<td><p>ggplot2</p></td>
+<td><p>lenguaje más intuitivo</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Detalle Técnico</strong></p></td>
+<td><p>Matplotlib</p></td>
+<td><p>Acceso completo a transformaciones</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Documentación</strong></p></td>
+<td><p>ggplot2</p></td>
+<td><p>Más clara y mejor estructurada</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Productividad</strong></p></td>
+<td><p>ggplot2</p></td>
+<td><p>Resultados más rápidos</p></td>
+</tr>
+<tr class="row-odd"><td><p><br></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Contraste y recomendaciones entre las librerías</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Exploración inicial</strong>: Usa ggplot2 para prototipado rápido</p></li>
+<li><p><strong>Análisis detallado</strong>: Matplotlib para control fino</p></li>
+<li><p><strong>Presentaciones</strong>: ggplot2 para consistencia visual</p></li>
+<li><p><strong>Publicaciones</strong>: Matplotlib para calidad máxima</p></li>
+</ol>
+</div>
+</section>
+</section>
+<section id="sexta-ronda-grafica-de-cajas-y-alambres-boxplot">
+<h4>Sexta ronda - gráfica de cajas y alambres «Boxplot»<a class="headerlink" href="#sexta-ronda-grafica-de-cajas-y-alambres-boxplot" title="Link to this heading">#</a></h4>
+<p>Los gráficos de cajas y alambres se utilizan para visualizar distribución, asimetria y puntos atípicos.</p>
+<p>Se reproduce la temática del mismo dataset que en la ronda número 3 <code class="docutils literal notranslate"><span class="pre">El</span> <span class="pre">fatdataset</span></code> con medidas antromometricas</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-10">
+Python - Gráfica de cajas y alambres Boxplot</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np          # Cargar numpy para números y matemáticas
+import pandas as pd         # Cargar pandas para manejar tablas de datos
+import matplotlib.pyplot as plt  # Cargar matplotlib para hacer gráficos
+
+# 1. Simular dataset antropométrico con nombres en español
+np.random.seed(42)          # Fijar semilla para que salgan siempre los mismos números aleatorios
+n = 250                     # Crear 250 personas
+
+fat_es = pd.DataFrame({     # Crear una tabla (DataFrame) con datos
+    &quot;brozek&quot;: np.random.normal(20, 5, n),               # Crear 250 números aleatorios, promedio 20
+    &quot;siri&quot;: np.random.normal(20, 5, n),                 # Crear 250 números aleatorios, promedio 20
+    &quot;densidad&quot;: np.random.normal(1.05, 0.02, n),        # Crear 250 números aleatorios, promedio 1.05
+    &quot;edad&quot;: np.random.normal(40, 12, n),                # Crear 250 edades, promedio 40 años
+    &quot;peso&quot;: np.random.normal(180, 30, n),               # Crear 250 pesos, promedio 180 libras
+    &quot;estatura&quot;: np.random.normal(70, 3, n),             # Crear 250 estaturas, promedio 70 pulgadas
+    &quot;adiposo&quot;: np.random.normal(25, 4, n),              # Crear 250 números, promedio 25
+    &quot;masa_libre&quot;: np.random.normal(150, 25, n),         # Crear 250 números, promedio 150
+    &quot;cuello&quot;: np.random.normal(37, 3, n),               # Crear 250 medidas de cuello, promedio 37 cm
+    &quot;pecho&quot;: np.random.normal(100, 8, n),               # Crear 250 medidas de pecho, promedio 100 cm
+    &quot;abdomen&quot;: np.random.normal(90, 10, n),             # Crear 250 medidas de abdomen, promedio 90 cm
+    &quot;cadera&quot;: np.random.normal(95, 6, n),               # Crear 250 medidas de cadera, promedio 95 cm
+    &quot;muslo&quot;: np.random.normal(60, 6, n),                # Crear 250 medidas de muslo, promedio 60 cm
+    &quot;rodilla&quot;: np.random.normal(40, 4, n),              # Crear 250 medidas de rodilla, promedio 40 cm
+    &quot;tobillo&quot;: np.random.normal(22, 2, n),              # Crear 250 medidas de tobillo, promedio 22 cm
+    &quot;bíceps&quot;: np.random.normal(30, 3, n),               # Crear 250 medidas de bíceps, promedio 30 cm
+    &quot;antebrazo&quot;: np.random.normal(27, 3, n),            # Crear 250 medidas de antebrazo, promedio 27 cm
+    &quot;muñeca&quot;: np.random.normal(18, 1.5, n)              # Crear 250 medidas de muñeca, promedio 18 cm
+})
+
+# Configuración general para gráficos
+plt.style.use(&#39;default&#39;)                    # Usar estilo por defecto de matplotlib
+plt.rcParams[&#39;figure.figsize&#39;] = (12, 8)    # Definir tamaño base de gráficos: 12 ancho x 8 alto
+plt.rcParams[&#39;font.size&#39;] = 10              # Definir tamaño base de letra: 10 puntos
+
+# ========================================
+# OPCIÓN 1: Boxplot de todas las variables
+# ========================================
+plt.figure(figsize=(6, 4.2))               # Crear nueva figura con tamaño 6 ancho x 4.2 alto
+box_data = [fat_es[col] for col in fat_es.columns]  # Crear lista con datos de cada columna
+labels = fat_es.columns                     # Obtener nombres de las columnas para etiquetas
+
+bp = plt.boxplot(box_data, labels=labels)   # Crear boxplot con los datos y etiquetas
+
+plt.title(&#39;Distribución de Variables Antropométricas&#39;, fontsize=16, fontweight=&#39;bold&#39;)  # Título grande y negrita
+plt.xlabel(&#39;Variables&#39;, fontweight=&#39;bold&#39;)   # Etiqueta eje X en negrita
+plt.ylabel(&#39;Valores&#39;, fontweight=&#39;bold&#39;)     # Etiqueta eje Y en negrita
+plt.xticks(rotation=45, ha=&#39;right&#39;)          # Rotar nombres de variables 45°, alinear a la derecha
+plt.grid(True, alpha=0.3)                   # Poner rejilla suave (transparencia 0.3)
+plt.tight_layout()                          # Ajustar automáticamente el espacio entre elementos
+plt.show()                                  # Mostrar el gráfico
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-11">
+R - Gráfica de cajas y alambres Boxplot</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Cargar librerías necesarias
+library(ggplot2)     # Para hacer gráficos bonitos
+library(tidyr)       # Para organizar datos
+library(dplyr)       # Para manipular datos
+
+# 1. Simular dataset antropométrico con nombres en español
+set.seed(42)         # Para que siempre salgan los mismos números aleatorios
+n &lt;- 250             # Crear 250 personas
+
+fat_es &lt;- data.frame(
+  brozek = rnorm(n, 20, 5),           # Crear 250 números aleatorios, promedio 20
+  siri = rnorm(n, 20, 5),             # Crear 250 números aleatorios, promedio 20
+  densidad = rnorm(n, 1.05, 0.02),   # Crear 250 números aleatorios, promedio 1.05
+  edad = rnorm(n, 40, 12),            # Crear 250 edades, promedio 40 años
+  peso = rnorm(n, 180, 30),           # Crear 250 pesos, promedio 180 libras
+  estatura = rnorm(n, 70, 3),         # Crear 250 estaturas, promedio 70 pulgadas
+  adiposo = rnorm(n, 25, 4),          # Crear 250 números, promedio 25
+  masa_libre = rnorm(n, 150, 25),     # Crear 250 números, promedio 150
+  cuello = rnorm(n, 37, 3),           # Crear 250 medidas de cuello, promedio 37 cm
+  pecho = rnorm(n, 100, 8),           # Crear 250 medidas de pecho, promedio 100 cm
+  abdomen = rnorm(n, 90, 10),         # Crear 250 medidas de abdomen, promedio 90 cm
+  cadera = rnorm(n, 95, 6),           # Crear 250 medidas de cadera, promedio 95 cm
+  muslo = rnorm(n, 60, 6),            # Crear 250 medidas de muslo, promedio 60 cm
+  rodilla = rnorm(n, 40, 4),          # Crear 250 medidas de rodilla, promedio 40 cm
+  tobillo = rnorm(n, 22, 2),          # Crear 250 medidas de tobillo, promedio 22 cm
+  bíceps = rnorm(n, 30, 3),           # Crear 250 medidas de bíceps, promedio 30 cm
+  antebrazo = rnorm(n, 27, 3),        # Crear 250 medidas de antebrazo, promedio 27 cm
+  muñeca = rnorm(n, 18, 1.5)          # Crear 250 medidas de muñeca, promedio 18 cm
+)
+
+options(repr.plot.width = 8, repr.plot.height = 6, repr.plot.res = 100)  # Definir tamaño del gráfico
+
+# Transformar datos a formato largo (long format)
+fat_es_long &lt;- fat_es %&gt;%             # Tomar los datos y pasarlos al siguiente paso
+  pivot_longer(cols = everything(),   # Convertir todas las columnas en filas
+               names_to = &quot;variable&quot;, # Los nombres van a la columna &quot;variable&quot;
+               values_to = &quot;valor&quot;)   # Los valores van a la columna &quot;valor&quot;
+
+# Crear el boxplot con ggplot2
+p1 &lt;- ggplot(fat_es_long, aes(x = variable, y = valor)) +  # Empezar el gráfico
+  geom_boxplot() +                                         # Añadir las cajas del boxplot
+  labs(                                                    # Poner títulos
+    title = &quot;Distribución de Variables Antropométricas&quot;,  # Título principal
+    x = &quot;Variables&quot;,                                       # Título del eje X
+    y = &quot;Valores&quot;                                          # Título del eje Y
+  ) +
+  theme_minimal(base_size = 20) +                          # Usar estilo limpio, letra tamaño 20
+  theme(                                                   # Personalizar el estilo
+    plot.title = element_text(size = 20, face = &quot;bold&quot;, hjust = 0.5),  # Título grande, negrita, centrado
+    axis.text.x = element_text(angle = 45, hjust = 1, face = &quot;bold&quot;),  # Rotar nombres 45°, negrita
+    axis.text.y = element_text(face = &quot;bold&quot;),             # Números del eje Y en negrita
+    axis.title.x = element_text(face = &quot;bold&quot;),            # Título eje X en negrita
+    axis.title.y = element_text(face = &quot;bold&quot;)             # Título eje Y en negrita
+  )
+
+print(p1)  # Mostrar el gráfico
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id5">
+<h5><strong>Gráficos</strong><a class="headerlink" href="#id5" title="Link to this heading">#</a></h5>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><img alt="" src="../_images/Boxplot_python.png" /></p></th>
+<th class="head text-center"><p><img alt="" src="../_images/Boxplot_R.png" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en Python</strong> <br> Utiliza la librería <code>Matplotlib</code> Requiere ajustes manuales para organizar etiquetas y diseño; útil pero menos intuitivo para gráficos complejos.</div></p></td>
+<td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en R</strong><br>Utiliza <code>Ggplot2</code> Adapta automáticamente los elementos visuales, facilitando una presentación clara con menos esfuerzo técnico.</div></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Importante</p>
+<p>Al comparar distribuciones mediante diagramas de cajas y alambres (boxplots), especialmente cuando se utilizan librerías como Matplotlib en Python y ggplot2 en R, es fundamental ir más allá del aspecto estético o técnico de los gráficos. En este caso, los datos representan variables en unidades heterogéneas: pulgadas, porcentajes y libras. Esta mezcla puede inducir a interpretaciones erróneas si no se toman precauciones.</p>
+<p><strong>Riesgos de mezclar unidades</strong></p>
+<ul class="simple">
+<li><p>Las escalas numéricas no reflejan magnitudes comparables.</p></li>
+<li><p>Las cajas pueden parecer más “anchas” o “estrechas” por razones puramente unitarias.</p></li>
+<li><p>El lector puede asumir que las variables están en la misma escala, lo que distorsiona el análisis.</p></li>
+</ul>
+</div>
+<p><strong>Preprocesamiento recomendado</strong></p>
+<p>Antes de graficar, es esencial aplicar técnicas de normalización o estandarización:</p>
+<ul class="simple">
+<li><p>Normalización (<em>x</em> - <em>xmin</em>/<em>xmax</em> - <em>xmin</em>): útil si se desea conservar la forma de la distribución en una escala común (0 a 1).</p></li>
+<li><p>Estandarización (Z-score): ideal para comparar dispersión y posición relativa (media = 0, desviación estándar = 1).</p></li>
+</ul>
+<p>Esto permite que los boxplots reflejen patrones comparativos reales, no diferencias arbitrarias de unidades.</p>
+<div class="tip admonition">
+<p class="admonition-title">Comparando las librerías en la sexta ronda</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Criterio</p></th>
+<th class="head"><p>Matplotlib (Python)</p></th>
+<th class="head"><p>ggplot2 (R)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Flexibilidad</strong></p></td>
+<td><p>Alta, pero requiere más código</p></td>
+<td><p>Alta, con sintaxis más declarativa</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Personalización</strong></p></td>
+<td><p>Detallada, pero manual</p></td>
+<td><p>Intuitiva con capas (<code class="docutils literal notranslate"><span class="pre">+</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Integración con datos</strong></p></td>
+<td><p>Ideal con <code class="docutils literal notranslate"><span class="pre">pandas</span></code> y <code class="docutils literal notranslate"><span class="pre">NumPy</span></code></p></td>
+<td><p>Fluida con <code class="docutils literal notranslate"><span class="pre">tidyverse</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Estética por defecto</strong></p></td>
+<td><p>Más básica</p></td>
+<td><p>Más pulida y coherente</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Curva de aprendizaje</strong></p></td>
+<td><p>Moderada, requiere manejo de objetos</p></td>
+<td><p>Suave si se domina la gramática de gráficos</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Documentación y comunidad</strong></p></td>
+<td><p>Amplia y activa</p></td>
+<td><p>Muy sólida y orientada a estadística</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="septima-ronda-grafico-en-3d">
+<h4>Septima ronda - gráfico en 3D<a class="headerlink" href="#septima-ronda-grafico-en-3d" title="Link to this heading">#</a></h4>
+<p>A continuación se desarrolla un gráfico de superficie en 3D en las librerías <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> y <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> con datos simulados.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-12">
+Python - Gráfica de superficie 3D</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np                              # Librería para operaciones matemáticas y arrays
+import matplotlib.pyplot as plt                   # Librería para gráficos 2D y 3D
+from mpl_toolkits.mplot3d import Axes3D          # Extensión para gráficos 3D
+
+# Configurar el estilo de matplotlib
+plt.style.use(&#39;default&#39;)                         # Usar el estilo visual por defecto
+fig = plt.figure(figsize=(20, 18))               # Crear figura con tamaño 20x18 pulgadas
+
+# Crear datos simulados
+x = np.linspace(-5, 5, 50)                      # Array de 50 valores entre -5 y 5
+y = np.linspace(-5, 5, 50)                      # Array de 50 valores entre -5 y 5
+X, Y = np.meshgrid(x, y)                        # Crear malla 2D: matrices 50x50 para coordenadas
+
+# 3. Paraboloide hiperbólico (silla de montar)
+ax3 = fig.add_subplot(2, 2, 3, projection=&#39;3d&#39;) # Crear subgráfico 3D en posición 3 de grid 2x2
+Z3 = X**2 - Y**2                                # Calcular valores Z: función silla de montar
+surface3 = ax3.plot_surface(X, Y, Z3, cmap=&#39;coolwarm&#39;, alpha=0.8,  # Crear superficie 3D
+                           linewidth=0, antialiased=True)           # Sin líneas, suavizado activado
+ax3.set_title(&#39;Paraboloide Hiperbólico (Silla de Montar)&#39;)        # Título del gráfico
+ax3.set_xlabel(&#39;X&#39;)                             # Etiqueta eje X
+ax3.set_ylabel(&#39;Y&#39;)                             # Etiqueta eje Y
+ax3.set_zlabel(&#39;Z&#39;)                             # Etiqueta eje Z
+fig.colorbar(surface3, ax=ax3, shrink=0.5, aspect=10)  # Barra de colores: 50% tamaño, proporción 10:1
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-13">
+R - Gráfica de superficie 3D</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Cargar solo las librerías esenciales
+library(ggplot2)        # Para todos los gráficos
+library(dplyr)          # Para manipulación de datos (solo pipe y funciones básicas)
+
+# Crear datos simulados (equivalente a numpy.linspace y meshgrid)
+x &lt;- seq(-5, 5, length.out = 50)    # Vector de 50 valores entre -5 y 5
+y &lt;- seq(-5, 5, length.out = 50)    # Vector de 50 valores entre -5 y 5
+
+# Crear malla de datos (equivalente a meshgrid)
+grid &lt;- expand.grid(X = x, Y = y)   # Todas las combinaciones de x e y
+
+# Calcular función paraboloide hiperbólico Z = X² - Y²
+grid$Z &lt;- grid$X^2 - grid$Y^2       # Función silla de montar
+
+# ===== MÉTODO 1: Mapa de calor estilo matplotlib =====
+cat(&quot;Creando mapa de calor que simula superficie 3D...\n&quot;)
+
+# Replicar colores &#39;coolwarm&#39; de matplotlib manualmente
+coolwarm_colors &lt;- c(&quot;#3A4CC0&quot;, &quot;#6788EE&quot;, &quot;#9ABBFF&quot;, &quot;#C9D7F0&quot;, 
+                    &quot;#F0F0F0&quot;, &quot;#F5B895&quot;, &quot;#F08160&quot;, &quot;#DC143C&quot;)
+
+surface_plot &lt;- ggplot(grid, aes(x = X, y = Y, fill = Z)) +
+  geom_tile() +                     # Crear mapa de calor (simula superficie)
+  scale_fill_gradient2(             # Paleta divergente tipo coolwarm
+    low = &quot;#3A4CC0&quot;,               # Azul para valores negativos
+    mid = &quot;#F0F0F0&quot;,               # Blanco para Z=0
+    high = &quot;#DC143C&quot;,              # Rojo para valores positivos
+    midpoint = 0,                  # Punto medio en Z=0
+    name = &quot;Z&quot;,                    # Nombre de la leyenda
+    guide = guide_colorbar(        # Personalizar barra de colores
+      barwidth = 1,                # Ancho de la barra
+      barheight = 6,               # Alto de la barra
+      title.position = &quot;top&quot;       # Posición del título
+    )
+  ) +
+  labs(
+    title = &quot;Paraboloide Hiperbólico (Silla de Montar)&quot;,
+    subtitle = &quot;Superficie 3D representada como mapa de calor&quot;,
+    x = &quot;X&quot;,                       # Etiqueta eje X
+    y = &quot;Y&quot;,                       # Etiqueta eje Y
+    caption = &quot;Z = X² - Y²&quot;        # Fórmula matemática
+  ) +
+  theme_minimal() +                # Tema base limpio
+  theme(
+    plot.title = element_text(size = 14, hjust = 0.5, face = &quot;bold&quot;),
+    plot.subtitle = element_text(size = 11, hjust = 0.5, color = &quot;gray30&quot;),
+    axis.title = element_text(size = 12),
+    legend.title = element_text(size = 11),
+    panel.grid = element_blank(),  # Quitar grilla
+    aspect.ratio = 1               # Mantener proporciones cuadradas
+  )
+
+print(surface_plot)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id6">
+<h5><strong>Gráficos</strong><a class="headerlink" href="#id6" title="Link to this heading">#</a></h5>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><img alt="" src="../_images/Superficie_3D_python.png" /></p></th>
+<th class="head text-center"><p><img alt="" src="../_images/Superficie_3D_R.png" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en Python</strong> <br> Utiliza la librería <code>Matplotlib</code> Gráfico 3D nativo con <code class="docutils literal notranslate"><span class="pre">plot_surface().</span></code>  <br> Perspectiva real en 3 dimensiones.</div></p></td>
+<td class="text-center"><p><div style="text-align: center"><strong>Gráfico generado en R</strong><br>Utiliza <code>Ggplot2</code> En su forma estándar solo soporta 2D <br> simula efecto 3D con mapas de calor, contornos y gradientes de color, sin capacidades 3D verdaderas.</div></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition-comparando-las-librerias-en-la-septima-ronda admonition">
+<p class="admonition-title">Comparando las librerías en la séptima ronda</p>
+<p>Haciendo un esfuerzo extra la librería matplotlib puede renderizar gráficas en 3D, en contraste, en R se puede construir pero con apoyo de otras librerías como <code class="docutils literal notranslate"><span class="pre">plotly</span></code>.</p>
+</div>
+<div class="admonition-nota-resultados-de-la-comparacion admonition">
+<p class="admonition-title">Nota  - Resultados de la comparación:</p>
+<p>📌 Aunque ggplot2 supera ligeramente a Matplotlib en la comparación final, la elección ideal depende del contexto, del lenguaje de programación preferido y del tipo de usuario. Lo importante es que ambos permiten construir visualizaciones potentes si se usan con criterio técnico y comunicativo.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="comparativa-por-tipo-de-grafico-matplotlib-vs-ggplot2">
+<h3><strong>Comparativa por tipo de gráfico: Matplotlib vs ggplot2</strong><a class="headerlink" href="#comparativa-por-tipo-de-grafico-matplotlib-vs-ggplot2" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Round</p></th>
+<th class="head"><p>Tipo de gráfico</p></th>
+<th class="head"><p>Matplotlib (Python)</p></th>
+<th class="head"><p>ggplot2 (R)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Gráfico de dispersión</p></td>
+<td><p>5</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Gráfico de contorno</p></td>
+<td><p>5</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Correlográma (mapa de calor)</p></td>
+<td><p>5</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Regresión multilinea</p></td>
+<td><p>5</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Gráfico de barras polares</p></td>
+<td><p>1</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>Diagrama de cajas y alambres</p></td>
+<td><p>4</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>Adicional (3D)</p></td>
+<td><p>5</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><strong>Total</strong></p></td>
+<td><p><strong>30</strong></p></td>
+<td><p><strong>31</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="reflexion-sobre-la-comparacion">
+<h3><strong>Reflexión sobre la comparación</strong><a class="headerlink" href="#reflexion-sobre-la-comparacion" title="Link to this heading">#</a></h3>
+<p>Las librerías, <strong>Matplotlib</strong> y <strong>ggplot2</strong>, son excelentes herramientas para la visualización de datos. ambas pueden generar resultados expresivos.</p>
+<p><strong>Matplotlib</strong> tiene potencial para producir gráficas comunicativas, con una presentación pulida y un amplio espectro de funciones altamente personalizable.</p>
+<p><strong>ggplot2</strong>, por su parte, se destacó en esta comparación por su manejo eficiente de datos y su integración fluida con el ecosistema <em>tidyverse</em>. Esta ventaja fue decisiva en el puntaje final.</p>
+<p>Si hubiese incorporado otras librerías complementarias en Python—como <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, <code class="docutils literal notranslate"><span class="pre">plotly</span></code> o herramientas de preprocesamiento como <code class="docutils literal notranslate"><span class="pre">pandas</span></code>—el resultado podría haber sido diferente. La superioridad de ggplot2 no es absoluta, sino dependiente del contexto y del conjunto de herramientas utilizadas.</p>
+<p>Esta comparación no busca declarar un ganador definitivo, sino invitar a reflexionar sobre cómo la elección de librería debe responder al tipo de datos, al flujo de trabajo y al perfil del usuario. La visualización efectiva no depende solo del software, sino de cómo lo usamos para comunicar con claridad y propósito.</p>
+</section>
+<section id="introduccion-a-plotly-visualizacion-interactiva-en-python">
+<h3>Introducción a Plotly: Visualización Interactiva en Python<a class="headerlink" href="#introduccion-a-plotly-visualizacion-interactiva-en-python" title="Link to this heading">#</a></h3>
+<p><strong>¿Qué es Plotly?</strong>
+Plotly es una biblioteca de código abierto que permite crear gráficos de alta calidad, desde simples líneas hasta mapas geoespaciales y dashboards complejos. A diferencia de otras librerías como Matplotlib o Seaborn, Plotly se destaca por:</p>
+<p><strong>Interactividad</strong>: Los gráficos permiten hacer zoom, desplazarse, seleccionar puntos y ver detalles al pasar el cursor.<br>
+<strong>Visualización web</strong>: Los gráficos se pueden incrustar fácilmente en páginas web, notebooks o aplicaciones.<br>
+<strong>Estética moderna</strong>: Colores, estilos y animaciones que hacen que los datos cobren vida.</p>
+<p>Vamos a trabajar con un conjunto de datos que registra propinas recibidas por meseros, junto con variables como el sexo del cliente, el día de la semana, el tamaño del grupo, y si hubo consumo de alcohol. Este tipo de datos es ideal para mostrar cómo Plotly puede:</p>
+<ul class="simple">
+<li><p>Comparar categorías (por ejemplo, propinas según el género).</p></li>
+<li><p>Mostrar relaciones entre variables (como tamaño del grupo (tipo de comida)  vs. monto de la propina).</p></li>
+</ul>
+<p>Veamos a plotly en acción:</p>
+<p>Si desean explorar la tabla, consta de estas variables:</p>
+<table style="font-size: 70%; width: 60%;">
+  <tr><th>Variable</th><th>Descripción</th></tr>
+  <tr><td><code>total_bill</code></td><td>Total de la cuenta ($)</td></tr>
+  <tr><td><code>tip</code></td><td>Propina ($)</td></tr>
+  <tr><td><code>sex</code></td><td>Sexo del cliente (Male / Female)</td></tr>
+  <tr><td><code>smoker</code></td><td>¿Fuma? (Yes / No)</td></tr>
+  <tr><td><code>day</code></td><td>Día (Thur, Fri, Sat, Sun)</td></tr>
+  <tr><td><code>time</code></td><td>Hora (Lunch / Dinner)</td></tr>
+  <tr><td><code>size</code></td><td>Personas en la mesa</td></tr>
+</table>
+<br><html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.1.0.min.js" integrity="sha256-Ei4740bWZhaUTQuD6q9yQlgVCMPBz6CZWhevDYPv93A=" crossorigin="anonymous"></script>                <div id="mi-grafico" class="plotly-graph-div" style="height:400px; width:800px;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("mi-grafico")) {                    Plotly.newPlot(                        "mi-grafico",                        [{"alignmentgroup":"True","hovertemplate":"sex=Female\u003cbr\u003etime=%{x}\u003cbr\u003etip=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Female","marker":{"color":"pink"},"name":"Femenino","notched":false,"offsetgroup":"Female","orientation":"v","showlegend":true,"x":["Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Lunch","Lunch","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Dinner","Dinner","Dinner","Dinner","Dinner","Lunch","Lunch","Lunch","Lunch","Dinner","Dinner","Dinner","Dinner"],"x0":" ","xaxis":"x","y":{"dtype":"f8","bdata":"KVyPwvUo8D\u002fhehSuR+EMQAAAAAAAABRAKVyPwvUoCEC4HoXrUbj6PwAAAAAAAAxAAAAAAAAABkDXo3A9CtcBQAAAAAAAAAhAAAAAAAAACECamZmZmZkDQI\u002fC9ShcjwhAzczMzMzMBEDNzMzMzMwUQAAAAAAAAPg\u002fw\u002fUoXI\u002fCA0AAAAAAAADwPwAAAAAAAAhAH4XrUbgeCUAAAAAAAAAUQJqZmZmZmQFASOF6FK5H\u002fT+uR+F6FK4UQAAAAAAAAPA\u002fMzMzMzMzEUAAAAAAAAAKQAAAAAAAAARAAAAAAAAACEAAAAAAAAAEQNejcD0K1wtAUrgehetREEAAAAAAAAAQQAAAAAAAAPA\u002fAAAAAAAAEEAAAAAAAAAMQAAAAAAAAPg\u002fzczMzMzM\u002fD9cj8L1KFwHQOF6FK5H4fo\u002fKVyPwvUoBEDNzMzMzMwQQAAAAAAAAABAAAAAAAAAAECkcD0K16MGQAAAAAAAAPg\u002fAAAAAAAAAEAAAAAAAAAKQAAAAAAAAPQ\u002fAAAAAAAAAEAAAAAAAAAAQAAAAAAAAAZAAAAAAAAADEAAAAAAAAAUQGZmZmZmZgJAAAAAAAAA+D\u002fD9Shcj8L1PxSuR+F6FPo\u002fj8L1KFyPFEAAAAAAAAAOQOF6FK5H4QRAAAAAAAAAAEAAAAAAAAAIQMP1KFyPwvk\u002fAAAAAAAAAEAAAAAAAAAQQAAAAAAAAAxAAAAAAAAADEDD9Shcj8IQQAAAAAAAABRAAAAAAAAAAEAUrkfhehQAQAAAAAAAAABAAAAAAAAABEDXo3A9CtcJQNejcD0K1wFAAAAAAAAABEAAAAAAAAAaQJqZmZmZmfE\u002fuB6F61G4CEDXo3A9CtcLQAAAAAAAAAhAAAAAAAAABEAAAAAAAAAAQArXo3A9CgdArkfhehSuEkAAAAAAAAAAQAAAAAAAAAhA"},"y0":" ","yaxis":"y","type":"box"},{"alignmentgroup":"True","hovertemplate":"sex=Male\u003cbr\u003etime=%{x}\u003cbr\u003etip=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Male","marker":{"color":"blue"},"name":"Masculino","notched":false,"offsetgroup":"Male","orientation":"v","showlegend":true,"x":["Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Lunch","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Lunch","Lunch","Lunch","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner","Dinner"],"x0":" ","xaxis":"x","y":{"dtype":"f8","bdata":"j8L1KFyP+j8AAAAAAAAMQHsUrkfhegpA16NwPQrXEkAAAAAAAAAAQPYoXI\u002fC9QhAXI\u002fC9Shc\u002fz\u002fXo3A9CtcJQFyPwvUoXPs\u002fH4XrUbge+T8AAAAAAAAIQFyPwvUoXA9ArkfhehSuDUDNzMzMzMwKQFK4HoXrURBAUrgehetRHkBxPQrXo3AJQLgehetRuAJAAAAAAAAAAEAAAAAAAAAAQDMzMzMzMxFAMzMzMzMz9z8AAAAAAAAEQClcj8L1KApAzczMzMzMDEAAAAAAAAAAQHsUrkfhegJAAAAAAAAAFEDsUbgehesBQFK4HoXrUQRAexSuR+F6CEAfhetRuB71P2ZmZmZmZhZAAAAAAAAACEAAAAAAAAAUQAAAAAAAABhAZmZmZmZmAEAAAAAAAAAIQAAAAAAAAARA9ihcj8L1+D9cj8L1KFwRQBSuR+F6FAxAAAAAAAAACEApXI\u002fC9Sj8P+xRuB6F6xpArkfhehSuCUAAAAAAAAAAQK5H4XoUrv8\u002fFK5H4XoUDkAfhetRuB4FQDMzMzMzMwlAFK5H4XoUAEC4HoXrUbgAQIXrUbgehf8\u002fAAAAAAAA9D+kcD0K16MIQAAAAAAAABBAAAAAAAAACECuR+F6FK4FQAAAAAAAAAhAMzMzMzMzC0AAAAAAAAAUQD0K16NwPQBAAAAAAAAAAEAAAAAAAAAQQGZmZmZmZhdAAAAAAAAACEAAAAAAAAAIQAAAAAAAAAxA7FG4HoXrEkAAAAAAAAAQQAAAAAAAAPg\u002fAAAAAAAACEAAAAAAAAD4Pz0K16NwPfo\u002fPQrXo3A9EEApXI\u002fC9SgRQBSuR+F6FA5AAAAAAAAACEAAAAAAAAAQQGZmZmZmZgRASOF6FK5HFEB7FK5H4XoCQAAAAAAAAARAAAAAAAAAAECuR+F6FK73P3E9CtejcAFAAAAAAAAA+D8AAAAAAAAAQM3MzMzMzBpAAAAAAAAAFECuR+F6FK77PwAAAAAAAABAAAAAAAAABEAAAAAAAAAAQOxRuB6F6wVAAAAAAAAAAEAAAAAAAAAAQAAAAAAAABRAAAAAAAAAAEAAAAAAAAAMQAAAAAAAAARAAAAAAAAAAEDXo3A9CtcLQOxRuB6F6wFAAAAAAAAAEkAAAAAAAAAkQEjhehSuRwlAmpmZmZmZFEBxPQrXo3AJQAAAAAAAABBA4XoUrkfhCEAAAAAAAAAAQAAAAAAAAABAZmZmZmZmDEBxPQrXo3ANQJqZmZmZmRZAAAAAAAAADEAAAAAAAAAaQAAAAAAAAAhAAAAAAAAAFEAAAAAAAAAAQAAAAAAAABBAAAAAAAAA+D97FK5H4XoEQClcj8L1KABAAAAAAAAAEEAK16NwPQr3PwAAAAAAAABAAAAAAAAAAEAAAAAAAAAQQAAAAAAAABBASOF6FK5HC0AAAAAAAAAIQD0K16NwPQBAAAAAAAAAAECkcD0K16MUQAAAAAAAACJAAAAAAAAACEAAAAAAAAD4PwrXo3A9Cvc\u002fmpmZmZmZAUC4HoXrUbj+P0jhehSuR\u002fk\u002fAAAAAAAACEDD9Shcj8IFQAAAAAAAAABAAAAAAAAACEAfhetRuB4LQIXrUbgehfc\u002fAAAAAAAACEAAAAAAAAD0PwAAAAAAAPA\u002fuB6F61G48j+uR+F6FK4XQAAAAAAAAABAAAAAAAAA\u002fD8="},"y0":" ","yaxis":"y","type":"box"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Momento del D\u00eda"},"ticktext":["Almuerzo","Cena"],"tickvals":["Lunch","Dinner"],"showgrid":true,"gridwidth":1,"gridcolor":"gray"},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Propina (USD)"},"showgrid":true,"gridwidth":1,"gridcolor":"lightgray"},"legend":{"title":{"text":"G\u00e9nero"},"tracegroupgap":0},"title":{"text":"Distribuci\u00f3n de Propinas por Momento del D\u00eda y G\u00e9nero en un restaurante"},"boxmode":"group","width":800,"height":400,"font":{"color":"black"},"plot_bgcolor":"white","paper_bgcolor":"white"},                        {"displayModeBar": true, "responsive": true}                    )                };            </script>        </div>
+</body>
+</html><div class="tip admonition">
+<p class="admonition-title">Análisis del gráfico</p>
+<ul class="simple">
+<li><p>Durante la cena, los hombres tienden a dejar propinas más altas y con mayor variabilidad que las mujeres.</p></li>
+<li><p>En el almuerzo, aunque las propinas son en general más bajas, los hombres siguen mostrando una ligera ventaja en monto.</p></li>
+<li><p>La diferencia por género es más marcada en la cena, lo que podría reflejar distintos patrones de gasto según el momento del día.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Nota sobre la librería <em>Shiny</em> en R</strong></p>
+<div style="text-align: justify;">
+<p>Aunque <em>Shiny</em> es una herramienta poderosa para construir aplicaciones web interactivas con R, su implementación requiere una estructura más compleja que excede el alcance de esta sesión introductoria. La librería combina elementos de programación reactiva, diseño de interfaces y despliegue web, lo cual demanda una curva de aprendizaje distinta y más extensa.</p>
+<p>Por ello, hemos optado por enfocarnos en librerías que permiten una incorporación más inmediata al flujo de trabajo de visualización.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="glosario">
+<h2>Glosario<a class="headerlink" href="#glosario" title="Link to this heading">#</a></h2>
+<p>Este glosario reúne definiciones clave utilizadas en la sesión.</p>
+<hr class="docutils" />
+<section id="a">
+<h3>A<a class="headerlink" href="#a" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Análisis exploratorio</strong>: Fase inicial del análisis de datos donde se utilizan técnicas visuales para identificar patrones, distribuciones, anomalías y relaciones entre variables.</p></li>
+<li><p><strong>Anomalías</strong>: Valores que se desvían significativamente del patrón general, destacándose visualmente.</p></li>
+<li><p><strong>Antialiased</strong>: Técnica de suavizado que elimina bordes irregulares en gráficos.</p></li>
+</ul>
+</section>
+<section id="b">
+<h3>B<a class="headerlink" href="#b" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Bandas de confianza</strong>: Regiones sombreadas que representan el intervalo de confianza estadístico.</p></li>
+<li><p><strong>Boxplot (Diagrama de cajas y alambres)</strong>: Gráfico que muestra la distribución de datos mediante cuartiles.</p></li>
+</ul>
+</section>
+<section id="c">
+<h3>C<a class="headerlink" href="#c" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Capas</strong>: Componentes secuenciales en ggplot2 para construir un gráfico.</p></li>
+<li><p><strong>Clusters</strong>: Agrupaciones de datos con características similares.</p></li>
+<li><p><strong>Colorbar</strong>: Escala de colores que permite interpretar valores numéricos.</p></li>
+<li><p><strong>Contour Plot</strong>: Gráfico que representa valores mediante líneas de nivel.</p></li>
+<li><p><strong>Correlación</strong>: Relación lineal entre dos variables.</p></li>
+<li><p><strong>Cuartiles</strong>: Valores que dividen un conjunto de datos en cuatro partes iguales.</p></li>
+</ul>
+</section>
+<section id="d">
+<h3>D<a class="headerlink" href="#d" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Dashboard</strong>: Panel interactivo con múltiples visualizaciones.</p></li>
+<li><p><strong>DataFrame</strong>: Estructura tabular en pandas y R.</p></li>
+<li><p><strong>Densidad kernel (KDE)</strong>: Estimación de la función de densidad de probabilidad.</p></li>
+</ul>
+</section>
+<section id="e">
+<h3>E<a class="headerlink" href="#e" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Escalas</strong>: Mapeo entre valores de datos y propiedades visuales.</p></li>
+<li><p><strong>Estandarización (Z-score)</strong>: Transformación para media cero y desviación estándar uno.</p></li>
+<li><p><strong>Estética</strong>: Mapeo de variables a propiedades visuales en ggplot2.</p></li>
+</ul>
+</section>
+<section id="f">
+<h3>F<a class="headerlink" href="#f" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Facetas</strong>: División de un gráfico en paneles por categorías.</p></li>
+<li><p><strong>Folium</strong>: Librería para crear mapas interactivos en Python.</p></li>
+</ul>
+</section>
+<section id="g">
+<h3>G<a class="headerlink" href="#g" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Geoms</strong>: Capas que definen el tipo de representación visual.</p></li>
+<li><p><strong>Geopandas</strong>: Extensión de pandas para datos geoespaciales.</p></li>
+<li><p><strong>ggplot2</strong>: Librería de visualización en R basada en la gramática de gráficos.</p></li>
+<li><p><strong>Gramática de gráficos</strong>: Filosofía que estructura un gráfico en capas.</p></li>
+<li><p><strong>Grid</strong>: Líneas de referencia que facilitan la lectura.</p></li>
+</ul>
+</section>
+<section id="h">
+<h3>H<a class="headerlink" href="#h" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Heatmap</strong>: Visualización matricial con gradientes de color.</p></li>
+<li><p><strong>Histograma</strong>: Gráfico de barras para distribución de frecuencias.</p></li>
+</ul>
+</section>
+<section id="i">
+<h3>I<a class="headerlink" href="#i" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Interactividad</strong>: Capacidad de un gráfico para responder a acciones del usuario.</p></li>
+</ul>
+</section>
+<section id="k">
+<h3>K<a class="headerlink" href="#k" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>KDE (Kernel Density Estimation)</strong>: Ver <em>Densidad kernel</em>.</p></li>
+</ul>
+</section>
+<section id="l">
+<h3>L<a class="headerlink" href="#l" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Leaflet</strong>: Librería JavaScript para mapas interactivos.</p></li>
+<li><p><strong>Leyenda</strong>: Explicación de colores, formas o tamaños en un gráfico.</p></li>
+<li><p><strong>Librería</strong>: Conjunto de funciones predefinidas en un lenguaje de programación.</p></li>
+</ul>
+</section>
+<section id="m">
+<h3>M<a class="headerlink" href="#m" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Matplotlib</strong>: Librería base de visualización en Python.</p></li>
+<li><p><strong>Malla (Meshgrid)</strong>: Matrices que definen coordenadas en gráficos 3D.</p></li>
+<li><p><strong>Marcadores</strong>: Símbolos que representan puntos de datos.</p></li>
+</ul>
+</section>
+<section id="n">
+<h3>N<a class="headerlink" href="#n" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Normalización (Min-Max)</strong>: Transformación de datos a una escala común.</p></li>
+<li><p><strong>NumPy</strong>: Librería para operaciones matemáticas con arrays.</p></li>
+</ul>
+</section>
+<section id="o">
+<h3>O<a class="headerlink" href="#o" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Opacidad (Alpha)</strong>: Nivel de transparencia de un elemento gráfico.</p></li>
+</ul>
+</section>
+<section id="p">
+<h3>P<a class="headerlink" href="#p" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Pandas</strong>: Librería para manipulación de datos tabulares.</p></li>
+<li><p><strong>Patrones</strong>: Tendencias o estructuras repetitivas en los datos.</p></li>
+<li><p><strong>Plotly</strong>: Librería para visualizaciones interactivas.</p></li>
+<li><p><strong>Proyección polar</strong>: Sistema circular para gráficos radiales.</p></li>
+</ul>
+</section>
+<section id="r">
+<h3>R<a class="headerlink" href="#r" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Regresión lineal</strong>: Modelo que estima la relación entre variables.</p></li>
+<li><p><strong>Renderizar</strong>: Generar la representación visual final de un gráfico.</p></li>
+</ul>
+</section>
+<section id="s">
+<h3>S<a class="headerlink" href="#s" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scatter Plot</strong>: Gráfico que muestra la relación entre dos variables.</p></li>
+<li><p><strong>Seaborn</strong>: Librería basada en Matplotlib con enfoque estadístico.</p></li>
+<li><p><strong>Semilla aleatoria</strong>: Valor que garantiza la reproducibilidad.</p></li>
+<li><p><strong>Shiny</strong>: Framework de R para aplicaciones web interactivas.</p></li>
+</ul>
+</section>
+<section id="t">
+<h3>T<a class="headerlink" href="#t" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Tema (Theme)</strong>: Estilos que controlan la apariencia de un gráfico.</p></li>
+<li><p><strong>Tidyverse</strong>: Ecosistema de librerías en R para ciencia de datos.</p></li>
+<li><p><strong>Tooltips</strong>: Ventanas emergentes con información detallada.</p></li>
+<li><p><strong>Transformación de datos</strong>: Modificación de escala o estructura de datos.</p></li>
+</ul>
+</section>
+<section id="v">
+<h3>V<a class="headerlink" href="#v" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Valores atípicos (Outliers)</strong>: Observaciones que se desvían del patrón general.</p></li>
+<li><p><strong>Variables</strong>: Características medibles o categóricas.</p></li>
+<li><p><strong>Viridis</strong>: Paleta de colores accesible para daltónicos.</p></li>
+<li><p><strong>Visualización de datos</strong>: Representación gráfica de información abstracta.</p></li>
+</ul>
+</section>
+<section id="z">
+<h3>Z<a class="headerlink" href="#z" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Zoom</strong>: Funcionalidad para ampliar o reducir regiones específicas.</p></li>
+<li><p><strong>Z-score</strong>: Ver <em>Estandarización</em>.</p></li>
+</ul>
+</section>
+<section id="consulta-bibliografica">
+<h3>Consulta bibliográfica.<a class="headerlink" href="#consulta-bibliografica" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><ul>
+<li><p><a class="reference external" href="https://htmlcolorcodes.com/es/">https://htmlcolorcodes.com/es/</a> - paletas de colores hex <br></p></li>
+</ul>
+</li>
+<li><ul>
+<li><p><a class="reference external" href="https://r-charts.com/es/ggplot2/">https://r-charts.com/es/ggplot2/</a> - guia para gráficas ggplot2 <br></p></li>
+</ul>
+</li>
+<li><ul>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/users/explain/quick_start.html">https://matplotlib.org/stable/users/explain/quick_start.html</a> - guia para gráficas matplotlib</p></li>
+</ul>
+</li>
+</ul>
+<p><i>Taller de Análisis y procesamiento de datos con Open Source</i> © 2025 by <a href="https://scholar.google.es/citations?user=PP7CT6IAAAAJ">Steven Cifuentes</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./modulo_5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../modulo_4/modulo_4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Manipulación de datos con pandas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../modulo_6/modulo_6.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Elaboración de mapas interactivos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-la-visualizacion-de-datos">Introducción a la visualización de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-visualizar-datos">¿Por qué visualizar datos?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#que-resuelven-las-herramientas-de-visualizacion-de-datos">¿Qué resuelven las herramientas de visualización de datos?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-graficas-mas-comunes">Tipos de gráficas más comunes.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#significado-de-las-librerias-en-lenguaje-de-programacion">Significado de las librerías en lenguaje de programación</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-vs-ggplot2">Matplotlib VS Ggplot2</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#primera-ronda-grafica-de-dispersion">Primera ronda - gráfica de dispersión</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#segunda-ronda-grafica-de-contorno">Segunda ronda - gráfica de contorno</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tercera-ronda-grafica-de-correlacion-heatmap">Tercera ronda - gráfica de correlación «heatmap»</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cuarta-ronda-grafica-de-lineas-y-puntos-regresion-lineal">Cuarta ronda - gráfica de líneas y puntos «Regresión líneal»</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#quinta-ronda-grafico-polar">Quinta Ronda - gráfico polar</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sexta-ronda-grafica-de-cajas-y-alambres-boxplot">Sexta ronda - gráfica de cajas y alambres «Boxplot»</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#septima-ronda-grafico-en-3d">Septima ronda - gráfico en 3D</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><strong>Gráficos</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativa-por-tipo-de-grafico-matplotlib-vs-ggplot2"><strong>Comparativa por tipo de gráfico: Matplotlib vs ggplot2</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflexion-sobre-la-comparacion"><strong>Reflexión sobre la comparación</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-plotly-visualizacion-interactiva-en-python">Introducción a Plotly: Visualización Interactiva en Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glosario">Glosario</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b">B</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c">C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e">E</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f">F</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g">G</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h">H</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i">I</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k">K</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l">L</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m">M</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n">N</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o">O</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p">P</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r">R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#s">S</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t">T</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v">V</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z">Z</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consulta-bibliografica">Consulta bibliográfica.</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Departamento Administrativo Nacional de Estadística - DANE
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
